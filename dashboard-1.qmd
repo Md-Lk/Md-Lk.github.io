@@ -1,12 +1,15 @@
 ---
 title: "Dashboard"
-format: dashboard
+format:
+  dashboard:
+    expandable: false
 ---
 
 ```{r}
 #| message: false
 #| warning: false
 #| include: false
+
 # install.packages("D:/MDi/Documents/R/package20260206", repos = NULL, type = "source")
 # install.packages("tidyverse")
 # install.packages("forcats")
@@ -15,9 +18,11 @@ format: dashboard
 
 library(package20260206)
 library(tidyverse)
+library(plotly)
 library(forcats)
 library(bslib)
 library(bsicons)
+library(htmltools)
 ```
 
 # Production
@@ -28,26 +33,97 @@ library(bsicons)
 
 #### Total
 
+```{r}
+#| include: false
+Oil_Total <- EF2023$crude_oil_production %>%
+  filter(Unit == "Thousand Cubic Metres per day",
+         Variable == "Total") %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
 ::: {style="display: grid; grid-template-columns: 1fr 3fr; gap: 1rem;"}
 
 :::: {style="display: grid; grid-template-rows: auto auto auto; gap: 1rem;"}
 
 ```{r}
-value_box(theme = value_box_theme(bg = "#157", fg = "#EEE"),
-          title = "Current",
-          value = "...")
+# Oil_Total %>%
+#   filter(Region != "Canada") %>%
+#   # Get top region
+#   summarize(Value_Total = mean(Value),
+#             Value_Average = mean(Value),
+#             .by = Region) %>%
+#   mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
+#   arrange(desc(Value_Average)) %>%
+#   head(1) %>% 
+#   # Format labels
+#   mutate(Line_1 = paste0("Average: ", round(Value_Average, 1), "k m³/day"),
+#          Line_2 = paste0("Percentage: ", round(100 * Value_Percentage, 0), "%")) %>% {
+#   val <- .$Region;
+#   p1 <- .$Line_1; p2 <- .$Line_2
+#   value_box(theme = value_box_theme(bg = "#157", fg = "#EEE"),
+#           title = "Top province",
+#           value = val,
+#           tag("p", p1), tag("p", p2))
+#   }
 ```
 
 ```{r}
-value_box(theme = value_box_theme(bg = "#157", fg = "#EEE"),
-          title = "Canada",
-          value = "...")
+  value_box(theme = value_box_theme(bg = "#157", fg = "#EEE"),
+          title = "Top province",
+          value = val,
+          tag("p", p1), tag("p", p2))
 ```
 
 ```{r}
+# Prepare showcase plot
+value_box_plot <- Oil_Total %>% 
+  filter(Region == "AB") %>%
+  ggplot(aes(x = Year, y = Value, group = Scenario,
+             ymin = pmin(0, Value), ymax = pmax(0, Value),
+             text = round(Value))) +
+  geom_line(col = "#EEE", alpha = 0.5, lwd = 0.3) +
+  geom_ribbon(fill = "#EEE", alpha = 0.1) +
+  theme_void() +
+  theme(legend.position = "none")
+
+value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
+  layout(plot_bgcolor = "rgba(1,1,1,0)") %>% 
+  config(displayModeBar = F)
+
+# Get top contributor (province)
+value_box_data <- Oil_Total %>%
+  filter(Region != "Canada") %>%
+  # Get top region
+  summarize(Value_Total = mean(Value),
+            Value_Average = mean(Value),
+            .by = Region) %>%
+  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
+  arrange(desc(Value_Average)) %>%
+  head(1) %>% 
+  # Format labels
+  mutate(Line_1 = paste0("Average: ", round(Value_Average, 1), "k m³/day"),
+         Line_2 = paste0("Percentage: ", round(100 * Value_Percentage, 0), "%"))
+
+value_box_value <- value_box_data$Region
+value_box_tag1 <- value_box_data$Line_1
+value_box_tag2 <- value_box_data$Line_2
+
+# Draw value box
 value_box(theme = value_box_theme(bg = "#157", fg = "#EEE"),
-          title = "Global",
-          value = "...")
+        title = "Top province",
+        showcase = value_box_plot,
+        showcase_layout = "bottom",
+        value = value_box_value,
+        tag("p", value_box_tag1),
+        tag("p", value_box_tag2))
+
 ```
 
 ::::
@@ -55,24 +131,12 @@ value_box(theme = value_box_theme(bg = "#157", fg = "#EEE"),
 :::: {style="display: grid;"}
 
 ```{r}
-EF2023$crude_oil_production %>%
-  filter(Unit == "Thousand Cubic Metres per day",
-         Variable == "Total") %>%
-  mutate(Region = Region %>% factor %>% fct_recode(
-    "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
-    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
-    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
-    "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
-    "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
-    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
-  ridge_facet_plot(rp_X = Year,
-                   rp_Y = Value,
-                   rp_F1 = Scenario,
-                   rp_F2 = Region,
-                   rp_alpha = list(ribbons = 0.35),
+Oil_Total %>%
+  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
                    rp_title_main = "Canadian Total Production",
-                   rp_title_Y = "Production",
-                   rp_unit_abbrev = "k m³/day")
+                   rp_title_Y = "Production", rp_unit_abbrev = "k m³/day",
+                   rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
+                   rp_alpha = list(ribbons = 0.35))
 ```
 
 ::::
