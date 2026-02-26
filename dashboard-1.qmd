@@ -1,0 +1,325 @@
+---
+title: "Dashboard"
+format: dashboard
+---
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+# install.packages("D:/MDi/Documents/R/package20260206", repos = NULL, type = "source")
+# install.packages("tidyverse")
+# install.packages("forcats")
+# install.packages("bslib")
+# install.packages("bsicons")
+
+library(package20260206)
+library(tidyverse)
+library(forcats)
+library(bslib)
+library(bsicons)
+```
+
+# Production
+
+## _ {.tabset}
+
+### Oil {.tabset}
+
+#### Total
+
+::: {style="display: grid; grid-template-columns: 1fr 3fr; gap: 1rem;"}
+
+:::: {style="display: grid; grid-template-rows: auto auto auto; gap: 1rem;"}
+
+```{r}
+value_box(theme = value_box_theme(bg = "#157", fg = "#EEE"),
+          title = "Current",
+          value = "...")
+```
+
+```{r}
+value_box(theme = value_box_theme(bg = "#157", fg = "#EEE"),
+          title = "Canada",
+          value = "...")
+```
+
+```{r}
+value_box(theme = value_box_theme(bg = "#157", fg = "#EEE"),
+          title = "Global",
+          value = "...")
+```
+
+::::
+
+:::: {style="display: grid;"}
+
+```{r}
+EF2023$crude_oil_production %>%
+  filter(Unit == "Thousand Cubic Metres per day",
+         Variable == "Total") %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
+  ridge_facet_plot(rp_X = Year,
+                   rp_Y = Value,
+                   rp_F1 = Scenario,
+                   rp_F2 = Region,
+                   rp_alpha = list(ribbons = 0.35),
+                   rp_title_main = "Canadian Total Production",
+                   rp_title_Y = "Production",
+                   rp_unit_abbrev = "k m³/day")
+```
+
+::::
+
+:::
+
+#### Upgraded Bitumen
+
+```{r}
+EF2023$crude_oil_production %>%
+  filter(Unit == "Thousand Cubic Metres per day",
+         Variable == "(Upgraded Bitumen)") %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
+  ridge_facet_plot(rp_X = Year,
+                   rp_Y = Value,
+                   rp_F1 = Scenario,
+                   rp_F2 = Region,
+                   rp_alpha = list(ribbons = 0.35),
+                   rp_title_main = "Canadian Upgraded Bitumen Production",
+                   rp_title_Y = "Production",
+                   rp_unit_abbrev = "k m³/day")
+```
+
+#### C5+
+
+```{r}
+# EF2023$crude_oil_production %>%
+#   filter(Unit == "Thousand Cubic Metres per day",
+#          Variable == "C5+") %>%
+#   mutate(Region = Region %>% factor %>% fct_recode(
+#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
+#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
+#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
+#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
+#   ridge_facet_plot(rp_X = Year,
+#                    rp_Y = Value,
+#                    rp_F1 = Scenario,
+#                    rp_F2 = Region,
+#                    rp_alpha = list(ribbons = 0.35),
+#                    rp_title_main = "Canadian C5+ Production",
+#                    rp_title_Y = "Production",
+#                    rp_unit_abbrev = "k m³/day")
+```
+
+#### Conventional Heavy
+
+```{r}
+# EF2023$crude_oil_production %>%
+#   filter(Unit == "Thousand Cubic Metres per day",
+#          Variable == "Conventional Heavy") %>%
+#   mutate(Region = Region %>% factor %>% fct_recode(
+#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
+#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
+#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
+#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
+#   ridge_facet_plot(rp_X = Year,
+#                    rp_Y = Value,
+#                    rp_F1 = Scenario,
+#                    rp_F2 = Region,
+#                    rp_alpha = list(ribbons = 0.35),
+#                    rp_title_main = "Canadian Conventional Heavy Production",
+#                    rp_title_Y = "Production",
+#                    rp_unit_abbrev = "k m³/day")
+```
+
+#### Conventional Light
+
+```{r}
+# EF2023$crude_oil_production %>%
+#   filter(Unit == "Thousand Cubic Metres per day",
+#          Variable == "Conventional Light") %>%
+#   mutate(Region = Region %>% factor %>% fct_recode(
+#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
+#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
+#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
+#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
+#   ridge_facet_plot(rp_X = Year,
+#                    rp_Y = Value,
+#                    rp_F1 = Scenario,
+#                    rp_F2 = Region,
+#                    rp_alpha = list(ribbons = 0.35),
+#                    rp_title_main = "Canadian Conventional Light Production",
+#                    rp_title_Y = "Production",
+#                    rp_unit_abbrev = "k m³/day")
+```
+
+#### Field Condensate
+
+```{r}
+# EF2023$crude_oil_production %>%
+#   filter(Unit == "Thousand Cubic Metres per day",
+#          Variable == "Field Condensate") %>%
+#   mutate(Region = Region %>% factor %>% fct_recode(
+#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
+#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
+#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
+#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
+#   ridge_facet_plot(rp_X = Year,
+#                    rp_Y = Value,
+#                    rp_F1 = Scenario,
+#                    rp_F2 = Region,
+#                    rp_alpha = list(ribbons = 0.35),
+#                    rp_title_main = "Canadian Field Condensate Production",
+#                    rp_title_Y = "Production",
+#                    rp_unit_abbrev = "k m³/day")
+```
+
+#### In Situ Bitumen
+
+```{r}
+# EF2023$crude_oil_production %>%
+#   filter(Unit == "Thousand Cubic Metres per day",
+#          Variable == "In Situ Bitumen") %>%
+#   mutate(Region = Region %>% factor %>% fct_recode(
+#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
+#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
+#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
+#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
+#   ridge_facet_plot(rp_X = Year,
+#                    rp_Y = Value,
+#                    rp_F1 = Scenario,
+#                    rp_F2 = Region,
+#                    rp_alpha = list(ribbons = 0.35),
+#                    rp_title_main = "Canadian In Situ Bitumen Production",
+#                    rp_title_Y = "Production",
+#                    rp_unit_abbrev = "k m³/day")
+```
+
+#### Mined Bitumen
+
+```{r}
+# EF2023$crude_oil_production %>%
+#   filter(Unit == "Thousand Cubic Metres per day",
+#          Variable == "Mined Bitumen") %>%
+#   mutate(Region = Region %>% factor %>% fct_recode(
+#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
+#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
+#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
+#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
+#   ridge_facet_plot(rp_X = Year,
+#                    rp_Y = Value,
+#                    rp_F1 = Scenario,
+#                    rp_F2 = Region,
+#                    rp_alpha = list(ribbons = 0.35),
+#                    rp_title_main = "Canadian Mined Bitumen Production",
+#                    rp_title_Y = "Production",
+#                    rp_unit_abbrev = "k m³/day")
+```
+
+### Hydrogen {.tabset}
+
+#### Biomass
+
+```{r}
+# EF2023$hydrogen_production %>%
+#   filter(Variable == "Biomass") %>%
+#   mutate(Region = Region %>% factor %>% fct_recode(
+#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
+#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
+#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
+#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
+#   ridge_facet_plot(rp_X = Year,
+#                    rp_Y = Value,
+#                    rp_F1 = Scenario,
+#                    rp_F2 = Region,
+#                    rp_alpha = list(ribbons = 0.35),
+#                    rp_title_main = "Canadian Hydrogen Production (Biomass)",
+#                    rp_title_Y = "Production",
+#                    rp_unit_abbrev = "Mt")
+```
+
+#### Electrolysis
+
+```{r}
+# EF2023$hydrogen_production %>%
+#   filter(Variable == "Electrolysis") %>%
+#   mutate(Region = Region %>% factor %>% fct_recode(
+#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
+#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
+#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
+#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
+#   ridge_facet_plot(rp_X = Year,
+#                    rp_Y = Value,
+#                    rp_F1 = Scenario,
+#                    rp_F2 = Region,
+#                    rp_alpha = list(ribbons = 0.35),
+#                    rp_title_main = "Canadian Hydrogen Production (Electrolysis)",
+#                    rp_title_Y = "Production",
+#                    rp_unit_abbrev = "Mt")
+```
+
+#### Natural gas with CCS
+
+```{r}
+# EF2023$hydrogen_production %>%
+#   filter(Variable == "Natural gas with CCS") %>%
+#   mutate(Region = Region %>% factor %>% fct_recode(
+#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
+#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
+#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
+#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
+#   ridge_facet_plot(rp_X = Year,
+#                    rp_Y = Value,
+#                    rp_F1 = Scenario,
+#                    rp_F2 = Region,
+#                    rp_alpha = list(ribbons = 0.35),
+#                    rp_title_main = "Canadian Hydrogen Production (Natural gas with CCS)",
+#                    rp_title_Y = "Production",
+#                    rp_unit_abbrev = "Mt")
+```
+
+
+# Prices
+
+### Oil Benchmark
+
+```{r}
+# EF2023$benchmark_prices %>%
+#   filter(Variable %>% str_detect("bbl")) %>%
+#   mutate(Variable = Variable %>% str_remove_all(" - 2.*$")) %>%
+#   ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Variable, rp_F2 = Scenario,
+#                    rp_draw = list(ribbons = F, lines = F, smooth = T, medians = F, peaks = F),
+#                    rp_alpha = list(se = 0.25, points = 0.25),
+#                    rp_title_main = "Oil Benchmark Prices",
+#                    rp_unit_abbrev = "2022 US$/bbl")
+```
