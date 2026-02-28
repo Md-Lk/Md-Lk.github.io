@@ -1,24 +1,2 @@
-/* css styles */
+/* css styles (default) */
 
-/* Tab background color */
-.nav-tabs {
-  background-color: #f0f0f0;  /* Tab bar background */
-}
-
-/* Active tab styling */
-.nav-tabs .nav-link.active {
-  background-color: #ffffff;  /* Active tab background */
-  color: #111111;             /* Active tab text color */
-}
-
-/* Inactive tab styling */
-.nav-tabs .nav-link {
-  background-color: #e8e8e8;  /* Inactive tab background */
-  color: #777777;             /* Inactive tab text color */
-}
-
-/* Tab pane (content area) background */
-.tab-pane {
-  background-color: #157;
-  padding: 20px;
-}

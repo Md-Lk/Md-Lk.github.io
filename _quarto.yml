@@ -3,7 +3,12 @@ project:
 
 website:
   title: "Site example (Quarto)"
+  search: true
+  reader-mode: true
+
   navbar:
+    background: "#135"
+    foreground: "white"
     left:
       - href: index.qmd
         text: "Home"
@@ -11,6 +16,9 @@ website:
         text: "Dashboard"
       - href: about.qmd
         text: "About"
+    tools:
+      - icon: "github"
+        href: ""
 
 format:
   html:
@@ -20,5 +28,10 @@ format:
     css: styles.css
     toc: true
 
-editor: visual
+  dashboard:
+    theme:
+      - cosmo
+      - brand
+    css: styles_dashboard.css
 
+editor: source
