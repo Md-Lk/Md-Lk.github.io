@@ -2954,15 +2954,19 @@ Natural_Gas_Coalbed_Methane %>%
 :::
 
 
-# Prices
+# Financials
 
 ```{r}
 #| include: false
-Prices <- list()
-#example: Prices$...$...
+Financials <- list()
+#example: Financials$...$...
 ```
 
-### Oil Benchmark
+## _ {.tabset}
+
+### Benchmark Prices
+
+::: {.div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1rem;"}
 
 ```{r}
 EF2023$benchmark_prices %>%
@@ -2971,6 +2975,51 @@ EF2023$benchmark_prices %>%
   ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Variable, rp_F2 = Scenario,
                    rp_draw = list(ribbons = F, lines = F, smooth = T, medians = F, peaks = F),
                    rp_alpha = list(se = 0.25, points = 0.25),
-                   rp_title_main = "Oil Benchmark Prices",
-                   rp_unit_abbrev = "2022 US$/bbl")
+                   rp_title_main = "Benchmarks in 2022 US$/bbl",
+                   rp_title_Y = NA)
 ```
+
+:::: {.div style="display:grid; grid-template-rows: 1.3fr 1fr; gap: 1rem;"}
+
+```{r}
+EF2023$benchmark_prices %>%
+  filter(Variable %>% str_detect("MMBtu")) %>%
+  mutate(Variable = Variable %>% str_remove_all(" - 2.*$")) %>%
+  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Variable, rp_F2 = Scenario,
+                   rp_draw = list(ribbons = F, lines = F, smooth = T, medians = F, peaks = F),
+                   rp_alpha = list(se = 0.25, points = 0.25),
+                   rp_title_main = "Benchmarks in 2022 US$/MMBtu",
+                   rp_title_Y = NA)
+```
+
+> WCS
+>
+> :   A blend of Canadian heavy and bitumen sour crude oils mixed with sweet synthetic and condensates with an API gravity of about 21 degrees. It is priced at Hardisty, Alberta and is often used as a representative price for Canadian heavy crude oils.
+>
+> WTI
+>
+> :   A key North American benchmark crude oil price, it's a light sweet grade of crude oil produced in western Texas with an API gravity of 40 degrees.
+>
+> Brent
+>
+> :   A key global crude oil benchmark price. It is a light sweet grade extracted from the North Sea.
+>
+> CLS
+>
+> :   A light, sweet blend of conventionally produced crude oils in western Canada with an API gravity of around 40 degrees. It is typically priced at Edmonton, Alberta and is often called Edmonton Par Crude.
+>
+> Henry Hub
+>
+> :   Henry Hub is the pricing point for natural gas futures traded on the New York Mercantile Exchange. The hub is located in Louisiana at the interconnection of numerous natural gas pipelines.
+>
+> NIT
+>
+> :   The Nova Inventory Transfer, or NIT, is the pricing point used for natural gas sourced from the Western Canadian Sedimentary Basin (WCSB). As the natural gas trading hub located in Alberta, NIT is the commercial mechanism that overlays the Nova Gas Transmission Ltd. (NGTL) pipeline network, and is connected to several export markets and storage.\*
+
+::::
+
+:::
+
+### End Use Prices
+
+### Macro Indicators
