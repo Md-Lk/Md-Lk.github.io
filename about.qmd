@@ -1,9 +1,40 @@
 ---
 title: "About"
+format: html
 ---
 
-About this site
+Hierarchical grouping and visual summary of EF2023 data.
 
-```{r}
-1 + 1
+**Note:** Tabs are sorted by decreasing total quantity (as per value cards). This means the top category is listed second, following Total.
+
+**Hierarchy:**
+```
+ ─┬ Production
+  │ ├ Crude Oil
+  │ │ ├ Total
+  │ │ ├ (Upgraded Bitumen)
+  │ │ ├ C5+
+  │ │ ├ Conventional Heavy
+  │ │ ├ Conventional Light
+  │ │ ├ Field Condensate
+  │ │ ├ In Situ Bitumen
+  │ │ └ Mined Bitumen
+  │ ├ Hydrogen
+  │ │ ├ Total* (*calculated) (PENDING)
+  │ │ ├ Biomass
+  │ │ ├ Electrolysis
+  │ │ └ Natural gas with CCS
+  │ └ Natural Gas
+  │   ├ Total
+  │   ├ Solution
+  │   ├ Non Associated
+  │   ├ Tight
+  │   ├ Shale
+  │   ├ Coalbed Methane
+  │   └ ...
+  └ Prices
+    ├ Benchmark Prices
+    └ ... End-use Prices
+...
+
 ```

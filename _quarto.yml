@@ -29,6 +29,7 @@ format:
     toc: true
 
   dashboard:
+    mainfont: "Source Sans Pro, BC Sans, Noto Sans, Onest, Verdana, Arial, sans-serif"
     theme:
       - cosmo
       - brand

@@ -35,9 +35,9 @@ Production <- list()
 
 ## _ {.tabset}
 
-### Oil {.tabset}
+### Crude Oil {.tabset}
 
-#### Total {.tabset-tab}
+#### Total {.tabset-leaf}
 
 ```{r}
 #| include: false
@@ -68,11 +68,12 @@ v1 <- Oil_Total %>%
   {sum(. * 1000) * 365.24}
 
 value_box_value <- v1 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
   paste0(" m³")
 
 value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", "Current measures (baseline)"))
 ###
@@ -88,11 +89,12 @@ v2 <- Oil_Total %>%
   {sum(. * 1000) * 365.24}
 
 value_box_value <- v2 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
   paste0(" m³")
 
 value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
 ###
@@ -108,11 +110,12 @@ v3 <- Oil_Total %>%
   {sum(. * 1000) * 365.24}
 
 value_box_value <- v3 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
   paste0(" m³")
 
 value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
 ###
@@ -175,7 +178,7 @@ value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
 # Main plot
 Oil_Total %>%
   ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
-                   rp_title_main = "Canadian Oil Production",
+                   rp_title_main = "Canadian Crude Oil Production",
                    rp_title_Y = "Production", rp_unit_abbrev = "k m³/day",
                    rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
                    rp_alpha = list(ribbons = 0.35))
@@ -185,831 +188,7 @@ Oil_Total %>%
 
 :::
 
-#### Upgraded Bitumen {.tabset-tab}
-
-```{r}
-#| include: false
-Oil_Upgraded_Bitumen <- EF2023$crude_oil_production %>%
-  filter(Unit == "Thousand Cubic Metres per day",
-         Variable == "(Upgraded Bitumen)") %>%
-  mutate(Region = Region %>% factor %>% fct_recode(
-    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
-    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
-    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
-    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
-    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
-    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
-    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
-```
-
-::: {.dashboard-area-column-grid}
-
-:::: {.card-row-grid}
-
-```{r}
-### Card: Current Measures total (1/3)
-v1 <- Oil_Upgraded_Bitumen %>%
-  filter(Year > 2022,
-         Region == "Canada",
-         Scenario == "Current Measures") %>%
-  pull(Value) %>%
-  {sum(. * 1000) * 365.24}
-
-value_box_value <- v1 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
-  paste0(" m³")
-
-value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
-        title = "Total (2023+)",
-        value = value_box_value,
-        tag("p", "Current measures (baseline)"))
-###
-```
-
-```{r}
-### Card: Canada Net-zero total (2/3)
-v2 <- Oil_Upgraded_Bitumen %>%
-  filter(Year > 2022,
-         Region == "Canada",
-         Scenario == "Canada Net-zero") %>%
-  pull(Value) %>%
-  {sum(. * 1000) * 365.24}
-
-value_box_value <- v2 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
-  paste0(" m³")
-
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
-        title = "Total (2023+)",
-        value = value_box_value,
-        tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
-###
-```
-
-```{r}
-### Card: Global Net-zero total (3/3)
-v3 <- Oil_Upgraded_Bitumen %>%
-  filter(Year > 2022,
-         Region == "Canada",
-         Scenario == "Global Net-zero") %>%
-  pull(Value) %>%
-  {sum(. * 1000) * 365.24}
-
-value_box_value <- v3 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
-  paste0(" m³")
-
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
-        title = "Total (2023+)",
-        value = value_box_value,
-        tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
-###
-```
-
-```{r}
-### Card: Top contributor (Region)
-# Get top contributor (Region)
-value_box_data <- Oil_Upgraded_Bitumen %>%
-  filter(Region != "Canada") %>%
-  # Compute averages and contributions
-  summarize(Value_Total = mean(Value),
-            Value_Average = mean(Value),
-            .by = Region) %>%
-  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
-  # Get highest contribution
-  arrange(desc(Value_Percentage)) %>%
-  head(1) %>% 
-  # Prepare labels
-  mutate(Line_1 = paste0("Averaging ", round(Value_Average, 1), "k m³/day"),
-         Line_2 = paste0("Contributing ", round(100 * Value_Percentage, 0), "% (avg.)"))
-value_box_value <- value_box_data$Region
-value_box_tag_1 <- value_box_data$Line_1
-value_box_tag_2 <- value_box_data$Line_2
-
-# Prepare showcase plot
-value_box_plot <- Oil_Upgraded_Bitumen %>% 
-  filter(Region == value_box_data$Region) %>%
-  ggplot(aes(x = Year, y = Value, group = Scenario,
-             col = Scenario, fill = Scenario,
-             ymin = pmin(0, Value), ymax = pmax(0, Value))) +
-  geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
-  geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
-            alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
-  theme_void() +
-  theme(legend.position = "none")
-value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
-  layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
-  config(displayModeBar = F)
-
-# Draw value box
-value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
-        title = "Top contributor",
-        showcase = value_box_plot,
-        showcase_layout = "bottom",
-        value = value_box_value,
-        # tag("p", value_box_tag_1),
-        tag("p", value_box_tag_2))
-###
-
-```
-
-::::
-
-:::: {.plotly-grid}
-
-```{r}
-# Main plot
-Oil_Upgraded_Bitumen %>%
-  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
-                   rp_title_main = "Canadian Oil Production",
-                   rp_title_Y = "Production", rp_unit_abbrev = "k m³/day",
-                   rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
-                   rp_alpha = list(ribbons = 0.35))
-```
-
-::::
-
-:::
-
-#### C5+ {.tabset-tab}
-
-```{r}
-# EF2023$crude_oil_production %>%
-#   filter(Unit == "Thousand Cubic Metres per day",
-#          Variable == "C5+") %>%
-#   mutate(Region = Region %>% factor %>% fct_recode(
-#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
-#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
-#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
-#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
-#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
-#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
-#   ridge_facet_plot(rp_X = Year,
-#                    rp_Y = Value,
-#                    rp_F1 = Scenario,
-#                    rp_F2 = Region,
-#                    rp_alpha = list(ribbons = 0.35),
-#                    rp_title_main = "Canadian C5+ Production",
-#                    rp_title_Y = "Production",
-#                    rp_unit_abbrev = "k m³/day")
-```
-
-```{r}
-#| include: false
-Oil_C5_plus <- EF2023$crude_oil_production %>%
-  filter(Unit == "Thousand Cubic Metres per day",
-         Variable == "C5+") %>%
-  mutate(Region = Region %>% factor %>% fct_recode(
-    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
-    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
-    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
-    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
-    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
-    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
-    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
-```
-
-::: {.dashboard-area-column-grid}
-
-:::: {.card-row-grid}
-
-```{r}
-### Card: Current Measures total (1/3)
-v1 <- Oil_C5_plus %>%
-  filter(Year > 2022,
-         Region == "Canada",
-         Scenario == "Current Measures") %>%
-  pull(Value) %>%
-  {sum(. * 1000) * 365.24}
-
-value_box_value <- v1 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
-  paste0(" m³")
-
-value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
-        title = "Total (2023+)",
-        value = value_box_value,
-        tag("p", "Current measures (baseline)"))
-###
-```
-
-```{r}
-### Card: Canada Net-zero total (2/3)
-v2 <- Oil_C5_plus %>%
-  filter(Year > 2022,
-         Region == "Canada",
-         Scenario == "Canada Net-zero") %>%
-  pull(Value) %>%
-  {sum(. * 1000) * 365.24}
-
-value_box_value <- v2 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
-  paste0(" m³")
-
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
-        title = "Total (2023+)",
-        value = value_box_value,
-        tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
-###
-```
-
-```{r}
-### Card: Global Net-zero total (3/3)
-v3 <- Oil_C5_plus %>%
-  filter(Year > 2022,
-         Region == "Canada",
-         Scenario == "Global Net-zero") %>%
-  pull(Value) %>%
-  {sum(. * 1000) * 365.24}
-
-value_box_value <- v3 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
-  paste0(" m³")
-
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
-        title = "Total (2023+)",
-        value = value_box_value,
-        tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
-###
-```
-
-```{r}
-### Card: Top contributor (Region)
-# Get top contributor (Region)
-value_box_data <- Oil_C5_plus %>%
-  filter(Region != "Canada") %>%
-  # Compute averages and contributions
-  summarize(Value_Total = mean(Value),
-            Value_Average = mean(Value),
-            .by = Region) %>%
-  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
-  # Get highest contribution
-  arrange(desc(Value_Percentage)) %>%
-  head(1) %>% 
-  # Prepare labels
-  mutate(Line_1 = paste0("Averaging ", round(Value_Average, 1), "k m³/day"),
-         Line_2 = paste0("Contributing ", round(100 * Value_Percentage, 0), "% (avg.)"))
-value_box_value <- value_box_data$Region
-value_box_tag_1 <- value_box_data$Line_1
-value_box_tag_2 <- value_box_data$Line_2
-
-# Prepare showcase plot
-value_box_plot <- Oil_C5_plus %>% 
-  filter(Region == value_box_data$Region) %>%
-  ggplot(aes(x = Year, y = Value, group = Scenario,
-             col = Scenario, fill = Scenario,
-             ymin = pmin(0, Value), ymax = pmax(0, Value))) +
-  geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
-  geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
-            alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
-  theme_void() +
-  theme(legend.position = "none")
-value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
-  layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
-  config(displayModeBar = F)
-
-# Draw value box
-value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
-        title = "Top contributor",
-        showcase = value_box_plot,
-        showcase_layout = "bottom",
-        value = value_box_value,
-        # tag("p", value_box_tag_1),
-        tag("p", value_box_tag_2))
-###
-
-```
-
-::::
-
-:::: {.plotly-grid}
-
-```{r}
-# Main plot
-Oil_C5_plus %>%
-  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
-                   rp_title_main = "Canadian Oil Production",
-                   rp_title_Y = "Production", rp_unit_abbrev = "k m³/day",
-                   rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
-                   rp_alpha = list(ribbons = 0.35))
-```
-
-::::
-
-:::
-
-#### Conventional Heavy {.tabset-tab}
-
-```{r}
-# EF2023$crude_oil_production %>%
-#   filter(Unit == "Thousand Cubic Metres per day",
-#          Variable == "Conventional Heavy") %>%
-#   mutate(Region = Region %>% factor %>% fct_recode(
-#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
-#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
-#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
-#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
-#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
-#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
-#   ridge_facet_plot(rp_X = Year,
-#                    rp_Y = Value,
-#                    rp_F1 = Scenario,
-#                    rp_F2 = Region,
-#                    rp_alpha = list(ribbons = 0.35),
-#                    rp_title_main = "Canadian Conventional Heavy Production",
-#                    rp_title_Y = "Production",
-#                    rp_unit_abbrev = "k m³/day")
-```
-
-```{r}
-#| include: false
-Oil_Conventional_Heavy <- EF2023$crude_oil_production %>%
-  filter(Unit == "Thousand Cubic Metres per day",
-         Variable == "Conventional Heavy") %>%
-  mutate(Region = Region %>% factor %>% fct_recode(
-    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
-    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
-    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
-    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
-    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
-    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
-    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
-```
-
-::: {.dashboard-area-column-grid}
-
-:::: {.card-row-grid}
-
-```{r}
-### Card: Current Measures total (1/3)
-v1 <- Oil_Conventional_Heavy %>%
-  filter(Year > 2022,
-         Region == "Canada",
-         Scenario == "Current Measures") %>%
-  pull(Value) %>%
-  {sum(. * 1000) * 365.24}
-
-value_box_value <- v1 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
-  paste0(" m³")
-
-value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
-        title = "Total (2023+)",
-        value = value_box_value,
-        tag("p", "Current measures (baseline)"))
-###
-```
-
-```{r}
-### Card: Canada Net-zero total (2/3)
-v2 <- Oil_Conventional_Heavy %>%
-  filter(Year > 2022,
-         Region == "Canada",
-         Scenario == "Canada Net-zero") %>%
-  pull(Value) %>%
-  {sum(. * 1000) * 365.24}
-
-value_box_value <- v2 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
-  paste0(" m³")
-
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
-        title = "Total (2023+)",
-        value = value_box_value,
-        tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
-###
-```
-
-```{r}
-### Card: Global Net-zero total (3/3)
-v3 <- Oil_Conventional_Heavy %>%
-  filter(Year > 2022,
-         Region == "Canada",
-         Scenario == "Global Net-zero") %>%
-  pull(Value) %>%
-  {sum(. * 1000) * 365.24}
-
-value_box_value <- v3 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
-  paste0(" m³")
-
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
-        title = "Total (2023+)",
-        value = value_box_value,
-        tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
-###
-```
-
-```{r}
-### Card: Top contributor (Region)
-# Get top contributor (Region)
-value_box_data <- Oil_Conventional_Heavy %>%
-  filter(Region != "Canada") %>%
-  # Compute averages and contributions
-  summarize(Value_Total = mean(Value),
-            Value_Average = mean(Value),
-            .by = Region) %>%
-  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
-  # Get highest contribution
-  arrange(desc(Value_Percentage)) %>%
-  head(1) %>% 
-  # Prepare labels
-  mutate(Line_1 = paste0("Averaging ", round(Value_Average, 1), "k m³/day"),
-         Line_2 = paste0("Contributing ", round(100 * Value_Percentage, 0), "% (avg.)"))
-value_box_value <- value_box_data$Region
-value_box_tag_1 <- value_box_data$Line_1
-value_box_tag_2 <- value_box_data$Line_2
-
-# Prepare showcase plot
-value_box_plot <- Oil_Conventional_Heavy %>% 
-  filter(Region == value_box_data$Region) %>%
-  ggplot(aes(x = Year, y = Value, group = Scenario,
-             col = Scenario, fill = Scenario,
-             ymin = pmin(0, Value), ymax = pmax(0, Value))) +
-  geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
-  geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
-            alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
-  theme_void() +
-  theme(legend.position = "none")
-value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
-  layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
-  config(displayModeBar = F)
-
-# Draw value box
-value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
-        title = "Top contributor",
-        showcase = value_box_plot,
-        showcase_layout = "bottom",
-        value = value_box_value,
-        # tag("p", value_box_tag_1),
-        tag("p", value_box_tag_2))
-###
-
-```
-
-::::
-
-:::: {.plotly-grid}
-
-```{r}
-# Main plot
-Oil_Conventional_Heavy %>%
-  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
-                   rp_title_main = "Canadian Oil Production",
-                   rp_title_Y = "Production", rp_unit_abbrev = "k m³/day",
-                   rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
-                   rp_alpha = list(ribbons = 0.35))
-```
-
-::::
-
-:::
-
-#### Conventional Light {.tabset-tab}
-
-```{r}
-# EF2023$crude_oil_production %>%
-#   filter(Unit == "Thousand Cubic Metres per day",
-#          Variable == "Conventional Light") %>%
-#   mutate(Region = Region %>% factor %>% fct_recode(
-#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
-#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
-#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
-#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
-#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
-#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
-#   ridge_facet_plot(rp_X = Year,
-#                    rp_Y = Value,
-#                    rp_F1 = Scenario,
-#                    rp_F2 = Region,
-#                    rp_alpha = list(ribbons = 0.35),
-#                    rp_title_main = "Canadian Conventional Light Production",
-#                    rp_title_Y = "Production",
-#                    rp_unit_abbrev = "k m³/day")
-```
-
-```{r}
-#| include: false
-Oil_Conventional_Light <- EF2023$crude_oil_production %>%
-  filter(Unit == "Thousand Cubic Metres per day",
-         Variable == "Conventional Light") %>%
-  mutate(Region = Region %>% factor %>% fct_recode(
-    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
-    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
-    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
-    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
-    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
-    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
-    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
-```
-
-::: {.dashboard-area-column-grid}
-
-:::: {.card-row-grid}
-
-```{r}
-### Card: Current Measures total (1/3)
-v1 <- Oil_Conventional_Light %>%
-  filter(Year > 2022,
-         Region == "Canada",
-         Scenario == "Current Measures") %>%
-  pull(Value) %>%
-  {sum(. * 1000) * 365.24}
-
-value_box_value <- v1 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
-  paste0(" m³")
-
-value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
-        title = "Total (2023+)",
-        value = value_box_value,
-        tag("p", "Current measures (baseline)"))
-###
-```
-
-```{r}
-### Card: Canada Net-zero total (2/3)
-v2 <- Oil_Conventional_Light %>%
-  filter(Year > 2022,
-         Region == "Canada",
-         Scenario == "Canada Net-zero") %>%
-  pull(Value) %>%
-  {sum(. * 1000) * 365.24}
-
-value_box_value <- v2 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
-  paste0(" m³")
-
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
-        title = "Total (2023+)",
-        value = value_box_value,
-        tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
-###
-```
-
-```{r}
-### Card: Global Net-zero total (3/3)
-v3 <- Oil_Conventional_Light %>%
-  filter(Year > 2022,
-         Region == "Canada",
-         Scenario == "Global Net-zero") %>%
-  pull(Value) %>%
-  {sum(. * 1000) * 365.24}
-
-value_box_value <- v3 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
-  paste0(" m³")
-
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
-        title = "Total (2023+)",
-        value = value_box_value,
-        tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
-###
-```
-
-```{r}
-### Card: Top contributor (Region)
-# Get top contributor (Region)
-value_box_data <- Oil_Conventional_Light %>%
-  filter(Region != "Canada") %>%
-  # Compute averages and contributions
-  summarize(Value_Total = mean(Value),
-            Value_Average = mean(Value),
-            .by = Region) %>%
-  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
-  # Get highest contribution
-  arrange(desc(Value_Percentage)) %>%
-  head(1) %>% 
-  # Prepare labels
-  mutate(Line_1 = paste0("Averaging ", round(Value_Average, 1), "k m³/day"),
-         Line_2 = paste0("Contributing ", round(100 * Value_Percentage, 0), "% (avg.)"))
-value_box_value <- value_box_data$Region
-value_box_tag_1 <- value_box_data$Line_1
-value_box_tag_2 <- value_box_data$Line_2
-
-# Prepare showcase plot
-value_box_plot <- Oil_Conventional_Light %>% 
-  filter(Region == value_box_data$Region) %>%
-  ggplot(aes(x = Year, y = Value, group = Scenario,
-             col = Scenario, fill = Scenario,
-             ymin = pmin(0, Value), ymax = pmax(0, Value))) +
-  geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
-  geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
-            alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
-  theme_void() +
-  theme(legend.position = "none")
-value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
-  layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
-  config(displayModeBar = F)
-
-# Draw value box
-value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
-        title = "Top contributor",
-        showcase = value_box_plot,
-        showcase_layout = "bottom",
-        value = value_box_value,
-        # tag("p", value_box_tag_1),
-        tag("p", value_box_tag_2))
-###
-
-```
-
-::::
-
-:::: {.plotly-grid}
-
-```{r}
-# Main plot
-Oil_Conventional_Light %>%
-  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
-                   rp_title_main = "Canadian Oil Production",
-                   rp_title_Y = "Production", rp_unit_abbrev = "k m³/day",
-                   rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
-                   rp_alpha = list(ribbons = 0.35))
-```
-
-::::
-
-:::
-
-#### Field Condensate {.tabset-tab}
-
-```{r}
-# EF2023$crude_oil_production %>%
-#   filter(Unit == "Thousand Cubic Metres per day",
-#          Variable == "Field Condensate") %>%
-#   mutate(Region = Region %>% factor %>% fct_recode(
-#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
-#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
-#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
-#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
-#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
-#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
-#   ridge_facet_plot(rp_X = Year,
-#                    rp_Y = Value,
-#                    rp_F1 = Scenario,
-#                    rp_F2 = Region,
-#                    rp_alpha = list(ribbons = 0.35),
-#                    rp_title_main = "Canadian Field Condensate Production",
-#                    rp_title_Y = "Production",
-#                    rp_unit_abbrev = "k m³/day")
-```
-
-```{r}
-#| include: false
-Oil_Field_Condensate <- EF2023$crude_oil_production %>%
-  filter(Unit == "Thousand Cubic Metres per day",
-         Variable == "Field Condensate") %>%
-  mutate(Region = Region %>% factor %>% fct_recode(
-    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
-    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
-    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
-    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
-    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
-    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
-    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
-```
-
-::: {.dashboard-area-column-grid}
-
-:::: {.card-row-grid}
-
-```{r}
-### Card: Current Measures total (1/3)
-v1 <- Oil_Field_Condensate %>%
-  filter(Year > 2022,
-         Region == "Canada",
-         Scenario == "Current Measures") %>%
-  pull(Value) %>%
-  {sum(. * 1000) * 365.24}
-
-value_box_value <- v1 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
-  paste0(" m³")
-
-value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
-        title = "Total (2023+)",
-        value = value_box_value,
-        tag("p", "Current measures (baseline)"))
-###
-```
-
-```{r}
-### Card: Canada Net-zero total (2/3)
-v2 <- Oil_Field_Condensate %>%
-  filter(Year > 2022,
-         Region == "Canada",
-         Scenario == "Canada Net-zero") %>%
-  pull(Value) %>%
-  {sum(. * 1000) * 365.24}
-
-value_box_value <- v2 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
-  paste0(" m³")
-
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
-        title = "Total (2023+)",
-        value = value_box_value,
-        tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
-###
-```
-
-```{r}
-### Card: Global Net-zero total (3/3)
-v3 <- Oil_Field_Condensate %>%
-  filter(Year > 2022,
-         Region == "Canada",
-         Scenario == "Global Net-zero") %>%
-  pull(Value) %>%
-  {sum(. * 1000) * 365.24}
-
-value_box_value <- v3 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
-  paste0(" m³")
-
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
-        title = "Total (2023+)",
-        value = value_box_value,
-        tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
-###
-```
-
-```{r}
-### Card: Top contributor (Region)
-# Get top contributor (Region)
-value_box_data <- Oil_Field_Condensate %>%
-  filter(Region != "Canada") %>%
-  # Compute averages and contributions
-  summarize(Value_Total = mean(Value),
-            Value_Average = mean(Value),
-            .by = Region) %>%
-  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
-  # Get highest contribution
-  arrange(desc(Value_Percentage)) %>%
-  head(1) %>% 
-  # Prepare labels
-  mutate(Line_1 = paste0("Averaging ", round(Value_Average, 1), "k m³/day"),
-         Line_2 = paste0("Contributing ", round(100 * Value_Percentage, 0), "% (avg.)"))
-value_box_value <- value_box_data$Region
-value_box_tag_1 <- value_box_data$Line_1
-value_box_tag_2 <- value_box_data$Line_2
-
-# Prepare showcase plot
-value_box_plot <- Oil_Field_Condensate %>% 
-  filter(Region == value_box_data$Region) %>%
-  ggplot(aes(x = Year, y = Value, group = Scenario,
-             col = Scenario, fill = Scenario,
-             ymin = pmin(0, Value), ymax = pmax(0, Value))) +
-  geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
-  geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
-            alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
-  theme_void() +
-  theme(legend.position = "none")
-value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
-  layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
-  config(displayModeBar = F)
-
-# Draw value box
-value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
-        title = "Top contributor",
-        showcase = value_box_plot,
-        showcase_layout = "bottom",
-        value = value_box_value,
-        # tag("p", value_box_tag_1),
-        tag("p", value_box_tag_2))
-###
-
-```
-
-::::
-
-:::: {.plotly-grid}
-
-```{r}
-# Main plot
-Oil_Field_Condensate %>%
-  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
-                   rp_title_main = "Canadian Oil Production",
-                   rp_title_Y = "Production", rp_unit_abbrev = "k m³/day",
-                   rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
-                   rp_alpha = list(ribbons = 0.35))
-```
-
-::::
-
-:::
-
-#### In Situ Bitumen {.tabset-tab}
+#### In Situ Bitumen {.tabset-leaf}
 
 ```{r}
 # EF2023$crude_oil_production %>%
@@ -1061,11 +240,12 @@ v1 <- Oil_In_Situ_Bitumen %>%
   {sum(. * 1000) * 365.24}
 
 value_box_value <- v1 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
   paste0(" m³")
 
 value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", "Current measures (baseline)"))
 ###
@@ -1081,11 +261,12 @@ v2 <- Oil_In_Situ_Bitumen %>%
   {sum(. * 1000) * 365.24}
 
 value_box_value <- v2 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
   paste0(" m³")
 
 value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
 ###
@@ -1101,11 +282,12 @@ v3 <- Oil_In_Situ_Bitumen %>%
   {sum(. * 1000) * 365.24}
 
 value_box_value <- v3 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
   paste0(" m³")
 
 value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
 ###
@@ -1168,7 +350,7 @@ value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
 # Main plot
 Oil_In_Situ_Bitumen %>%
   ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
-                   rp_title_main = "Canadian Oil Production",
+                   rp_title_main = "Canadian Crude Oil Production",
                    rp_title_Y = "Production", rp_unit_abbrev = "k m³/day",
                    rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
                    rp_alpha = list(ribbons = 0.35))
@@ -1178,7 +360,7 @@ Oil_In_Situ_Bitumen %>%
 
 :::
 
-#### Mined Bitumen {.tabset-tab}
+#### Mined Bitumen {.tabset-leaf}
 
 ```{r}
 # EF2023$crude_oil_production %>%
@@ -1230,11 +412,12 @@ v1 <- Oil_Mined_Bitumen %>%
   {sum(. * 1000) * 365.24}
 
 value_box_value <- v1 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
   paste0(" m³")
 
 value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", "Current measures (baseline)"))
 ###
@@ -1250,11 +433,12 @@ v2 <- Oil_Mined_Bitumen %>%
   {sum(. * 1000) * 365.24}
 
 value_box_value <- v2 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
   paste0(" m³")
 
 value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
 ###
@@ -1270,11 +454,12 @@ v3 <- Oil_Mined_Bitumen %>%
   {sum(. * 1000) * 365.24}
 
 value_box_value <- v3 %>%
-  rp_format_proper2(format = list(do_B = T)) %>% 
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
   paste0(" m³")
 
 value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
 ###
@@ -1337,7 +522,7 @@ value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
 # Main plot
 Oil_Mined_Bitumen %>%
   ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
-                   rp_title_main = "Canadian Oil Production",
+                   rp_title_main = "Canadian Crude Oil Production",
                    rp_title_Y = "Production", rp_unit_abbrev = "k m³/day",
                    rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
                    rp_alpha = list(ribbons = 0.35))
@@ -1347,35 +532,13 @@ Oil_Mined_Bitumen %>%
 
 :::
 
-### Hydrogen {.tabset}
-
-#### Biomass {.tabset-tab}
-
-```{r}
-# EF2023$hydrogen_production %>%
-#   filter(Variable == "Biomass") %>%
-#   mutate(Region = Region %>% factor %>% fct_recode(
-#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
-#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
-#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
-#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
-#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
-#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
-#   ridge_facet_plot(rp_X = Year,
-#                    rp_Y = Value,
-#                    rp_F1 = Scenario,
-#                    rp_F2 = Region,
-#                    rp_alpha = list(ribbons = 0.35),
-#                    rp_title_main = "Canadian Hydrogen Production (Biomass)",
-#                    rp_title_Y = "Production",
-#                    rp_unit_abbrev = "Mt")
-```
+#### Upgraded Bitumen {.tabset-leaf}
 
 ```{r}
 #| include: false
-Hydrogen_Biomass <- EF2023$hydrogen_production %>%
-  filter(Unit == "Megatonnes",
-         Variable == "Biomass") %>%
+Oil_Upgraded_Bitumen <- EF2023$crude_oil_production %>%
+  filter(Unit == "Thousand Cubic Metres per day",
+         Variable == "(Upgraded Bitumen)") %>%
   mutate(Region = Region %>% factor %>% fct_recode(
     "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
@@ -1392,19 +555,20 @@ Hydrogen_Biomass <- EF2023$hydrogen_production %>%
 
 ```{r}
 ### Card: Current Measures total (1/3)
-v1 <- Hydrogen_Biomass %>%
+v1 <- Oil_Upgraded_Bitumen %>%
   filter(Year > 2022,
          Region == "Canada",
          Scenario == "Current Measures") %>%
   pull(Value) %>%
-  {sum(. * 1000000)}
+  {sum(. * 1000) * 365.24}
 
 value_box_value <- v1 %>%
-  rp_format_proper2(format = list(do_M = T)) %>% 
-  paste0(" t")
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
 
 value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", "Current measures (baseline)"))
 ###
@@ -1412,19 +576,20 @@ value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
 
 ```{r}
 ### Card: Canada Net-zero total (2/3)
-v2 <- Hydrogen_Biomass %>%
+v2 <- Oil_Upgraded_Bitumen %>%
   filter(Year > 2022,
          Region == "Canada",
          Scenario == "Canada Net-zero") %>%
   pull(Value) %>%
-  {sum(. * 1000000)}
+  {sum(. * 1000) * 365.24}
 
 value_box_value <- v2 %>%
-  rp_format_proper2(format = list(do_M = T)) %>% 
-  paste0(" t")
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
 
 value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
 ###
@@ -1432,19 +597,20 @@ value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
 
 ```{r}
 ### Card: Global Net-zero total (3/3)
-v3 <- Hydrogen_Biomass %>%
+v3 <- Oil_Upgraded_Bitumen %>%
   filter(Year > 2022,
          Region == "Canada",
          Scenario == "Global Net-zero") %>%
   pull(Value) %>%
-  {sum(. * 1000000)}
+  {sum(. * 1000) * 365.24}
 
 value_box_value <- v3 %>%
-  rp_format_proper2(format = list(do_M = T)) %>% 
-  paste0(" t")
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
 
 value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
 ###
@@ -1453,7 +619,850 @@ value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
 ```{r}
 ### Card: Top contributor (Region)
 # Get top contributor (Region)
-value_box_data <- Hydrogen_Biomass %>%
+value_box_data <- Oil_Upgraded_Bitumen %>%
+  filter(Region != "Canada") %>%
+  # Compute averages and contributions
+  summarize(Value_Total = mean(Value),
+            Value_Average = mean(Value),
+            .by = Region) %>%
+  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
+  # Get highest contribution
+  arrange(desc(Value_Percentage)) %>%
+  head(1) %>% 
+  # Prepare labels
+  mutate(Line_1 = paste0("Averaging ", round(Value_Average, 1), "k m³/day"),
+         Line_2 = paste0("Contributing ", round(100 * Value_Percentage, 0), "% (avg.)"))
+value_box_value <- value_box_data$Region
+value_box_tag_1 <- value_box_data$Line_1
+value_box_tag_2 <- value_box_data$Line_2
+
+# Prepare showcase plot
+value_box_plot <- Oil_Upgraded_Bitumen %>% 
+  filter(Region == value_box_data$Region) %>%
+  ggplot(aes(x = Year, y = Value, group = Scenario,
+             col = Scenario, fill = Scenario,
+             ymin = pmin(0, Value), ymax = pmax(0, Value))) +
+  geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
+  geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
+            alpha = 0.25, lwd = 0.25) +
+  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  theme_void() +
+  theme(legend.position = "none")
+value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
+  layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
+         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+  config(displayModeBar = F)
+
+# Draw value box
+value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
+        title = "Top contributor",
+        showcase = value_box_plot,
+        showcase_layout = "bottom",
+        value = value_box_value,
+        # tag("p", value_box_tag_1),
+        tag("p", value_box_tag_2))
+###
+
+```
+
+::::
+
+:::: {.plotly-grid}
+
+```{r}
+# Main plot
+Oil_Upgraded_Bitumen %>%
+  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
+                   rp_title_main = "Canadian Crude Oil Production",
+                   rp_title_Y = "Production", rp_unit_abbrev = "k m³/day",
+                   rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
+                   rp_alpha = list(ribbons = 0.35))
+```
+
+::::
+
+:::
+
+#### Conventional Light {.tabset-leaf}
+
+```{r}
+# EF2023$crude_oil_production %>%
+#   filter(Unit == "Thousand Cubic Metres per day",
+#          Variable == "Conventional Light") %>%
+#   mutate(Region = Region %>% factor %>% fct_recode(
+#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
+#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
+#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
+#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
+#   ridge_facet_plot(rp_X = Year,
+#                    rp_Y = Value,
+#                    rp_F1 = Scenario,
+#                    rp_F2 = Region,
+#                    rp_alpha = list(ribbons = 0.35),
+#                    rp_title_main = "Canadian Conventional Light Production",
+#                    rp_title_Y = "Production",
+#                    rp_unit_abbrev = "k m³/day")
+```
+
+```{r}
+#| include: false
+Oil_Conventional_Light <- EF2023$crude_oil_production %>%
+  filter(Unit == "Thousand Cubic Metres per day",
+         Variable == "Conventional Light") %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+::: {.dashboard-area-column-grid}
+
+:::: {.card-row-grid}
+
+```{r}
+### Card: Current Measures total (1/3)
+v1 <- Oil_Conventional_Light %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Current Measures") %>%
+  pull(Value) %>%
+  {sum(. * 1000) * 365.24}
+
+value_box_value <- v1 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", "Current measures (baseline)"))
+###
+```
+
+```{r}
+### Card: Canada Net-zero total (2/3)
+v2 <- Oil_Conventional_Light %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Canada Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 1000) * 365.24}
+
+value_box_value <- v2 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Global Net-zero total (3/3)
+v3 <- Oil_Conventional_Light %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Global Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 1000) * 365.24}
+
+value_box_value <- v3 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Top contributor (Region)
+# Get top contributor (Region)
+value_box_data <- Oil_Conventional_Light %>%
+  filter(Region != "Canada") %>%
+  # Compute averages and contributions
+  summarize(Value_Total = mean(Value),
+            Value_Average = mean(Value),
+            .by = Region) %>%
+  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
+  # Get highest contribution
+  arrange(desc(Value_Percentage)) %>%
+  head(1) %>% 
+  # Prepare labels
+  mutate(Line_1 = paste0("Averaging ", round(Value_Average, 1), "k m³/day"),
+         Line_2 = paste0("Contributing ", round(100 * Value_Percentage, 0), "% (avg.)"))
+value_box_value <- value_box_data$Region
+value_box_tag_1 <- value_box_data$Line_1
+value_box_tag_2 <- value_box_data$Line_2
+
+# Prepare showcase plot
+value_box_plot <- Oil_Conventional_Light %>% 
+  filter(Region == value_box_data$Region) %>%
+  ggplot(aes(x = Year, y = Value, group = Scenario,
+             col = Scenario, fill = Scenario,
+             ymin = pmin(0, Value), ymax = pmax(0, Value))) +
+  geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
+  geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
+            alpha = 0.25, lwd = 0.25) +
+  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  theme_void() +
+  theme(legend.position = "none")
+value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
+  layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
+         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+  config(displayModeBar = F)
+
+# Draw value box
+value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
+        title = "Top contributor",
+        showcase = value_box_plot,
+        showcase_layout = "bottom",
+        value = value_box_value,
+        # tag("p", value_box_tag_1),
+        tag("p", value_box_tag_2))
+###
+
+```
+
+::::
+
+:::: {.plotly-grid}
+
+```{r}
+# Main plot
+Oil_Conventional_Light %>%
+  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
+                   rp_title_main = "Canadian Crude Oil Production",
+                   rp_title_Y = "Production", rp_unit_abbrev = "k m³/day",
+                   rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
+                   rp_alpha = list(ribbons = 0.35))
+```
+
+::::
+
+:::
+
+#### Field Condensate {.tabset-leaf}
+
+```{r}
+# EF2023$crude_oil_production %>%
+#   filter(Unit == "Thousand Cubic Metres per day",
+#          Variable == "Field Condensate") %>%
+#   mutate(Region = Region %>% factor %>% fct_recode(
+#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
+#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
+#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
+#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
+#   ridge_facet_plot(rp_X = Year,
+#                    rp_Y = Value,
+#                    rp_F1 = Scenario,
+#                    rp_F2 = Region,
+#                    rp_alpha = list(ribbons = 0.35),
+#                    rp_title_main = "Canadian Field Condensate Production",
+#                    rp_title_Y = "Production",
+#                    rp_unit_abbrev = "k m³/day")
+```
+
+```{r}
+#| include: false
+Oil_Field_Condensate <- EF2023$crude_oil_production %>%
+  filter(Unit == "Thousand Cubic Metres per day",
+         Variable == "Field Condensate") %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+::: {.dashboard-area-column-grid}
+
+:::: {.card-row-grid}
+
+```{r}
+### Card: Current Measures total (1/3)
+v1 <- Oil_Field_Condensate %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Current Measures") %>%
+  pull(Value) %>%
+  {sum(. * 1000) * 365.24}
+
+value_box_value <- v1 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", "Current measures (baseline)"))
+###
+```
+
+```{r}
+### Card: Canada Net-zero total (2/3)
+v2 <- Oil_Field_Condensate %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Canada Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 1000) * 365.24}
+
+value_box_value <- v2 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Global Net-zero total (3/3)
+v3 <- Oil_Field_Condensate %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Global Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 1000) * 365.24}
+
+value_box_value <- v3 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Top contributor (Region)
+# Get top contributor (Region)
+value_box_data <- Oil_Field_Condensate %>%
+  filter(Region != "Canada") %>%
+  # Compute averages and contributions
+  summarize(Value_Total = mean(Value),
+            Value_Average = mean(Value),
+            .by = Region) %>%
+  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
+  # Get highest contribution
+  arrange(desc(Value_Percentage)) %>%
+  head(1) %>% 
+  # Prepare labels
+  mutate(Line_1 = paste0("Averaging ", round(Value_Average, 1), "k m³/day"),
+         Line_2 = paste0("Contributing ", round(100 * Value_Percentage, 0), "% (avg.)"))
+value_box_value <- value_box_data$Region
+value_box_tag_1 <- value_box_data$Line_1
+value_box_tag_2 <- value_box_data$Line_2
+
+# Prepare showcase plot
+value_box_plot <- Oil_Field_Condensate %>% 
+  filter(Region == value_box_data$Region) %>%
+  ggplot(aes(x = Year, y = Value, group = Scenario,
+             col = Scenario, fill = Scenario,
+             ymin = pmin(0, Value), ymax = pmax(0, Value))) +
+  geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
+  geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
+            alpha = 0.25, lwd = 0.25) +
+  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  theme_void() +
+  theme(legend.position = "none")
+value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
+  layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
+         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+  config(displayModeBar = F)
+
+# Draw value box
+value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
+        title = "Top contributor",
+        showcase = value_box_plot,
+        showcase_layout = "bottom",
+        value = value_box_value,
+        # tag("p", value_box_tag_1),
+        tag("p", value_box_tag_2))
+###
+
+```
+
+::::
+
+:::: {.plotly-grid}
+
+```{r}
+# Main plot
+Oil_Field_Condensate %>%
+  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
+                   rp_title_main = "Canadian Crude Oil Production",
+                   rp_title_Y = "Production", rp_unit_abbrev = "k m³/day",
+                   rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
+                   rp_alpha = list(ribbons = 0.35))
+```
+
+::::
+
+:::
+
+#### Conventional Heavy {.tabset-leaf}
+
+```{r}
+# EF2023$crude_oil_production %>%
+#   filter(Unit == "Thousand Cubic Metres per day",
+#          Variable == "Conventional Heavy") %>%
+#   mutate(Region = Region %>% factor %>% fct_recode(
+#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
+#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
+#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
+#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
+#   ridge_facet_plot(rp_X = Year,
+#                    rp_Y = Value,
+#                    rp_F1 = Scenario,
+#                    rp_F2 = Region,
+#                    rp_alpha = list(ribbons = 0.35),
+#                    rp_title_main = "Canadian Conventional Heavy Production",
+#                    rp_title_Y = "Production",
+#                    rp_unit_abbrev = "k m³/day")
+```
+
+```{r}
+#| include: false
+Oil_Conventional_Heavy <- EF2023$crude_oil_production %>%
+  filter(Unit == "Thousand Cubic Metres per day",
+         Variable == "Conventional Heavy") %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+::: {.dashboard-area-column-grid}
+
+:::: {.card-row-grid}
+
+```{r}
+### Card: Current Measures total (1/3)
+v1 <- Oil_Conventional_Heavy %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Current Measures") %>%
+  pull(Value) %>%
+  {sum(. * 1000) * 365.24}
+
+value_box_value <- v1 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", "Current measures (baseline)"))
+###
+```
+
+```{r}
+### Card: Canada Net-zero total (2/3)
+v2 <- Oil_Conventional_Heavy %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Canada Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 1000) * 365.24}
+
+value_box_value <- v2 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Global Net-zero total (3/3)
+v3 <- Oil_Conventional_Heavy %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Global Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 1000) * 365.24}
+
+value_box_value <- v3 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Top contributor (Region)
+# Get top contributor (Region)
+value_box_data <- Oil_Conventional_Heavy %>%
+  filter(Region != "Canada") %>%
+  # Compute averages and contributions
+  summarize(Value_Total = mean(Value),
+            Value_Average = mean(Value),
+            .by = Region) %>%
+  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
+  # Get highest contribution
+  arrange(desc(Value_Percentage)) %>%
+  head(1) %>% 
+  # Prepare labels
+  mutate(Line_1 = paste0("Averaging ", round(Value_Average, 1), "k m³/day"),
+         Line_2 = paste0("Contributing ", round(100 * Value_Percentage, 0), "% (avg.)"))
+value_box_value <- value_box_data$Region
+value_box_tag_1 <- value_box_data$Line_1
+value_box_tag_2 <- value_box_data$Line_2
+
+# Prepare showcase plot
+value_box_plot <- Oil_Conventional_Heavy %>% 
+  filter(Region == value_box_data$Region) %>%
+  ggplot(aes(x = Year, y = Value, group = Scenario,
+             col = Scenario, fill = Scenario,
+             ymin = pmin(0, Value), ymax = pmax(0, Value))) +
+  geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
+  geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
+            alpha = 0.25, lwd = 0.25) +
+  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  theme_void() +
+  theme(legend.position = "none")
+value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
+  layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
+         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+  config(displayModeBar = F)
+
+# Draw value box
+value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
+        title = "Top contributor",
+        showcase = value_box_plot,
+        showcase_layout = "bottom",
+        value = value_box_value,
+        # tag("p", value_box_tag_1),
+        tag("p", value_box_tag_2))
+###
+
+```
+
+::::
+
+:::: {.plotly-grid}
+
+```{r}
+# Main plot
+Oil_Conventional_Heavy %>%
+  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
+                   rp_title_main = "Canadian Crude Oil Production",
+                   rp_title_Y = "Production", rp_unit_abbrev = "k m³/day",
+                   rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
+                   rp_alpha = list(ribbons = 0.35))
+```
+
+::::
+
+:::
+
+#### C5+ {.tabset-leaf}
+
+```{r}
+# EF2023$crude_oil_production %>%
+#   filter(Unit == "Thousand Cubic Metres per day",
+#          Variable == "C5+") %>%
+#   mutate(Region = Region %>% factor %>% fct_recode(
+#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
+#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
+#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
+#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
+#   ridge_facet_plot(rp_X = Year,
+#                    rp_Y = Value,
+#                    rp_F1 = Scenario,
+#                    rp_F2 = Region,
+#                    rp_alpha = list(ribbons = 0.35),
+#                    rp_title_main = "Canadian C5+ Production",
+#                    rp_title_Y = "Production",
+#                    rp_unit_abbrev = "k m³/day")
+```
+
+```{r}
+#| include: false
+Oil_C5_plus <- EF2023$crude_oil_production %>%
+  filter(Unit == "Thousand Cubic Metres per day",
+         Variable == "C5+") %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+::: {.dashboard-area-column-grid}
+
+:::: {.card-row-grid}
+
+```{r}
+### Card: Current Measures total (1/3)
+v1 <- Oil_C5_plus %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Current Measures") %>%
+  pull(Value) %>%
+  {sum(. * 1000) * 365.24}
+
+value_box_value <- v1 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", "Current measures (baseline)"))
+###
+```
+
+```{r}
+### Card: Canada Net-zero total (2/3)
+v2 <- Oil_C5_plus %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Canada Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 1000) * 365.24}
+
+value_box_value <- v2 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Global Net-zero total (3/3)
+v3 <- Oil_C5_plus %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Global Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 1000) * 365.24}
+
+value_box_value <- v3 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Top contributor (Region)
+# Get top contributor (Region)
+value_box_data <- Oil_C5_plus %>%
+  filter(Region != "Canada") %>%
+  # Compute averages and contributions
+  summarize(Value_Total = mean(Value),
+            Value_Average = mean(Value),
+            .by = Region) %>%
+  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
+  # Get highest contribution
+  arrange(desc(Value_Percentage)) %>%
+  head(1) %>% 
+  # Prepare labels
+  mutate(Line_1 = paste0("Averaging ", round(Value_Average, 1), "k m³/day"),
+         Line_2 = paste0("Contributing ", round(100 * Value_Percentage, 0), "% (avg.)"))
+value_box_value <- value_box_data$Region
+value_box_tag_1 <- value_box_data$Line_1
+value_box_tag_2 <- value_box_data$Line_2
+
+# Prepare showcase plot
+value_box_plot <- Oil_C5_plus %>% 
+  filter(Region == value_box_data$Region) %>%
+  ggplot(aes(x = Year, y = Value, group = Scenario,
+             col = Scenario, fill = Scenario,
+             ymin = pmin(0, Value), ymax = pmax(0, Value))) +
+  geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
+  geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
+            alpha = 0.25, lwd = 0.25) +
+  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  theme_void() +
+  theme(legend.position = "none")
+value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
+  layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
+         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+  config(displayModeBar = F)
+
+# Draw value box
+value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
+        title = "Top contributor",
+        showcase = value_box_plot,
+        showcase_layout = "bottom",
+        value = value_box_value,
+        # tag("p", value_box_tag_1),
+        tag("p", value_box_tag_2))
+###
+
+```
+
+::::
+
+:::: {.plotly-grid}
+
+```{r}
+# Main plot
+Oil_C5_plus %>%
+  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
+                   rp_title_main = "Canadian Crude Oil Production",
+                   rp_title_Y = "Production", rp_unit_abbrev = "k m³/day",
+                   rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
+                   rp_alpha = list(ribbons = 0.35))
+```
+
+::::
+
+:::
+
+### Hydrogen {.tabset}
+
+#### Total* {.tabset-leaf}
+
+```{r}
+#| include: false
+Hydrogen_Total_Calculated <- EF2023$hydrogen_production %>%
+  filter(Unit == "Megatonnes") %>%
+  summarize(Variable = "Total",
+            Value = sum(Value),
+            .by = c(Scenario, Region, Year)) %>% 
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+::: {.dashboard-area-column-grid}
+
+:::: {.card-row-grid}
+
+```{r}
+### Card: Current Measures total (1/3)
+v1 <- Hydrogen_Total_Calculated %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Current Measures") %>%
+  pull(Value) %>%
+  {sum(. * 1000000)}
+
+value_box_value <- v1 %>%
+  # rp_format_proper2(format = list(do_M = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" t")
+
+value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", "Current measures (baseline)"))
+###
+```
+
+```{r}
+### Card: Canada Net-zero total (2/3)
+v2 <- Hydrogen_Total_Calculated %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Canada Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 1000000)}
+
+value_box_value <- v2 %>%
+  # rp_format_proper2(format = list(do_M = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" t")
+
+value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Global Net-zero total (3/3)
+v3 <- Hydrogen_Total_Calculated %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Global Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 1000000)}
+
+value_box_value <- v3 %>%
+  # rp_format_proper2(format = list(do_M = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" t")
+
+value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Top contributor (Region)
+# Get top contributor (Region)
+value_box_data <- Hydrogen_Total_Calculated %>%
   filter(Region != "Canada") %>%
   # Compute averages and contributions
   summarize(Value_Total = mean(Value),
@@ -1471,7 +1480,7 @@ value_box_tag_1 <- value_box_data$Line_1
 value_box_tag_2 <- value_box_data$Line_2
 
 # Prepare showcase plot
-value_box_plot <- Hydrogen_Biomass %>% 
+value_box_plot <- Hydrogen_Total_Calculated %>% 
   filter(Region == value_box_data$Region) %>%
   ggplot(aes(x = Year, y = Value, group = Scenario,
              col = Scenario, fill = Scenario,
@@ -1505,7 +1514,7 @@ value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
 
 ```{r}
 # Main plot
-Hydrogen_Biomass %>%
+Hydrogen_Total_Calculated %>%
   ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
                    rp_title_main = "Canadian Hydrogen Production",
                    rp_title_Y = "Production", rp_unit_abbrev = "Mt",
@@ -1517,7 +1526,7 @@ Hydrogen_Biomass %>%
 
 :::
 
-#### Electrolysis {.tabset-tab}
+#### Electrolysis {.tabset-leaf}
 
 ```{r}
 # EF2023$hydrogen_production %>%
@@ -1568,11 +1577,12 @@ v1 <- Hydrogen_Electrolysis %>%
   {sum(. * 1000000)}
 
 value_box_value <- v1 %>%
-  rp_format_proper2(format = list(do_M = T)) %>% 
+  # rp_format_proper2(format = list(do_M = T)) %>% 
+  rp_format_proper() %>% 
   paste0(" t")
 
 value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", "Current measures (baseline)"))
 ###
@@ -1588,11 +1598,12 @@ v2 <- Hydrogen_Electrolysis %>%
   {sum(. * 1000000)}
 
 value_box_value <- v2 %>%
-  rp_format_proper2(format = list(do_M = T)) %>% 
+  # rp_format_proper2(format = list(do_M = T)) %>% 
+  rp_format_proper() %>% 
   paste0(" t")
 
 value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
 ###
@@ -1608,11 +1619,12 @@ v3 <- Hydrogen_Electrolysis %>%
   {sum(. * 1000000)}
 
 value_box_value <- v3 %>%
-  rp_format_proper2(format = list(do_M = T)) %>% 
+  # rp_format_proper2(format = list(do_M = T)) %>% 
+  rp_format_proper() %>% 
   paste0(" t")
 
 value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
 ###
@@ -1685,7 +1697,7 @@ Hydrogen_Electrolysis %>%
 
 :::
 
-#### Natural gas with CCS {.tabset-tab}
+#### Natural gas with CCS {.tabset-leaf}
 
 ```{r}
 # EF2023$hydrogen_production %>%
@@ -1736,11 +1748,12 @@ v1 <- Hydrogen_Natural_Gas_With_CCS %>%
   {sum(. * 1000000)}
 
 value_box_value <- v1 %>%
-  rp_format_proper2(format = list(do_M = T)) %>% 
+  # rp_format_proper2(format = list(do_M = T)) %>% 
+  rp_format_proper() %>% 
   paste0(" t")
 
 value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", "Current measures (baseline)"))
 ###
@@ -1756,11 +1769,12 @@ v2 <- Hydrogen_Natural_Gas_With_CCS %>%
   {sum(. * 1000000)}
 
 value_box_value <- v2 %>%
-  rp_format_proper2(format = list(do_M = T)) %>% 
+  # rp_format_proper2(format = list(do_M = T)) %>% 
+  rp_format_proper() %>% 
   paste0(" t")
 
 value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
 ###
@@ -1776,11 +1790,12 @@ v3 <- Hydrogen_Natural_Gas_With_CCS %>%
   {sum(. * 1000000)}
 
 value_box_value <- v3 %>%
-  rp_format_proper2(format = list(do_M = T)) %>% 
+  # rp_format_proper2(format = list(do_M = T)) %>% 
+  rp_format_proper() %>% 
   paste0(" t")
 
 value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
-        title = "Total (2023+)",
+        title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
 ###
@@ -1853,7 +1868,1099 @@ Hydrogen_Natural_Gas_With_CCS %>%
 
 :::
 
+#### Biomass {.tabset-leaf}
+
+```{r}
+# EF2023$hydrogen_production %>%
+#   filter(Variable == "Biomass") %>%
+#   mutate(Region = Region %>% factor %>% fct_recode(
+#     "AB" = "Alberta", "BC" = "British Columbia", "MN" = "Manitoba",
+#     "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+#     "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+#     "NV" = "Nunavut", "ON" = "Ontario", "PEI" = "Prince Edward Island",
+#     "QC" = "Quebec", "SK" = "Saskatchewan", "YK" = "Yukon",
+#     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0)) %>%
+#   ridge_facet_plot(rp_X = Year,
+#                    rp_Y = Value,
+#                    rp_F1 = Scenario,
+#                    rp_F2 = Region,
+#                    rp_alpha = list(ribbons = 0.35),
+#                    rp_title_main = "Canadian Hydrogen Production (Biomass)",
+#                    rp_title_Y = "Production",
+#                    rp_unit_abbrev = "Mt")
+```
+
+```{r}
+#| include: false
+Hydrogen_Biomass <- EF2023$hydrogen_production %>%
+  filter(Unit == "Megatonnes",
+         Variable == "Biomass") %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+::: {.dashboard-area-column-grid}
+
+:::: {.card-row-grid}
+
+```{r}
+### Card: Current Measures total (1/3)
+v1 <- Hydrogen_Biomass %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Current Measures") %>%
+  pull(Value) %>%
+  {sum(. * 1000000)}
+
+value_box_value <- v1 %>%
+  # rp_format_proper2(format = list(do_M = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" t")
+
+value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", "Current measures (baseline)"))
+###
+```
+
+```{r}
+### Card: Canada Net-zero total (2/3)
+v2 <- Hydrogen_Biomass %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Canada Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 1000000)}
+
+value_box_value <- v2 %>%
+  # rp_format_proper2(format = list(do_M = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" t")
+
+value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Global Net-zero total (3/3)
+v3 <- Hydrogen_Biomass %>%
+  filter(Year > 2022,
+         Region == "Canada",
+         Scenario == "Global Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 1000000)}
+
+value_box_value <- v3 %>%
+  # rp_format_proper2(format = list(do_M = T)) %>%
+  rp_format_proper() %>% 
+  paste0(" t")
+
+value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Top contributor (Region)
+# Get top contributor (Region)
+value_box_data <- Hydrogen_Biomass %>%
+  filter(Region != "Canada") %>%
+  # Compute averages and contributions
+  summarize(Value_Total = mean(Value),
+            Value_Average = mean(Value),
+            .by = Region) %>%
+  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
+  # Get highest contribution
+  arrange(desc(Value_Percentage)) %>%
+  head(1) %>% 
+  # Prepare labels
+  mutate(Line_1 = paste0("Averaging ", round(Value_Average, 1), "Mt"),
+         Line_2 = paste0("Contributing ", round(100 * Value_Percentage, 0), "% (avg.)"))
+value_box_value <- value_box_data$Region
+value_box_tag_1 <- value_box_data$Line_1
+value_box_tag_2 <- value_box_data$Line_2
+
+# Prepare showcase plot
+value_box_plot <- Hydrogen_Biomass %>% 
+  filter(Region == value_box_data$Region) %>%
+  ggplot(aes(x = Year, y = Value, group = Scenario,
+             col = Scenario, fill = Scenario,
+             ymin = pmin(0, Value), ymax = pmax(0, Value))) +
+  geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
+  geom_line(aes(text = paste0(round(Value, 1), ": ", Scenario, " (", Year, ")")),
+            alpha = 0.25, lwd = 0.25) +
+  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  theme_void() +
+  theme(legend.position = "none")
+value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
+  layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
+         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+  config(displayModeBar = F)
+
+# Draw value box
+value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
+        title = "Top contributor",
+        showcase = value_box_plot,
+        showcase_layout = "bottom",
+        value = value_box_value,
+        # tag("p", value_box_tag_1),
+        tag("p", value_box_tag_2))
+###
+
+```
+
+::::
+
+:::: {.plotly-grid}
+
+```{r}
+# Main plot
+Hydrogen_Biomass %>%
+  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
+                   rp_title_main = "Canadian Hydrogen Production",
+                   rp_title_Y = "Production", rp_unit_abbrev = "Mt",
+                   rp_labs_Y = list(digits = 1, do_k = F, do_e = F),
+                   rp_alpha = list(ribbons = 0.35))
+```
+
+::::
+
+:::
+
+### Natural Gas {.tabset}
+
+#### Total {.tabset-leaf}
+
+```{r}
+#| include: false
+Natural_Gas_Total <- EF2023$natural_gas_production %>%
+  filter(Unit == "Million Cubic Metres per day",
+         Variable == "Total",
+         Region != "Western Canadian Sedimentary Basin") %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+::: {.dashboard-area-column-grid}
+
+:::: {.card-row-grid}
+
+```{r}
+### Card: Current Measures total (1/3)
+v1 <- Natural_Gas_Total %>%
+  filter(Year > 2022,
+         Region != "Canada",
+         Scenario == "Current Measures") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v1 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>%
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", "Current measures (baseline)"))
+###
+```
+
+```{r}
+### Card: Canada Net-zero total (2/3)
+v2 <- Natural_Gas_Total %>%
+  filter(Year > 2022,
+         Region != "Canada",
+         Scenario == "Canada Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v2 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Global Net-zero total (3/3)
+v3 <- Natural_Gas_Total %>%
+  filter(Year > 2022,
+         Region != "Canada",
+         Scenario == "Global Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v3 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Top contributor (Region)
+# Get top contributor (Region)
+value_box_data <- Natural_Gas_Total %>%
+  filter(Region != "Canada") %>%
+  # Compute averages and contributions
+  summarize(Value_Total = mean(Value),
+            Value_Average = mean(Value),
+            .by = Region) %>%
+  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
+  # Get highest contribution
+  arrange(desc(Value_Percentage)) %>%
+  head(1) %>% 
+  # Prepare labels
+  mutate(Line_1 = paste0("Averaging ", round(Value_Average, 1), "M m³/day"),
+         Line_2 = paste0("Contributing ", round(100 * Value_Percentage, 0), "% (avg.)"))
+value_box_value <- value_box_data$Region
+value_box_tag_1 <- value_box_data$Line_1
+value_box_tag_2 <- value_box_data$Line_2
+
+# Prepare showcase plot
+value_box_plot <- Natural_Gas_Total %>% 
+  filter(Region == value_box_data$Region) %>%
+  ggplot(aes(x = Year, y = Value, group = Scenario,
+             col = Scenario, fill = Scenario,
+             ymin = pmin(0, Value), ymax = pmax(0, Value))) +
+  geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
+  geom_line(aes(text = paste0(round(Value, 1), ": ", Scenario, " (", Year, ")")),
+            alpha = 0.25, lwd = 0.25) +
+  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  theme_void() +
+  theme(legend.position = "none")
+value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
+  layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
+         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+  config(displayModeBar = F)
+
+# Draw value box
+value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
+        title = "Top contributor",
+        showcase = value_box_plot,
+        showcase_layout = "bottom",
+        value = value_box_value,
+        # tag("p", value_box_tag_1),
+        tag("p", value_box_tag_2))
+###
+
+```
+
+::::
+
+:::: {.plotly-grid}
+
+```{r}
+# Main plot
+Natural_Gas_Total %>%
+  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
+                   rp_title_main = "Canadian Natural Gas Production",
+                   rp_title_Y = "Production", rp_unit_abbrev = "M m³/day",
+                   rp_labs_Y = list(digits = 1, do_k = F, do_e = F),
+                   rp_alpha = list(ribbons = 0.35))
+```
+
+::::
+
+:::
+
+#### Tight {.tabset-leaf}
+
+```{r}
+#| include: false
+Natural_Gas_Tight <- EF2023$natural_gas_production %>%
+  filter(Unit == "Million Cubic Metres per day",
+         Variable == "Tight",
+         Region != "Western Canadian Sedimentary Basin") %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+::: {.dashboard-area-column-grid}
+
+:::: {.card-row-grid}
+
+```{r}
+### Card: Current Measures total (1/3)
+v1 <- Natural_Gas_Tight %>%
+  filter(Year > 2022,
+         Region != "Canada",
+         Scenario == "Current Measures") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v1 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", "Current measures (baseline)"))
+###
+```
+
+```{r}
+### Card: Canada Net-zero total (2/3)
+v2 <- Natural_Gas_Tight %>%
+  filter(Year > 2022,
+         Region != "Canada",
+         Scenario == "Canada Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v2 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Global Net-zero total (3/3)
+v3 <- Natural_Gas_Tight %>%
+  filter(Year > 2022,
+         Region != "Canada",
+         Scenario == "Global Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v3 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Top contributor (Region)
+# Get top contributor (Region)
+value_box_data <- Natural_Gas_Tight %>%
+  filter(Region != "Canada") %>%
+  # Compute averages and contributions
+  summarize(Value_Total = mean(Value),
+            Value_Average = mean(Value),
+            .by = Region) %>%
+  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
+  # Get highest contribution
+  arrange(desc(Value_Percentage)) %>%
+  head(1) %>% 
+  # Prepare labels
+  mutate(Line_1 = paste0("Averaging ", round(Value_Average, 1), "M m³/day"),
+         Line_2 = paste0("Contributing ", round(100 * Value_Percentage, 0), "% (avg.)"))
+value_box_value <- value_box_data$Region
+value_box_tag_1 <- value_box_data$Line_1
+value_box_tag_2 <- value_box_data$Line_2
+
+# Prepare showcase plot
+value_box_plot <- Natural_Gas_Tight %>% 
+  filter(Region == value_box_data$Region) %>%
+  ggplot(aes(x = Year, y = Value, group = Scenario,
+             col = Scenario, fill = Scenario,
+             ymin = pmin(0, Value), ymax = pmax(0, Value))) +
+  geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
+  geom_line(aes(text = paste0(round(Value, 1), ": ", Scenario, " (", Year, ")")),
+            alpha = 0.25, lwd = 0.25) +
+  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  theme_void() +
+  theme(legend.position = "none")
+value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
+  layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
+         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+  config(displayModeBar = F)
+
+# Draw value box
+value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
+        title = "Top contributor",
+        showcase = value_box_plot,
+        showcase_layout = "bottom",
+        value = value_box_value,
+        # tag("p", value_box_tag_1),
+        tag("p", value_box_tag_2))
+###
+
+```
+
+::::
+
+:::: {.plotly-grid}
+
+```{r}
+# Main plot
+Natural_Gas_Tight %>%
+  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
+                   rp_title_main = "Canadian Natural Gas Production",
+                   rp_title_Y = "Production", rp_unit_abbrev = "M m³/day",
+                   rp_labs_Y = list(digits = 1, do_k = F, do_e = F),
+                   rp_alpha = list(ribbons = 0.35))
+```
+
+::::
+
+:::
+
+#### Solution {.tabset-leaf}
+
+```{r}
+#| include: false
+Natural_Gas_Solution <- EF2023$natural_gas_production %>%
+  filter(Unit == "Million Cubic Metres per day",
+         Variable == "Solution",
+         Region != "Western Canadian Sedimentary Basin") %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+::: {.dashboard-area-column-grid}
+
+:::: {.card-row-grid}
+
+```{r}
+### Card: Current Measures total (1/3)
+v1 <- Natural_Gas_Solution %>%
+  filter(Year > 2022,
+         Region != "Canada",
+         Scenario == "Current Measures") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v1 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", "Current measures (baseline)"))
+###
+```
+
+```{r}
+### Card: Canada Net-zero total (2/3)
+v2 <- Natural_Gas_Solution %>%
+  filter(Year > 2022,
+         # Region != "Canada",
+         Scenario == "Canada Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v2 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Global Net-zero total (3/3)
+v3 <- Natural_Gas_Solution %>%
+  filter(Year > 2022,
+         Region != "Canada",
+         Scenario == "Global Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v3 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Top contributor (Region)
+# Get top contributor (Region)
+value_box_data <- Natural_Gas_Solution %>%
+  filter(Region != "Canada") %>%
+  # Compute averages and contributions
+  summarize(Value_Total = mean(Value),
+            Value_Average = mean(Value),
+            .by = Region) %>%
+  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
+  # Get highest contribution
+  arrange(desc(Value_Percentage)) %>%
+  head(1) %>% 
+  # Prepare labels
+  mutate(Line_1 = paste0("Averaging ", round(Value_Average, 1), "M m³/day"),
+         Line_2 = paste0("Contributing ", round(100 * Value_Percentage, 0), "% (avg.)"))
+value_box_value <- value_box_data$Region
+value_box_tag_1 <- value_box_data$Line_1
+value_box_tag_2 <- value_box_data$Line_2
+
+# Prepare showcase plot
+value_box_plot <- Natural_Gas_Solution %>% 
+  filter(Region == value_box_data$Region) %>%
+  ggplot(aes(x = Year, y = Value, group = Scenario,
+             col = Scenario, fill = Scenario,
+             ymin = pmin(0, Value), ymax = pmax(0, Value))) +
+  geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
+  geom_line(aes(text = paste0(round(Value, 1), ": ", Scenario, " (", Year, ")")),
+            alpha = 0.25, lwd = 0.25) +
+  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  theme_void() +
+  theme(legend.position = "none")
+value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
+  layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
+         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+  config(displayModeBar = F)
+
+# Draw value box
+value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
+        title = "Top contributor",
+        showcase = value_box_plot,
+        showcase_layout = "bottom",
+        value = value_box_value,
+        # tag("p", value_box_tag_1),
+        tag("p", value_box_tag_2))
+###
+
+```
+
+::::
+
+:::: {.plotly-grid}
+
+```{r}
+# Main plot
+Natural_Gas_Solution %>%
+  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
+                   rp_title_main = "Canadian Natural Gas Production",
+                   rp_title_Y = "Production", rp_unit_abbrev = "M m³/day",
+                   rp_labs_Y = list(digits = 1, do_k = F, do_e = F),
+                   rp_alpha = list(ribbons = 0.35))
+```
+
+::::
+
+:::
+
+#### Non Associated {.tabset-leaf}
+
+```{r}
+#| include: false
+Natural_Gas_Non_Associated <- EF2023$natural_gas_production %>%
+  filter(Unit == "Million Cubic Metres per day",
+         Variable == "Non Associated",
+         Region != "Western Canadian Sedimentary Basin") %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+::: {.dashboard-area-column-grid}
+
+:::: {.card-row-grid}
+
+```{r}
+### Card: Current Measures total (1/3)
+v1 <- Natural_Gas_Non_Associated %>%
+  filter(Year > 2022,
+         Region != "Canada",
+         Scenario == "Current Measures") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v1 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", "Current measures (baseline)"))
+###
+```
+
+```{r}
+### Card: Canada Net-zero total (2/3)
+v2 <- Natural_Gas_Non_Associated %>%
+  filter(Year > 2022,
+         Region != "Canada",
+         Scenario == "Canada Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v2 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Global Net-zero total (3/3)
+v3 <- Natural_Gas_Non_Associated %>%
+  filter(Year > 2022,
+         Region != "Canada",
+         Scenario == "Global Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v3 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Top contributor (Region)
+# Get top contributor (Region)
+value_box_data <- Natural_Gas_Non_Associated %>%
+  filter(Region != "Canada") %>%
+  # Compute averages and contributions
+  summarize(Value_Total = mean(Value),
+            Value_Average = mean(Value),
+            .by = Region) %>%
+  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
+  # Get highest contribution
+  arrange(desc(Value_Percentage)) %>%
+  head(1) %>% 
+  # Prepare labels
+  mutate(Line_1 = paste0("Averaging ", round(Value_Average, 1), "M m³/day"),
+         Line_2 = paste0("Contributing ", round(100 * Value_Percentage, 0), "% (avg.)"))
+value_box_value <- value_box_data$Region
+value_box_tag_1 <- value_box_data$Line_1
+value_box_tag_2 <- value_box_data$Line_2
+
+# Prepare showcase plot
+value_box_plot <- Natural_Gas_Non_Associated %>% 
+  filter(Region == value_box_data$Region) %>%
+  ggplot(aes(x = Year, y = Value, group = Scenario,
+             col = Scenario, fill = Scenario,
+             ymin = pmin(0, Value), ymax = pmax(0, Value))) +
+  geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
+  geom_line(aes(text = paste0(round(Value, 1), ": ", Scenario, " (", Year, ")")),
+            alpha = 0.25, lwd = 0.25) +
+  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  theme_void() +
+  theme(legend.position = "none")
+value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
+  layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
+         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+  config(displayModeBar = F)
+
+# Draw value box
+value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
+        title = "Top contributor",
+        showcase = value_box_plot,
+        showcase_layout = "bottom",
+        value = value_box_value,
+        # tag("p", value_box_tag_1),
+        tag("p", value_box_tag_2))
+###
+
+```
+
+::::
+
+:::: {.plotly-grid}
+
+```{r}
+# Main plot
+Natural_Gas_Non_Associated %>%
+  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
+                   rp_title_main = "Canadian Natural Gas Production",
+                   rp_title_Y = "Production", rp_unit_abbrev = "M m³/day",
+                   rp_labs_Y = list(digits = 1, do_k = F, do_e = F),
+                   rp_alpha = list(ribbons = 0.35))
+```
+
+::::
+
+:::
+
+#### Shale {.tabset-leaf}
+
+```{r}
+#| include: false
+Natural_Gas_Shale <- EF2023$natural_gas_production %>%
+  filter(Unit == "Million Cubic Metres per day",
+         Variable == "Shale",
+         Region != "Western Canadian Sedimentary Basin") %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+::: {.dashboard-area-column-grid}
+
+:::: {.card-row-grid}
+
+```{r}
+### Card: Current Measures total (1/3)
+v1 <- Natural_Gas_Shale %>%
+  filter(Year > 2022,
+         Region != "Canada",
+         Scenario == "Current Measures") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v1 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", "Current measures (baseline)"))
+###
+```
+
+```{r}
+### Card: Canada Net-zero total (2/3)
+v2 <- Natural_Gas_Shale %>%
+  filter(Year > 2022,
+         Region != "Canada",
+         Scenario == "Canada Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v2 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Global Net-zero total (3/3)
+v3 <- Natural_Gas_Shale %>%
+  filter(Year > 2022,
+         Region != "Canada",
+         Scenario == "Global Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v3 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Top contributor (Region)
+# Get top contributor (Region)
+value_box_data <- Natural_Gas_Shale %>%
+  filter(Region != "Canada") %>%
+  # Compute averages and contributions
+  summarize(Value_Total = mean(Value),
+            Value_Average = mean(Value),
+            .by = Region) %>%
+  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
+  # Get highest contribution
+  arrange(desc(Value_Percentage)) %>%
+  head(1) %>% 
+  # Prepare labels
+  mutate(Line_1 = paste0("Averaging ", round(Value_Average, 1), "M m³/day"),
+         Line_2 = paste0("Contributing ", round(100 * Value_Percentage, 0), "% (avg.)"))
+value_box_value <- value_box_data$Region
+value_box_tag_1 <- value_box_data$Line_1
+value_box_tag_2 <- value_box_data$Line_2
+
+# Prepare showcase plot
+value_box_plot <- Natural_Gas_Shale %>% 
+  filter(Region == value_box_data$Region) %>%
+  ggplot(aes(x = Year, y = Value, group = Scenario,
+             col = Scenario, fill = Scenario,
+             ymin = pmin(0, Value), ymax = pmax(0, Value))) +
+  geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
+  geom_line(aes(text = paste0(round(Value, 1), ": ", Scenario, " (", Year, ")")),
+            alpha = 0.25, lwd = 0.25) +
+  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  theme_void() +
+  theme(legend.position = "none")
+value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
+  layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
+         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+  config(displayModeBar = F)
+
+# Draw value box
+value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
+        title = "Top contributor",
+        showcase = value_box_plot,
+        showcase_layout = "bottom",
+        value = value_box_value,
+        # tag("p", value_box_tag_1),
+        tag("p", value_box_tag_2))
+###
+
+```
+
+::::
+
+:::: {.plotly-grid}
+
+```{r}
+# Main plot
+Natural_Gas_Shale %>%
+  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
+                   rp_title_main = "Canadian Natural Gas Production",
+                   rp_title_Y = "Production", rp_unit_abbrev = "M m³/day",
+                   rp_labs_Y = list(digits = 1, do_k = F, do_e = F),
+                   rp_alpha = list(ribbons = 0.35))
+```
+
+::::
+
+:::
+
+#### Coalbed Methane {.tabset-leaf}
+
+```{r}
+#| include: false
+Natural_Gas_Coalbed_Methane <- EF2023$natural_gas_production %>%
+  filter(Unit == "Million Cubic Metres per day",
+         Variable == "Coalbed Methane",
+         Region != "Western Canadian Sedimentary Basin") %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+::: {.dashboard-area-column-grid}
+
+:::: {.card-row-grid}
+
+```{r}
+### Card: Current Measures total (1/3)
+v1 <- Natural_Gas_Coalbed_Methane %>%
+  filter(Year > 2022,
+         Region != "Canada",
+         Scenario == "Current Measures") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v1 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#777", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", "Current measures (baseline)"))
+###
+```
+
+```{r}
+### Card: Canada Net-zero total (2/3)
+v2 <- Natural_Gas_Coalbed_Methane %>%
+  filter(Year > 2022,
+         Region != "Canada",
+         Scenario == "Canada Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v2 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Canada Net-zero", " (", round((v2/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Global Net-zero total (3/3)
+v3 <- Natural_Gas_Coalbed_Methane %>%
+  filter(Year > 2022,
+         Region != "Canada",
+         Scenario == "Global Net-zero") %>%
+  pull(Value) %>%
+  {sum(. * 365.24) * 1000000}
+
+value_box_value <- v3 %>%
+  # rp_format_proper2(format = list(do_B = T)) %>% 
+  rp_format_proper() %>% 
+  paste0(" m³")
+
+value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+        title = "Total (2023–2050)",
+        value = value_box_value,
+        tag("p", paste0("Global Net-zero", " (", round((v3/v1 - 1) * 100), "%)")))
+###
+```
+
+```{r}
+### Card: Top contributor (Region)
+# Get top contributor (Region)
+value_box_data <- Natural_Gas_Coalbed_Methane %>%
+  filter(Region != "Canada") %>%
+  # Compute averages and contributions
+  summarize(Value_Total = mean(Value),
+            Value_Average = mean(Value),
+            .by = Region) %>%
+  mutate(Value_Percentage = Value_Total / sum(Value_Total)) %>% 
+  # Get highest contribution
+  arrange(desc(Value_Percentage)) %>%
+  head(1) %>% 
+  # Prepare labels
+  mutate(Line_1 = paste0("Averaging ", round(Value_Average, 1), "M m³/day"),
+         Line_2 = paste0("Contributing ", round(100 * Value_Percentage, 0), "% (avg.)"))
+value_box_value <- value_box_data$Region
+value_box_tag_1 <- value_box_data$Line_1
+value_box_tag_2 <- value_box_data$Line_2
+
+# Prepare showcase plot
+value_box_plot <- Natural_Gas_Coalbed_Methane %>% 
+  filter(Region == value_box_data$Region) %>%
+  ggplot(aes(x = Year, y = Value, group = Scenario,
+             col = Scenario, fill = Scenario,
+             ymin = pmin(0, Value), ymax = pmax(0, Value))) +
+  geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
+  geom_line(aes(text = paste0(round(Value, 1), ": ", Scenario, " (", Year, ")")),
+            alpha = 0.25, lwd = 0.25) +
+  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  theme_void() +
+  theme(legend.position = "none")
+value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
+  layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
+         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+  config(displayModeBar = F)
+
+# Draw value box
+value_box(theme = value_box_theme(bg = "#EEE", fg = "#777"),
+        title = "Top contributor",
+        showcase = value_box_plot,
+        showcase_layout = "bottom",
+        value = value_box_value,
+        # tag("p", value_box_tag_1),
+        tag("p", value_box_tag_2))
+###
+
+```
+
+::::
+
+:::: {.plotly-grid}
+
+```{r}
+# Main plot
+Natural_Gas_Coalbed_Methane %>%
+  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Region,
+                   rp_title_main = "Canadian Natural Gas Production",
+                   rp_title_Y = "Production", rp_unit_abbrev = "M m³/day",
+                   rp_labs_Y = list(digits = 1, do_k = F, do_e = F),
+                   rp_alpha = list(ribbons = 0.35))
+```
+
+::::
+
+:::
+
+
 # Prices
+
+```{r}
+#| include: false
+Prices <- list()
+#example: Prices$...$...
+```
 
 ### Oil Benchmark
 

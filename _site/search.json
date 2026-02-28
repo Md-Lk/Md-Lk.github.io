@@ -11,6 +11,6 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "Hierarchical grouping and visual summary of EF2023 data.\nNote: Tabs are sorted by decreasing total quantity (as per value cards). This means the top category is listed second, following Total.\nHierarchy:\n ─┬ Production\n  │ ├ Crude Oil\n  │ │ ├ Total\n  │ │ ├ (Upgraded Bitumen)\n  │ │ ├ C5+\n  │ │ ├ Conventional Heavy\n  │ │ ├ Conventional Light\n  │ │ ├ Field Condensate\n  │ │ ├ In Situ Bitumen\n  │ │ └ Mined Bitumen\n  │ ├ Hydrogen\n  │ │ ├ Total* (*calculated) (PENDING)\n  │ │ ├ Biomass\n  │ │ ├ Electrolysis\n  │ │ └ Natural gas with CCS\n  │ └ Natural Gas\n  │   ├ Total\n  │   ├ Solution\n  │   ├ Non Associated\n  │   ├ Tight\n  │   ├ Shale\n  │   ├ Coalbed Methane\n  │   └ ...\n  └ Prices\n    ├ Benchmark Prices\n    └ ... End-use Prices\n..."
   }
 ]

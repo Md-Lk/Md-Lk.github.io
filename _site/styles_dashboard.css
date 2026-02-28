@@ -37,18 +37,25 @@
 
 /* Tab contents */
 .card-header-tabs .nav-link.active {
-  background-color: #777;
+  background-color: #157;
   color: white;
+  font-family: Onest, Source Sans Pro, BC Sans, Noto Sans, Verdana, Arial, sans-serif;
+  font-weight: 500;
 }
 
 .card-header-tabs .nav-link {
   background-color: #eee;
+  font-family: Onest, Source Sans Pro, BC Sans, Noto Sans, Verdana, Arial, sans-serif;
   color: #777;
+}
+
+.card-header-tabs {
+  zoom: 85%;
 }
 
 
 /* Nested tab windows */
-.tabset-tab {
+.tabset-leaf {
   padding-top: 20px;
 }
 
@@ -81,7 +88,12 @@
 
 /* KPI cards */
 .value-box-area {
-  zoom: 85%;
+  font-family: Onest, Source Sans Pro, BC Sans, Noto Sans, Verdana, Arial, sans-serif;
+  zoom: 79%;
+}
+
+.value-box-area .value-box-value {
+  font-weight: 500;
 }
 
 
