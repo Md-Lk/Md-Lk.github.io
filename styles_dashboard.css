@@ -88,8 +88,8 @@
 
 /* KPI cards */
 .card-row-grid > .html-fill-container {
-  padding-right: 0.5rem;
-  box-shadow: -0.5rem 0rem #aaa inset;
+  margin-right: 0.5rem;
+  box-shadow: 0.5rem 0rem #aaa;
 }
 
 .value-box-area {
@@ -113,7 +113,7 @@
   grid-template-rows: auto 1fr;
   font-family: Onest, Source Sans Pro, BC Sans, Noto Sans, Verdana, Arial, sans-serif;
   margin: 1rem;
-  padding: 20px;
+  padding: 1rem;
   gap: none;
   zoom: 79%;
 }
@@ -121,20 +121,33 @@
 .definition-area .definition-area-title {
   margin: none;
   padding: none;
+  padding-bottom: 0.5rem;
   text-align: center;
   font-size: 31px;
 }
 
 .definition-area .definition-area-text {
   background-color: #fff;
-  box-shadow: -15px 15px 15px #eee inset;
   margin: none;
-  padding: 20px;
+  margin-top: 0.5rem;
+  box-shadow: 0rem -0.5rem #aaa;
+  padding: 1rem;
   overflow: auto;
 }
 
 
+/* Financials tab */
+.financials-tab-column-grid {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0rem;
+}
 
+.financials-tab-column-2 {
+  display:grid;
+  grid-template-rows: 1.3fr 1fr;
+  gap: 0rem;
+}
 
 
 
@@ -142,13 +155,23 @@
 /* Narrow viewport adjustments */
 
 
-@media (max-width: 550px){
+@media (max-width: 600px){
   .dashboard-area-column-grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 
+  .dashboard-area-column-grid .card-row-grid {
+    grid-template-rows: minmax(100px, 150px) minmax(100px, 150px) minmax(100px, 150px) minmax(200px, 300px);
+    min-height: 750px;
+  }
+
   .plotly-grid {
     grid-template-rows: minmax(700px, 1fr);
+  }
+
+  .financials-tab-column-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-rows: 700px 650px 1fr;
   }
 }
 
