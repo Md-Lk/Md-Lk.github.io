@@ -56,11 +56,11 @@
 
 /* Nested tab windows */
 .tabset-leaf {
-  padding-top: 20px;
+  padding-top: 1rem;
 }
 
 .card-body {
-  padding: 0px;
+  padding: 0rem;
 }
 
 .card {
@@ -69,17 +69,19 @@
 
 
 /* Dashboard grid layout */
+.dashboard-area-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 1rem;
+}
+
 .card-row-grid {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1.5fr;
   gap: 1rem;
 }
 
-.dashboard-area-column-grid {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  gap: 1rem;
-}
+
 
 .plotly-grid {
   display: grid;
@@ -87,6 +89,11 @@
 
 
 /* KPI cards */
+.card-row-grid > .html-fill-container {
+  padding-right: 0.5rem;
+  box-shadow: -0.5rem 0rem #aaa inset;
+}
+
 .value-box-area {
   font-family: Onest, Source Sans Pro, BC Sans, Noto Sans, Verdana, Arial, sans-serif;
   zoom: 79%;
@@ -96,9 +103,102 @@
   font-weight: 500;
 }
 
+.bslib-value-box .plotly {
+  margin-right: 1rem;
+}
+
+
+/* Definitions */
+.definition-area {
+  display: grid;
+  background-color: #eee;
+  grid-template-rows: auto 1fr;
+  font-family: Onest, Source Sans Pro, BC Sans, Noto Sans, Verdana, Arial, sans-serif;
+  margin: 1rem;
+  padding: 20px;
+  gap: none;
+  zoom: 79%;
+}
+
+.definition-area .definition-area-title {
+  margin: none;
+  padding: none;
+  text-align: center;
+  font-size: 31px;
+}
+
+.definition-area .definition-area-text {
+  background-color: #fff;
+  box-shadow: -15px 15px 15px #eee inset;
+  margin: none;
+  padding: 20px;
+  overflow: auto;
+}
+
+
+
+
+
+
+
+/* Narrow viewport adjustments */
+
+
+@media (max-width: 550px){
+  .dashboard-area-column-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .plotly-grid {
+    grid-template-rows: minmax(700px, 1fr);
+  }
+}
+
+
+
+
+
 
 
 /* Experimental */
+
+/*
+*/
+
+
+
+
+
+/*
+.bslib-value-box .cursor-crosshair {
+  display: none;
+  width: 50px;
+  padding: 0px;
+  margin: 0px;
+}
+*/
+
+/*
+.bslib-value-box {
+  border-radius: 25px;
+}
+*/
+
+/*
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+grid-template-columns: minmax(250px, 500px) minmax(750px, 1500px);
+*/
+
+/*
+word-break: keep-all;
+word-wrap: keep-all;
+overflow: auto;
+text-overflow: ellipsis;
+*/
+
+
+/* box-shadow: -25px -25px 15px 10px #eee inset; */
+
 
 /*
 .card-body .card-body {

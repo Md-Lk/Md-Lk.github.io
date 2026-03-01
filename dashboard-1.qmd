@@ -155,7 +155,8 @@ value_box_plot <- Oil_Total %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -327,7 +328,8 @@ value_box_plot <- Oil_In_Situ_Bitumen %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -499,7 +501,8 @@ value_box_plot <- Oil_Mined_Bitumen %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -650,7 +653,8 @@ value_box_plot <- Oil_Upgraded_Bitumen %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -822,7 +826,8 @@ value_box_plot <- Oil_Conventional_Light %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -994,7 +999,8 @@ value_box_plot <- Oil_Field_Condensate %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -1166,7 +1172,8 @@ value_box_plot <- Oil_Conventional_Heavy %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -1338,7 +1345,8 @@ value_box_plot <- Oil_C5_plus %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -1493,7 +1501,8 @@ value_box_plot <- Hydrogen_Total_Calculated %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -1664,7 +1673,8 @@ value_box_plot <- Hydrogen_Electrolysis %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -1835,7 +1845,8 @@ value_box_plot <- Hydrogen_Natural_Gas_With_CCS %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -2006,7 +2017,8 @@ value_box_plot <- Hydrogen_Biomass %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -2160,7 +2172,8 @@ value_box_plot <- Natural_Gas_Total %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -2312,7 +2325,8 @@ value_box_plot <- Natural_Gas_Tight %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -2464,7 +2478,8 @@ value_box_plot <- Natural_Gas_Solution %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -2616,7 +2631,8 @@ value_box_plot <- Natural_Gas_Non_Associated %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -2768,7 +2784,8 @@ value_box_plot <- Natural_Gas_Shale %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -2920,7 +2937,8 @@ value_box_plot <- Natural_Gas_Coalbed_Methane %>%
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
   layout(plot_bgcolor = "rgba(1,1,1,0)", hovermode = "x",
-         hoverlabel = list(font = list(family = "Onest", size = 13))) %>%
+         hoverlabel = list(font = list(family = "Onest", size = 13)),
+         xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
   config(displayModeBar = F)
 
 # Draw value box
@@ -2964,62 +2982,100 @@ Financials <- list()
 
 ## _ {.tabset}
 
-### Benchmark Prices
-
-::: {.div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1rem;"}
+### Benchmark Prices {.tabset-leaf}
 
 ```{r}
-EF2023$benchmark_prices %>%
-  filter(Variable %>% str_detect("bbl")) %>%
-  mutate(Variable = Variable %>% str_remove_all(" - 2.*$")) %>%
+#| include: false
+Financials$Benchmark_Prices <- EF2023$benchmark_prices %>%
+  mutate(Unit = Variable %>% str_extract("US\\$.*$"),
+         Variable = Variable %>% str_remove_all(" - 2.*$") %>% str_remove_all(" \\(.*$")) %>% 
+  mutate(Variable = Variable %>% factor %>% fct_recode(
+    "WCS" = "Western Canadian Select", "WTI" = "West Texas Intermediate",
+    "CLS" = "Canadian Light Sweet", "NIT" = "Nova Inventory Transfer"),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+::: {.div style="display:grid; grid-template-columns: 1fr 1fr; gap: 0rem;"}
+
+```{r}
+Financials$Benchmark_Prices %>%
+  filter(Unit == "US$/bbl") %>%
+  mutate(Variable = Variable %>% fct_drop()) %>% 
   ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Variable, rp_F2 = Scenario,
-                   rp_draw = list(ribbons = F, lines = F, smooth = T, medians = F, peaks = F),
+                   rp_draw = list(ribbons = F, lines = F, smooth = T, medians = T, peaks = F),
                    rp_alpha = list(se = 0.25, points = 0.25),
                    rp_title_main = "Benchmarks in 2022 US$/bbl",
                    rp_title_Y = NA)
 ```
 
-:::: {.div style="display:grid; grid-template-rows: 1.3fr 1fr; gap: 1rem;"}
+:::: {.div style="display:grid; grid-template-rows: 1.3fr 1fr; gap: 0rem;"}
 
 ```{r}
-EF2023$benchmark_prices %>%
-  filter(Variable %>% str_detect("MMBtu")) %>%
-  mutate(Variable = Variable %>% str_remove_all(" - 2.*$")) %>%
+Financials$Benchmark_Prices %>%
+  filter(Unit == "US$/MMBtu") %>%
+  mutate(Variable = Variable %>% fct_drop()) %>% 
   ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Variable, rp_F2 = Scenario,
-                   rp_draw = list(ribbons = F, lines = F, smooth = T, medians = F, peaks = F),
+                   rp_draw = list(ribbons = F, lines = F, smooth = T, medians = T, peaks = F),
                    rp_alpha = list(se = 0.25, points = 0.25),
                    rp_title_main = "Benchmarks in 2022 US$/MMBtu",
                    rp_title_Y = NA)
 ```
 
-> WCS
->
-> :   A blend of Canadian heavy and bitumen sour crude oils mixed with sweet synthetic and condensates with an API gravity of about 21 degrees. It is priced at Hardisty, Alberta and is often used as a representative price for Canadian heavy crude oils.
->
-> WTI
->
-> :   A key North American benchmark crude oil price, it's a light sweet grade of crude oil produced in western Texas with an API gravity of 40 degrees.
->
-> Brent
->
-> :   A key global crude oil benchmark price. It is a light sweet grade extracted from the North Sea.
->
-> CLS
->
-> :   A light, sweet blend of conventionally produced crude oils in western Canada with an API gravity of around 40 degrees. It is typically priced at Edmonton, Alberta and is often called Edmonton Par Crude.
->
-> Henry Hub
->
-> :   Henry Hub is the pricing point for natural gas futures traded on the New York Mercantile Exchange. The hub is located in Louisiana at the interconnection of numerous natural gas pipelines.
->
-> NIT
->
-> :   The Nova Inventory Transfer, or NIT, is the pricing point used for natural gas sourced from the Western Canadian Sedimentary Basin (WCSB). As the natural gas trading hub located in Alberta, NIT is the commercial mechanism that overlays the Nova Gas Transmission Ltd. (NGTL) pipeline network, and is connected to several export markets and storage.\*
+
+::::: {.definition-area}
+
+:::::: {.definition-area-title}
+
+What do these represent?
+
+::::::
+
+:::::: {.definition-area-text}
+
+**Brent**
+
+A key global crude oil benchmark price. It is a light sweet grade extracted from the North Sea.
+
+**Canadian Light Sweet (CLS)**
+
+A light, sweet blend of conventionally produced crude oils in western Canada with an API gravity of around 40 degrees. It is typically priced at Edmonton, Alberta and is often called Edmonton Par Crude.
+
+**West Texas Intermediate (WTI)**
+
+A key North American benchmark crude oil price, it's a light sweet grade of crude oil produced in western Texas with an API gravity of 40 degrees.
+
+**Western Canadian Select (WCS)**
+
+A blend of Canadian heavy and bitumen sour crude oils mixed with sweet synthetic and condensates with an API gravity of about 21 degrees. It is priced at Hardisty, Alberta and is often used as a representative price for Canadian heavy crude oils.
+
+**Henry Hub**
+
+Henry Hub is the pricing point for natural gas futures traded on the New York Mercantile Exchange. The hub is located in Louisiana at the interconnection of numerous natural gas pipelines.
+
+**Nova Inventory Transfer (NIT)**
+
+The Nova Inventory Transfer, or NIT, is the pricing point used for natural gas sourced from the Western Canadian Sedimentary Basin (WCSB). As the natural gas trading hub located in Alberta, NIT is the commercial mechanism that overlays the Nova Gas Transmission Ltd. (NGTL) pipeline network, and is connected to several export markets and storage.
+
+Source: EF2023.
+
+::::::
+
+:::::
 
 ::::
 
 :::
 
-### End Use Prices
+### End Use Prices {.tabset-leaf}
 
-### Macro Indicators
+```{r}
+#| include: false
+Financials$End_Use_Prices <- EF2023$end_use_prices
+```
+
+### Macro Indicators {.tabset-leaf}
+
+```{r}
+#| include: false
+Financials$Macro_Indicators <- EF2023$macro_indicators
+```

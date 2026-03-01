@@ -3,7 +3,7 @@ title: "About"
 format: html
 ---
 
-Hierarchical grouping and visual summary of EF2023 data.
+Hierarchical grouping and visual summary of Canada Energy Regulator's EF2023 data.
 
 **Note:** Tabs are sorted by decreasing total quantity (as per value cards). This means the top category is listed second, following Total.
 
