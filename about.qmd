@@ -5,7 +5,14 @@ format: html
 
 Hierarchical grouping and visual summary of Canada Energy Regulator's EF2023 data.
 
-**Note:** Tabs are sorted by decreasing total quantity (as per value cards). This means the top category is listed second, following Total.
+**Note on years:** Years 2022 (latest current data),
+2030 (interim near-net-zero target),
+2035 (*negotiated* interim near-net-zero target as per the [Canada-Alberta MOU](https://www.pm.gc.ca/en/news/backgrounders/2025/11/27/canada-alberta-memorandum-understanding)),
+and 2050 (target year as per EF2023/the [Canadian Net-Zero Emissions Accountability Act](https://www.canada.ca/en/services/environment/weather/climatechange/climate-plan/net-zero-emissions-2050/canadian-net-zero-emissions-accountability-act.html))
+are highlighted.
+
+**Note on tabs:** Tabs are sorted by decreasing total quantity (as per value cards).
+This means the top category is listed second, following Total.
 
 **Hierarchy:**
 ```
