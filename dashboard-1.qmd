@@ -190,7 +190,7 @@ Production$Oil$Total %>%
                    rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2005, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -351,7 +351,7 @@ Production$Oil$In_Situ_Bitumen %>%
                    rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2005, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -512,7 +512,7 @@ Production$Oil$Mined_Bitumen %>%
                    rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2005, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -673,7 +673,7 @@ Production$Oil$Upgraded_Bitumen %>%
                    rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2005, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -834,7 +834,7 @@ Production$Oil$Conventional_Light %>%
                    rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2005, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -995,7 +995,7 @@ Production$Oil$Field_Condensate %>%
                    rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2005, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -1156,7 +1156,7 @@ Production$Oil$Conventional_Heavy %>%
                    rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2005, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -1317,7 +1317,7 @@ Production$Oil$C5_plus %>%
                    rp_labs_Y = list(digits = 0, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2005, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -1485,7 +1485,7 @@ Production$Hydrogen$Total_Calculated %>%
                    rp_labs_Y = list(digits = 1, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2010, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -1666,7 +1666,7 @@ Production$Hydrogen$Electrolysis %>%
                    rp_labs_Y = list(digits = 1, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2010, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -1847,7 +1847,7 @@ Production$Hydrogen$Natural_Gas_With_CCS %>%
                    rp_labs_Y = list(digits = 1, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2010, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -2028,7 +2028,7 @@ Production$Hydrogen$Biomass %>%
                    rp_labs_Y = list(digits = 1, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2010, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -2192,7 +2192,7 @@ Production$Natural_Gas$Total %>%
                    rp_labs_Y = list(digits = 1, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2005, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -2354,7 +2354,7 @@ Production$Natural_Gas$Tight %>%
                    rp_labs_Y = list(digits = 1, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2005, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -2516,7 +2516,7 @@ Production$Natural_Gas$Solution %>%
                    rp_labs_Y = list(digits = 1, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2005, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -2678,7 +2678,7 @@ Production$Natural_Gas$Non_Associated %>%
                    rp_labs_Y = list(digits = 1, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2005, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -2840,7 +2840,7 @@ Production$Natural_Gas$Shale %>%
                    rp_labs_Y = list(digits = 1, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2005, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -3002,7 +3002,7 @@ Production$Natural_Gas$Coalbed_Methane %>%
                    rp_labs_Y = list(digits = 1, do_k = F, do_e = F),
                    rp_draw = list(points = F, peaks = T, medians = F,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2005, 2022, 2030, 2035, 2050))),
                    rp_alpha = list(ribbons = 0.35))
 ```
 
@@ -3021,7 +3021,9 @@ Financials <- list()
 
 ## _ {.tabset}
 
-### Benchmark Prices {.tabset-leaf}
+### Benchmark Prices {.tabset}
+
+#### Crude Oil {.tabset-leaf}
 
 ```{r}
 #| include: false
@@ -3036,34 +3038,25 @@ Financials$Benchmark_Prices <- EF2023$benchmark_prices %>%
 
 ::: {.financials-tab-column-grid}
 
+:::: {.plotly-grid}
+
 ```{r}
 Financials$Benchmark_Prices %>%
   filter(Unit == "US$/bbl") %>%
-  mutate(Variable = Variable %>% fct_drop()) %>% 
-  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Variable, rp_F2 = Scenario,
+  mutate(Variable = Variable %>% fct_drop()) %>%
+  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Variable,
                    rp_draw = list(ribbons = F, lines = F, smooth = T, medians = F, peaks = T,
                                   peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
+                                                  X_values = c(2022))),
                    
                    rp_alpha = list(se = 0.25, points = 0.25),
-                   rp_title_main = "Benchmarks in 2022 US$/bbl",
-                   rp_title_Y = NA)
+                   rp_title_main = "Crude Oil Benchmarks",
+                   rp_title_Y = "Prices (2022 US$/bbl)")
 ```
+
+::::
 
 :::: {.financials-tab-column-2}
-
-```{r}
-Financials$Benchmark_Prices %>%
-  filter(Unit == "US$/MMBtu") %>%
-  mutate(Variable = Variable %>% fct_drop()) %>% 
-  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Variable, rp_F2 = Scenario,
-                   rp_draw = list(ribbons = F, lines = F, smooth = T, medians = F, peaks = T,
-                                  peaks_at = list(Y_min = F, Y_max = F,
-                                                  X_values = c(2022, 2030, 2035, 2050))),
-                   rp_alpha = list(se = 0.25, points = 0.25),
-                   rp_title_main = "Benchmarks in 2022 US$/MMBtu",
-                   rp_title_Y = NA)
-```
 
 ::::: {.definition-area}
 
@@ -3091,6 +3084,95 @@ A key North American benchmark crude oil price, it's a light sweet grade of crud
 
 A blend of Canadian heavy and bitumen sour crude oils mixed with sweet synthetic and condensates with an API gravity of about 21 degrees. It is priced at Hardisty, Alberta and is often used as a representative price for Canadian heavy crude oils.
 
+Source: EF2023.
+
+::::::
+
+:::::
+
+::::: {.financials-tab-card-grid}
+
+```{r}
+# Most sensitive benchmark
+Financials$Benchmark_Prices %>%
+  filter(Unit == "US$/bbl") %>%
+  mutate(Variable = Variable %>% fct_drop()) %>%
+  # List level 1: Split by benchmark
+  split(paste(.$Variable)) %>%
+  # List level 2: Split by scenario
+  lapply(\(x) {split(x, x$Scenario)}) %>%
+  # Get prices for each year
+  lapply(\(x) sapply(x, pull, "Value", "Year")) %>%
+  # # Sweep current measures
+  # lapply(\(x) {x[, 1] - x[, -1]})
+  # Compute sensitivity
+  # (avg. scaled deviation from current measures)
+  # lapply(\(x) {mean( sqrt( colSums((x[, 1]/x[, -1] - 1)^2) / nrow(x) ) )})
+  # (avg. unscaled deviation from current measures)
+  lapply(\(x) {mean( sqrt( colSums((x[, 1] - x[, -1])^2) / nrow(x) ) )})
+
+
+```
+
+
+```{r}
+# Scenario with the widest avg. differential (WTI-WCS)
+"Scenario with the widest avg. differential (WTI-WCS)"
+```
+
+
+```{r}
+# Least sensitive benchmark
+"Least sensitive benchmark"
+```
+
+
+```{r}
+# Scenario with the narrowest avg. differential (WTI-WCS)
+"Scenario with the narrowest avg. differential (WTI-WCS)"
+```
+
+<!-- Large differential = Canada has to sell cheap -->
+
+:::::
+
+::::
+
+:::
+
+#### Natural Gas {.tabset-leaf}
+
+::: {.financials-tab-column-grid}
+
+::::: {.plotly-grid}
+
+```{r}
+Financials$Benchmark_Prices %>%
+  filter(Unit == "US$/MMBtu") %>%
+  mutate(Variable = Variable %>% fct_drop()) %>% 
+  ridge_facet_plot(rp_X = Year, rp_Y = Value, rp_F1 = Scenario, rp_F2 = Variable,
+                   rp_draw = list(ribbons = F, lines = F, smooth = T, medians = F, peaks = T,
+                                  peaks_at = list(Y_min = F, Y_max = F,
+                                                  X_values = c(2022))),
+                   rp_alpha = list(se = 0.25, points = 0.25),
+                   rp_title_main = "Natural Gas Benchmarks",
+                   rp_title_Y = "Prices (2022 US$/MMBtu)")
+```
+
+:::::
+
+:::: {.financials-tab-column-2}
+
+::::: {.definition-area}
+
+:::::: {.definition-area-title}
+
+What do these represent?
+
+::::::
+
+:::::: {.definition-area-text}
+
 **Henry Hub**
 
 Henry Hub is the pricing point for natural gas futures traded on the New York Mercantile Exchange. The hub is located in Louisiana at the interconnection of numerous natural gas pipelines.
@@ -3105,6 +3187,18 @@ Source: EF2023.
 
 :::::
 
+::::: {.financials-tab-card-grid}
+
+Most sensitive benchmark:
+
+Scenario with the largest avg. basis (Henry Hub-WCS):
+
+Least sensitive benchmark:
+
+Scenario with the smallest avg. basis (Henry Hub-WCS):
+
+:::::
+
 ::::
 
 :::
@@ -3113,7 +3207,39 @@ Source: EF2023.
 
 ```{r}
 #| include: false
-Financials$End_Use_Prices <- EF2023$end_use_prices
+Financials$End_Use_Prices$Commercial <- EF2023$end_use_prices
+```
+
+```{r}
+#| eval: false
+#| include: false
+Financials$End_Use_Prices$Commercial <- EF2023$end_use_prices %>%
+  filter(Sector == "Commercial",
+         Variable == "Total") %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+```{r}
+#| eval: false
+#| include: false
+Production$Oil$Total <- EF2023$crude_oil_production %>%
+  filter(Unit == "Thousand Cubic Metres per day",
+         Variable == "Total") %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
 ```
 
 ### Macro Indicators {.tabset-leaf}
@@ -3127,7 +3253,8 @@ Financials$Macro_Indicators <- EF2023$macro_indicators
 # Development notes:
 
 ## Changed since last commit:
-- A 2023-distinguishing line or point (or peak) -- allow custom point peak list
+- Fin > Benchmark Prices > Crude Oil/Natural Gas
+- Benchmark sensitivity calculations
 
 ## Open (has impact):
 - Main page start:
@@ -3135,6 +3262,8 @@ Production %>% lapply(\(x) {
     x$To %>% tibble %>%
         select(-X)
 })
+- Financials tab: CSS narrow adjustments
+- Benchmarks: Correct sensitivity metric
 
 ## Open (has low/no impact):
 - Screen width range 600px-576px places the scrollbar in the dashboard area (expected: the page).

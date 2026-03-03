@@ -3,7 +3,10 @@ title: "About"
 format: html
 ---
 
-Hierarchical grouping and visual summary of Canada Energy Regulator's EF2023 data.
+This dashboard is a grouping and visual summary of Canada Energy Regulator's EF2023 raw data.
+
+It focuses on 2023-2050 projections and attempts to estimate the scale of corrections required
+to achieve net-zero targets (e.g., about -40% for crude oil total production in a global net-zero scenario).
 
 **Note on years:** Years 2022 (latest current data),
 2030 (interim near-net-zero target),
@@ -27,7 +30,7 @@ This means the top category is listed second, following Total.
   │ │ ├ In Situ Bitumen
   │ │ └ Mined Bitumen
   │ ├ Hydrogen
-  │ │ ├ Total* (*calculated) (PENDING)
+  │ │ ├ Total (calculated)
   │ │ ├ Biomass
   │ │ ├ Electrolysis
   │ │ └ Natural gas with CCS
@@ -45,3 +48,25 @@ This means the top category is listed second, following Total.
 ...
 
 ```
+
+**Project timeline:**
+
+- 2026-02-26: Project started
+
+- 2026-02-26: First tab (Production > Oil > Total) created
+
+- 2026-02-27: Tab layout established
+
+- 2026-02-28: Oil tab completed
+
+- 2026-02-28: Production tab completed
+
+- 2026-02-28: Added Financials section
+
+- 2026-03-01: Financials > Benchmarks built
+
+- 2026-03-01: Production > Crude Oil: Standardized CSS (incl. narrow screens)
+
+- 2026-03-01: Standardized nomenclature. Added trend indicators for scenario cards
+
+- 2026-03-02: All > graphs: Highlighted key years
