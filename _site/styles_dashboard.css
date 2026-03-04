@@ -80,7 +80,10 @@
 }
 .card-row-grid {
   display: grid;
+  /*
   grid-template-rows: 1fr 1fr 1fr 1.5fr;
+  */
+  grid-auto-rows: 1fr 1fr 1fr 1.5fr;
   gap: 1rem;
 }
 .financials-tab-column-grid {
@@ -90,16 +93,13 @@
 }
 .financials-tab-column-2 {
   display:grid;
-  grid-template-rows: 1fr 1.3fr;
+  grid-template-rows: 1fr minmax(300px, 430px);
   gap: 0rem;
 }
 .financials-tab-card-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  margin: 1rem;
-
-  box-shadow: 0rem 0rem 1rem 0rem red;
+  margin: 0rem;
 }
 
 

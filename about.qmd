@@ -5,20 +5,15 @@ format: html
 
 This dashboard is a grouping and visual summary of Canada Energy Regulator's EF2023 raw data.
 
-It focuses on 2023-2050 projections and attempts to estimate the scale of corrections required
-to achieve net-zero targets (e.g., about -40% for crude oil total production in a global net-zero scenario).
+It focuses on 2023-2050 projections and attempts to estimate the scale of corrections required to achieve net-zero targets (e.g., about -40% for crude oil total production in a global net-zero scenario).
 
-**Note on years:** Years 2022 (latest current data),
-2030 (interim near-net-zero target),
-2035 (*negotiated* interim near-net-zero target as per the [Canada-Alberta MOU](https://www.pm.gc.ca/en/news/backgrounders/2025/11/27/canada-alberta-memorandum-understanding)),
-and 2050 (target year as per EF2023/the [Canadian Net-Zero Emissions Accountability Act](https://www.canada.ca/en/services/environment/weather/climatechange/climate-plan/net-zero-emissions-2050/canadian-net-zero-emissions-accountability-act.html))
-are highlighted.
+**Note on years:** Years 2022 (latest current data), 2030 (interim near-net-zero target), 2035 (*negotiated* interim near-net-zero target as per the [Canada-Alberta MOU](https://www.pm.gc.ca/en/news/backgrounders/2025/11/27/canada-alberta-memorandum-understanding)), and 2050 (target year as per EF2023/the [Canadian Net-Zero Emissions Accountability Act](https://www.canada.ca/en/services/environment/weather/climatechange/climate-plan/net-zero-emissions-2050/canadian-net-zero-emissions-accountability-act.html)) are highlighted.
 
-**Note on tabs:** Tabs are sorted by decreasing total quantity (as per value cards).
-This means the top category is listed second, following Total.
+**Note on tabs:** Tabs are sorted by decreasing total quantity (as per value cards). This means the top category is listed second, following Total.
 
 **Hierarchy:**
-```
+
+```         
  ─┬ Production
   │ ├ Crude Oil
   │ │ ├ Total
@@ -46,27 +41,26 @@ This means the top category is listed second, following Total.
     ├ Benchmark Prices
     └ ... End-use Prices
 ...
-
 ```
 
 **Project timeline:**
 
-- 2026-02-26: Project started
+-   2026-02-26: Project started
 
-- 2026-02-26: First tab (Production > Oil > Total) created
+-   2026-02-26: First tab (Production \> Oil \> Total) created
 
-- 2026-02-27: Tab layout established
+-   2026-02-27: Tab layout established
 
-- 2026-02-28: Oil tab completed
+-   2026-02-28: Oil tab completed
 
-- 2026-02-28: Production tab completed
+-   2026-02-28: Production tab completed
 
-- 2026-02-28: Added Financials section
+-   2026-02-28: Added Financials section
 
-- 2026-03-01: Financials > Benchmarks built
+-   2026-03-01: Financials \> Benchmarks built
 
-- 2026-03-01: Production > Crude Oil: Standardized CSS (incl. narrow screens)
+-   2026-03-01: Production \> Crude Oil: Standardized CSS (incl. narrow screens)
 
-- 2026-03-01: Standardized nomenclature. Added trend indicators for scenario cards
+-   2026-03-01: Standardized nomenclature. Added trend indicators for scenario cards
 
-- 2026-03-02: All > graphs: Highlighted key years
+-   2026-03-02: All \> graphs: Highlighted key years

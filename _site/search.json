@@ -12,5 +12,12 @@
     "title": "About",
     "section": "",
     "text": "This dashboard is a grouping and visual summary of Canada Energy Regulator’s EF2023 raw data.\nIt focuses on 2023-2050 projections and attempts to estimate the scale of corrections required to achieve net-zero targets (e.g., about -40% for crude oil total production in a global net-zero scenario).\nNote on years: Years 2022 (latest current data), 2030 (interim near-net-zero target), 2035 (negotiated interim near-net-zero target as per the Canada-Alberta MOU), and 2050 (target year as per EF2023/the Canadian Net-Zero Emissions Accountability Act) are highlighted.\nNote on tabs: Tabs are sorted by decreasing total quantity (as per value cards). This means the top category is listed second, following Total.\nHierarchy:\n ─┬ Production\n  │ ├ Crude Oil\n  │ │ ├ Total\n  │ │ ├ (Upgraded Bitumen)\n  │ │ ├ C5+\n  │ │ ├ Conventional Heavy\n  │ │ ├ Conventional Light\n  │ │ ├ Field Condensate\n  │ │ ├ In Situ Bitumen\n  │ │ └ Mined Bitumen\n  │ ├ Hydrogen\n  │ │ ├ Total* (*calculated) (PENDING)\n  │ │ ├ Biomass\n  │ │ ├ Electrolysis\n  │ │ └ Natural gas with CCS\n  │ └ Natural Gas\n  │   ├ Total\n  │   ├ Solution\n  │   ├ Non Associated\n  │   ├ Tight\n  │   ├ Shale\n  │   ├ Coalbed Methane\n  │   └ ...\n  └ Prices\n    ├ Benchmark Prices\n    └ ... End-use Prices\n...\n\nProject timeline:\n\n2026-02-26: Project started\n2026-02-26: First tab (Production &gt; Oil &gt; Total) created\n2026-02-27: Tab layout established\n2026-02-28: Oil tab completed\n2026-02-28: Production tab completed\n2026-02-28: Added Financials section\n2026-03-01: Financials &gt; Benchmarks built\n2026-03-01: Production &gt; Crude Oil: Standardized CSS (incl. narrow screens)\n2026-03-01: Standardized nomenclature. Added trend indicators for scenario cards\n2026-03-02: All &gt; graphs: Highlighted key years"
+  },
+  {
+    "objectID": "dashboard-1.html#footnotes",
+    "href": "dashboard-1.html#footnotes",
+    "title": "Site example (Quarto)",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nLow-sulfur, easier to refine↩︎\nAPI gravity for the Brent benchmark is cited to be just above 38 degrees.↩︎\nA density equivalent of around 824 kg/m³ (at 15°C)↩︎\nHigh-sulfur, harder to refine↩︎\ne.g., Below 15 US$/bbl↩︎\nIn the second example, one scenario added “one of” the baseline, contributing on its own to the result by one half.↩︎"
   }
 ]

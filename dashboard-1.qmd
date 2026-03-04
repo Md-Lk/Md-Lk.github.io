@@ -93,7 +93,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -117,7 +117,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -156,7 +156,7 @@ value_box_plot <- Production$Oil$Total %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -254,7 +254,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -278,7 +278,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -317,7 +317,7 @@ value_box_plot <- Production$Oil$In_Situ_Bitumen %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -415,7 +415,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -439,7 +439,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -478,7 +478,7 @@ value_box_plot <- Production$Oil$Mined_Bitumen %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -576,7 +576,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -600,7 +600,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -639,7 +639,7 @@ value_box_plot <- Production$Oil$Upgraded_Bitumen %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -737,7 +737,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -761,7 +761,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -800,7 +800,7 @@ value_box_plot <- Production$Oil$Conventional_Light %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -898,7 +898,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -922,7 +922,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -961,7 +961,7 @@ value_box_plot <- Production$Oil$Field_Condensate %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -1059,7 +1059,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -1083,7 +1083,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -1122,7 +1122,7 @@ value_box_plot <- Production$Oil$Conventional_Heavy %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -1220,7 +1220,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -1244,7 +1244,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -1283,7 +1283,7 @@ value_box_plot <- Production$Oil$C5_plus %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -1388,7 +1388,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" t")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -1412,7 +1412,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" t")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -1451,7 +1451,7 @@ value_box_plot <- Production$Hydrogen$Total_Calculated %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value, 1), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -1569,7 +1569,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" t")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -1593,7 +1593,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" t")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -1632,7 +1632,7 @@ value_box_plot <- Production$Hydrogen$Electrolysis %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value, 1), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -1750,7 +1750,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" t")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -1774,7 +1774,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" t")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -1813,7 +1813,7 @@ value_box_plot <- Production$Hydrogen$Natural_Gas_With_CCS %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value, 1), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -1931,7 +1931,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" t")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -1955,7 +1955,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" t")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -1994,7 +1994,7 @@ value_box_plot <- Production$Hydrogen$Biomass %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value, 1), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -2095,7 +2095,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -2119,7 +2119,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -2158,7 +2158,7 @@ value_box_plot <- Production$Natural_Gas$Total %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value, 1), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -2257,7 +2257,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -2281,7 +2281,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -2320,7 +2320,7 @@ value_box_plot <- Production$Natural_Gas$Tight %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value, 1), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -2419,7 +2419,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -2443,7 +2443,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -2482,7 +2482,7 @@ value_box_plot <- Production$Natural_Gas$Solution %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value, 1), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -2581,7 +2581,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -2605,7 +2605,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -2644,7 +2644,7 @@ value_box_plot <- Production$Natural_Gas$Non_Associated %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value, 1), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -2743,7 +2743,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -2767,7 +2767,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -2806,7 +2806,7 @@ value_box_plot <- Production$Natural_Gas$Shale %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value, 1), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -2905,7 +2905,7 @@ value_box_value <- v2 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#7e4343", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Canada Net-zero", " (",
@@ -2929,7 +2929,7 @@ value_box_value <- v3 %>%
   rp_format_proper() %>% 
   paste0(" m³")
 
-value_box(theme = value_box_theme(bg = "#416070", fg = "#EEE"),
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
         title = "Total (2023–2050)",
         value = value_box_value,
         tag("p", paste0("Global Net-zero", " (",
@@ -2968,7 +2968,7 @@ value_box_plot <- Production$Natural_Gas$Coalbed_Methane %>%
   geom_ribbon(col = NULL, fill = "#AAA", alpha = 0.1) +
   geom_line(aes(text = paste0(round(Value, 1), ": ", Scenario, " (", Year, ")")),
             alpha = 0.25, lwd = 0.25) +
-  scale_color_discrete(palette = c("#777", "#7e4343", "#416070")) +
+  scale_color_discrete(palette = c("#777", "#7e3434", "#256175")) +
   theme_void() +
   theme(legend.position = "none")
 value_box_plot <- ggplotly(value_box_plot, tooltip = "text") %>%
@@ -3051,7 +3051,7 @@ Financials$Benchmark_Prices %>%
                    
                    rp_alpha = list(se = 0.25, points = 0.25),
                    rp_title_main = "Crude Oil Benchmarks",
-                   rp_title_Y = "Prices (2022 US$/bbl)")
+                   rp_title_Y = "Prices (US$/bbl*)")
 ```
 
 ::::
@@ -3070,11 +3070,11 @@ What do these represent?
 
 **Brent**
 
-A key global crude oil benchmark price. It is a light sweet grade extracted from the North Sea.
+A key global crude oil benchmark price. It is a light sweet^[Low-sulfur, easier to refine] grade extracted from the North Sea^[API gravity for the Brent benchmark is cited to be just above 38 degrees.].
 
 **Canadian Light Sweet (CLS)**
 
-A light, sweet blend of conventionally produced crude oils in western Canada with an API gravity of around 40 degrees. It is typically priced at Edmonton, Alberta and is often called Edmonton Par Crude.
+A light, sweet blend of conventionally produced crude oils in western Canada with an API gravity of around 40 degrees^[A density equivalent of around 824 kg/m³ (at 15°C)]. It is typically priced at Edmonton, Alberta and is often called Edmonton Par Crude.
 
 **West Texas Intermediate (WTI)**
 
@@ -3082,9 +3082,21 @@ A key North American benchmark crude oil price, it's a light sweet grade of crud
 
 **Western Canadian Select (WCS)**
 
-A blend of Canadian heavy and bitumen sour crude oils mixed with sweet synthetic and condensates with an API gravity of about 21 degrees. It is priced at Hardisty, Alberta and is often used as a representative price for Canadian heavy crude oils.
+A blend of Canadian heavy and bitumen sour^[High-sulfur, harder to refine] crude oils mixed with sweet synthetic and condensates with an API gravity of about 21 degrees. It is priced at Hardisty, Alberta and is often used as a representative price for Canadian heavy crude oils.
 
-Source: EF2023.
+Source: EF2023, with added footnotes.
+
+------------------------------------------------------------------------
+
+**The WTI-WCS differential** quantifies crude oil market favorability. The interpretation for Canada is that heavy crude oil can be sold more easily if the differential is narrow^[e.g., Below 15 US$/bbl], indicating a demand strong enough to offset heavy refining costs.
+
+------------------------------------------------------------------------
+
+**Sensitivity metrics** normalize the average amount by which new scenarios offset the baseline. If one scenario halves the baseline and another keeps it intact, the metric is 0.25. Conversely, if one doubles the baseline and the other keeps it intact, the metric is 0.5^[In the second example, one scenario added "one of" the baseline, contributing on its own to the result by one half.].
+
+------------------------------------------------------------------------
+
+\***Note:** Prices per barrel are in **2022** US dollars.
 
 ::::::
 
@@ -3092,47 +3104,175 @@ Source: EF2023.
 
 ::::: {.financials-tab-card-grid}
 
+:::::: {.card-row-grid}
+
 ```{r}
-# Most sensitive benchmark
-Financials$Benchmark_Prices %>%
+### Card: Average projected differential (2023-2025), WTI-WCS, Current Measures (1/3)
+v1 <- Financials$Benchmark_Prices %>%
+  filter(Unit == "US$/bbl",
+         Year > 2022,
+         Variable %in% c("WCS", "WTI"),
+         Scenario == "Current Measures") %>%
+  mutate(across(where(is.factor), ~ fct_drop(.))) %>%
+  # Subset by benchmark
+  split(paste(.$Variable)) %>%
+  # Sub-subset by scenario
+  lapply(\(x) { split(x, x$Scenario) }) %>%
+  # Get prices for all years
+  lapply(\(x) sapply(x, pull, "Value", "Year")) %>%
+  # Compute the average differential
+  reduce(`-`) %>% { -. } %>% mean()
+
+value_box_value <- v1 %>%
+  rp_format_proper() %>% 
+  paste0(" US$/bbl*")
+
+value_box(theme = value_box_theme(bg = "#777", fg = "#eee"),
+        title = "Average WTI-WCS differential (2023-2025)",
+        value = value_box_value,
+        tag("p", "Current Measures (baseline)"))
+```
+
+```{r}
+### Card: Average projected differential (2023-2025), WTI-WCS, Canada Net-zero (2/3)
+v2 <- Financials$Benchmark_Prices %>%
+  filter(Unit == "US$/bbl",
+         Year > 2022,
+         Variable %in% c("WCS", "WTI"),
+         Scenario == "Canada Net-zero") %>%
+  mutate(across(where(is.factor), ~ fct_drop(.))) %>%
+  # Subset by benchmark
+  split(paste(.$Variable)) %>%
+  # Sub-subset by scenario
+  lapply(\(x) { split(x, x$Scenario) }) %>%
+  # Get prices for all years
+  lapply(\(x) sapply(x, pull, "Value", "Year")) %>%
+  # Compute the average differential
+  reduce(`-`) %>% { -. } %>% mean()
+
+value_box_value <- v2 %>%
+  rp_format_proper() %>%
+  paste0(" US$/bbl*")
+
+value_box(theme = value_box_theme(bg = "#7e3434", fg = "#EEE"),
+        title = "Average WTI-WCS differential (2023-2025)",
+        value = value_box_value,
+        tag("p", paste0("Canada Net-zero", " (",
+                        switch(as.character(sign(v2-v1)),
+                               "1" = "▲", "0" = "►", "-1" = "▼"),
+                        round((v2/v1 - 1) * 100), "%)")))
+
+# ###
+```
+
+```{r}
+### Card: Average projected differential (2023-2025), WTI-WCS, Global Net-zero (3/3)
+v3 <- Financials$Benchmark_Prices %>%
+  filter(Unit == "US$/bbl",
+         Year > 2022,
+         Variable %in% c("WCS", "WTI"),
+         Scenario == "Global Net-zero") %>%
+  mutate(across(where(is.factor), ~ fct_drop(.))) %>%
+  # Subset by benchmark
+  split(paste(.$Variable)) %>%
+  # Sub-subset by scenario
+  lapply(\(x) { split(x, x$Scenario) }) %>%
+  # Get prices for all years
+  lapply(\(x) sapply(x, pull, "Value", "Year")) %>%
+  # Compute the average differential
+  reduce(`-`) %>% { -. } %>% mean()
+
+value_box_value <- v3 %>%
+  rp_format_proper() %>%
+  paste0(" US$/bbl*")
+
+value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"),
+        title = "Average WTI-WCS differential (2023-2025)",
+        value = value_box_value,
+        tag("p", paste0("Global Net-zero", " (",
+                        switch(as.character(sign(v3-v1)),
+                               "1" = "▲", "0" = "►", "-1" = "▼"),
+                        round((v3/v1 - 1) * 100), "%)")))
+
+# ### Card: Global Net-zero total (3/3)
+# v3 <- Production$Oil$Total %>%
+#   filter(Year > 2022,
+#          Region == "Canada",
+#          Scenario == "Global Net-zero") %>%
+#   pull(Value) %>%
+#   {sum(. * 1000) * 365.24}
+# 
+# value_box_value <- v3 %>%
+#   # rp_format_proper2(format = list(do_B = T)) %>%
+#   rp_format_proper() %>%
+#   paste0(" m³")
+# 
+# value_box(theme = value_box_theme(bg = "#256175", fg = "#EEE"), "#7e3434"
+#         title = "Total (2023–2050)",
+#         value = value_box_value,
+#         tag("p", paste0("Global Net-zero", " (",
+#                         switch(as.character(sign(v3-v1)),
+#                                "1" = "▲", "0" = "►", "-1" = "▼"),
+#                         round((v3/v1 - 1) * 100), "%)")))
+# ###
+```
+
+::::::
+
+:::::: {.card-row-grid}
+
+```{r}
+### Card: Most sensitive benchmark (1/2)
+value_box_value <- Financials$Benchmark_Prices %>%
   filter(Unit == "US$/bbl") %>%
   mutate(Variable = Variable %>% fct_drop()) %>%
-  # List level 1: Split by benchmark
+  # Subset by benchmark
   split(paste(.$Variable)) %>%
-  # List level 2: Split by scenario
+  # Sub-subset by scenario
   lapply(\(x) {split(x, x$Scenario)}) %>%
-  # Get prices for each year
+  # Get prices for all years
   lapply(\(x) sapply(x, pull, "Value", "Year")) %>%
-  # # Sweep current measures
-  # lapply(\(x) {x[, 1] - x[, -1]})
-  # Compute sensitivity
-  # (avg. scaled deviation from current measures)
-  # lapply(\(x) {mean( sqrt( colSums((x[, 1]/x[, -1] - 1)^2) / nrow(x) ) )})
-  # (avg. unscaled deviation from current measures)
-  lapply(\(x) {mean( sqrt( colSums((x[, 1] - x[, -1])^2) / nrow(x) ) )})
+  # Compute sensitivity by benchmark (average accumulated change in scale from baseline)
+  sapply(\(x) {mean( sqrt( colSums((x[, -1]/x[, 1] - 1)^2) / nrow(x) ) )}) %>%
+  # Get most/least sensitive benchmark
+  sort(decreasing = T) %>% head(1)
 
+value_box(theme = value_box_theme(bg = "#eee", fg = "#aaa"),
+        title = "Most sensitive benchmark",
+        value = value_box_value %>% names(),
+        tag("p", paste0("(Sensitivity metric: ",
+                        value_box_value %>% rp_format_proper(format = list(digits = 2)),
+                        ")")))
 
 ```
-
 
 ```{r}
-# Scenario with the widest avg. differential (WTI-WCS)
-"Scenario with the widest avg. differential (WTI-WCS)"
+### Card: Most stable benchmark (2/2)
+value_box_value <- Financials$Benchmark_Prices %>%
+  filter(Unit == "US$/bbl") %>%
+  mutate(Variable = Variable %>% fct_drop()) %>%
+  # Subset by benchmark
+  split(paste(.$Variable)) %>%
+  # Sub-subset by scenario
+  lapply(\(x) { split(x, x$Scenario) }) %>%
+  # Get prices for all years
+  lapply(\(x) sapply(x, pull, "Value", "Year")) %>%
+  # Compute sensitivity by benchmark (average accumulated change in scale from baseline)
+  sapply(\(x) {mean( sqrt( colSums((x[, -1]/x[, 1] - 1)^2) / nrow(x) ) )}) %>%
+  # Get most/least sensitive benchmark
+  sort() %>% head(1)
+
+value_box(theme = value_box_theme(bg = "#eee", fg = "#aaa"),
+        title = "Most stable benchmark",
+        value = value_box_value %>% names(),
+        tag("p", paste0("(Sensitivity metric: ",
+                        value_box_value %>% rp_format_proper(format = list(digits = 2)),
+                        ")")))
+
+###
 ```
 
-
-```{r}
-# Least sensitive benchmark
-"Least sensitive benchmark"
-```
-
-
-```{r}
-# Scenario with the narrowest avg. differential (WTI-WCS)
-"Scenario with the narrowest avg. differential (WTI-WCS)"
-```
-
-<!-- Large differential = Canada has to sell cheap -->
+::::::
 
 :::::
 
@@ -3167,7 +3307,7 @@ Financials$Benchmark_Prices %>%
 
 :::::: {.definition-area-title}
 
-What do these represent?
+What does this represent?
 
 ::::::
 
@@ -3193,7 +3333,7 @@ Most sensitive benchmark:
 
 Scenario with the largest avg. basis (Henry Hub-WCS):
 
-Least sensitive benchmark:
+Most stable benchmark:
 
 Scenario with the smallest avg. basis (Henry Hub-WCS):
 
@@ -3253,8 +3393,10 @@ Financials$Macro_Indicators <- EF2023$macro_indicators
 # Development notes:
 
 ## Changed since last commit:
-- Fin > Benchmark Prices > Crude Oil/Natural Gas
-- Benchmark sensitivity calculations
+- Fin > Benchmark Prices > Crude Oil/Natural Gas tabs were split
+- Benchmark sensitivity was estimated
+- Benchmark sensitivity was interpreted with examples under "What does this represent?"
+- Footnotes were added to "What does this represent?" to deobfuscate any jargon
 
 ## Open (has impact):
 - Main page start:
@@ -3262,10 +3404,12 @@ Production %>% lapply(\(x) {
     x$To %>% tibble %>%
         select(-X)
 })
-- Financials tab: CSS narrow adjustments
-- Benchmarks: Correct sensitivity metric
+- Financials: Narrow viewport CSS should be improved
+- Financials > Benchmark Prices: Sensitivity metrics need to be explained
+- Production > Crude Oil: Units bbl would match Financials > Benchmark Prices better
 
 ## Open (has low/no impact):
-- Screen width range 600px-576px places the scrollbar in the dashboard area (expected: the page).
+- CSS: Screen width range 600px-576px places the scrollbar in the dashboard area (expected: the page).
+- CSS: The total height could be capped (try zooming in/out in-browser)
 
 -->
