@@ -64,3 +64,9 @@ It focuses on 2023-2050 projections and attempts to estimate the scale of correc
 -   2026-03-01: Standardized nomenclature. Added trend indicators for scenario cards
 
 -   2026-03-02: All \> graphs: Highlighted key years
+
+...
+
+# Contact
+
+At any time, requests for data projects can be sent through [the form below]{style="color: red;"}.
