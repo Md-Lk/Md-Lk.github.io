@@ -3,10 +3,6 @@ title: "About"
 format: html
 ---
 
-This dashboard is a grouping and visual summary of Canada Energy Regulator's EF2023 raw data.
-
-It focuses on 2023-2050 projections and attempts to estimate the scale of corrections required to achieve net-zero targets (e.g., about -40% for crude oil total production in a global net-zero scenario).
-
 **Note on years:** Years 2022 (latest current data), 2030 (interim near-net-zero target), 2035 (*negotiated* interim near-net-zero target as per the [Canada-Alberta MOU](https://www.pm.gc.ca/en/news/backgrounders/2025/11/27/canada-alberta-memorandum-understanding)), and 2050 (target year as per EF2023/the [Canadian Net-Zero Emissions Accountability Act](https://www.canada.ca/en/services/environment/weather/climatechange/climate-plan/net-zero-emissions-2050/canadian-net-zero-emissions-accountability-act.html)) are highlighted.
 
 **Note on tabs:** Tabs are sorted by decreasing total quantity (as per value cards). This means the top category is listed second, following Total.
@@ -69,4 +65,4 @@ It focuses on 2023-2050 projections and attempts to estimate the scale of correc
 
 # Contact
 
-At any time, requests for data projects can be sent through [the form below]{style="color: red;"}.
+At any time, requests for data projects can be sent through [email]{style="color: red;"}.
