@@ -1,7 +1,50 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
+# Default (Quarto) version:
+# .Rproj.user
+# .Rhistory
+# .RData
+# .Ruserdata
+#
+# /.quarto/
+# **/*.quarto_ipynb
+
+
+# New (Gemini) version:
+# 1. Ignore everything
+*
+
+# 2. Allow directories so Git can look inside them
+!*/
+
+# 3. Essential Source Files
+!.gitignore
+!_quarto.yml
+#!*.qmd
+#!*.md
+#!*.R  # If using R code chunks
+#!*.ipynb # If using Jupyter notebooks
+
+# 4. Essential Web Assets
+#!*.css
+#!*.js
+#!images/
+#!assets/
+
+# 5. THE OUTPUT (Crucial for GitHub Pages)
+!docs/**
+
+# Remaining Specific Files
+!.nojekyll
+
+# --- DO NOT ALLOW (Quarto Internals) ---
+# We explicitly block these even if they are in allowed folders
+.quarto/
+_freeze/
+*_files/
+*_cache/
+.Rproj.user/
+docs/dashboard-1_files
+
+# Generated through Gemini (Fast, edited, 2026-03)
 
 /.quarto/
 **/*.quarto_ipynb

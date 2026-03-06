@@ -1,8 +1,9 @@
 project:
   type: website
+  output-dir: "docs"
 
 website:
-  title: "Site example (Quarto)"
+  title: "EF2023 Dashboard Website"
   search: true
   reader-mode: true
 

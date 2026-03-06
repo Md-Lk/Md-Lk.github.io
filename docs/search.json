@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "dashboard-1.html#footnotes",
+    "href": "dashboard-1.html#footnotes",
+    "title": "EF2023 Dashboard Website",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nLow-sulfur, easier to refine↩︎\nAPI gravity for the Brent benchmark is cited to be just above 38 degrees.↩︎\nA density equivalent of around 824 kg/m³ (at 15°C)↩︎\nHigh-sulfur, harder to refine↩︎\nFor more definitions, refer to CER’s Energy Information Program - Glossary↩︎\ne.g., Below 15 US$/bbl↩︎\nThe reference point is updated year by year. The metric is also averaged across new scenarios. Example: If one scenario halves the baseline and another keeps it unchanged, the metric is 0.25. This is because half of the baseline was subtracted by one of the two scenarios, adding 0.25 to the pooled metric.↩︎\n1 bbl is ~0.159 m³↩︎\nFor more definitions, refer to CER’s Energy Information Program - Glossary↩︎\ne.g., Below 15 US$/bbl↩︎\nThe reference point is updated year by year. The metric is also averaged across new scenarios. Example: If one scenario halves the baseline and another keeps it unchanged, the metric is 0.25. This is because half of the baseline was subtracted by one of the two scenarios, adding 0.25 to the pooled metric.↩︎\n1 MMBtu is ~1.055 Gigajoules↩︎"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Data source details are provided below."
+  },
+  {
+    "objectID": "about.html#production",
+    "href": "about.html#production",
+    "title": "About",
+    "section": "Production",
+    "text": "Production\n\nAlberta the top contributor across the board.\nCrude Oil down (-15 to -40%), with AB producing 82% on average.\nHydrogen on the rise (+225 to +219%), with AB producing 40% on average.\nNatural Gas down (-18 to -39%), with AB producing 58% on average."
+  },
+  {
+    "objectID": "about.html#financials",
+    "href": "about.html#financials",
+    "title": "About",
+    "section": "Financials",
+    "text": "Financials\n\nCrude Oil prices favor Canadian selling (The WTI-WCS differential1 is reduced by 0 to -10% on average).\nNatural Gas prices favor Canadian selling significantly (The Henry Hub-NIT differential is reduced by -20 to -44% on average).\nEnd-Use Prices ….\nMacro Indicators …."
+  },
+  {
+    "objectID": "about.html#footnotes",
+    "href": "about.html#footnotes",
+    "title": "About",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nA common measure of heavy crude oil market viability. The gap between Canadian heavy and U.S. light. A narrow spread indicates high demand for heavy oil, offsetting refinery costs. See also “basis spread” or “basis”.↩︎"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "This dashboard is a grouping and visual summary of Canada Energy Regulator’s EF2023 raw data.\nThe About section contains a plain-text summary of insights as well as information on the dataset source and further project details."
+  }
+]
