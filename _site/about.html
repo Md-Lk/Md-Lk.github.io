@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About – Site example (Quarto)</title>
+<title>About – EF2023 Dashboard Website</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Site example (Quarto)</span>
+    <span class="navbar-title">EF2023 Dashboard Website</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -124,7 +124,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#contact" id="toc-contact" class="nav-link active" data-scroll-target="#contact">Contact</a></li>
+  <li><a href="#dataset-information" id="toc-dataset-information" class="nav-link active" data-scroll-target="#dataset-information">Dataset information</a></li>
+  <li><a href="#likely-future-scenarios" id="toc-likely-future-scenarios" class="nav-link" data-scroll-target="#likely-future-scenarios">Likely future scenarios</a>
+  <ul class="collapse">
+  <li><a href="#production" id="toc-production" class="nav-link" data-scroll-target="#production">Production</a></li>
+  <li><a href="#financials" id="toc-financials" class="nav-link" data-scroll-target="#financials">Financials</a></li>
+  </ul></li>
+  <li><a href="#dashboard-hierarchy" id="toc-dashboard-hierarchy" class="nav-link" data-scroll-target="#dashboard-hierarchy">Dashboard hierarchy</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
   </ul>
 </nav>
     </div>
@@ -150,12 +157,49 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This dashboard is a grouping and visual summary of Canada Energy Regulator’s EF2023 raw data.</p>
-<p>It focuses on 2023-2050 projections and attempts to estimate the scale of corrections required to achieve net-zero targets (e.g., about -40% for crude oil total production in a global net-zero scenario).</p>
-<p><strong>Note on years:</strong> Years 2022 (latest current data), 2030 (interim near-net-zero target), 2035 (<em>negotiated</em> interim near-net-zero target as per the <a href="https://www.pm.gc.ca/en/news/backgrounders/2025/11/27/canada-alberta-memorandum-understanding">Canada-Alberta MOU</a>), and 2050 (target year as per EF2023/the <a href="https://www.canada.ca/en/services/environment/weather/climatechange/climate-plan/net-zero-emissions-2050/canadian-net-zero-emissions-accountability-act.html">Canadian Net-Zero Emissions Accountability Act</a>) are highlighted.</p>
-<p><strong>Note on tabs:</strong> Tabs are sorted by decreasing total quantity (as per value cards). This means the top category is listed second, following Total.</p>
-<p><strong>Hierarchy:</strong></p>
-<pre><code> ─┬ Production
+<p>Data source details are provided below.</p>
+<section id="dataset-information" class="level1">
+<h1>Dataset information</h1>
+<blockquote class="blockquote">
+<p><strong>Full dataset name:</strong> “Canada’s Energy Future 2023: Energy Supply and Demand Projections to 2050”</p>
+<p><strong>Dataset page:</strong> <a href="https://open.canada.ca/data/en/dataset/7643c948-d661-4d90-ab91-e9ac732fc737" class="uri">https://open.canada.ca/data/en/dataset/7643c948-d661-4d90-ab91-e9ac732fc737</a></p>
+<p><strong>Data source:</strong> Open Government (<a href="https://open.canada.ca/en" class="uri">https://open.canada.ca/en</a>)</p>
+<p><strong>Record ID:</strong> 7643c948-d661-4d90-ab91-e9ac732fc737</p>
+<p><strong>Digital Object Identifier (DOI):</strong> <a href="https://doi.org/10.35002/zppg-yr91" class="uri">https://doi.org/10.35002/zppg-yr91</a></p>
+<p><strong>Organization Name:</strong> Canada Energy Regulator (CER) / Régie de l’énergie du Canada (REC)</p>
+</blockquote>
+<hr>
+</section>
+<section id="likely-future-scenarios" class="level1">
+<h1>Likely future scenarios</h1>
+<p>Below is a digest of data trends seen in <a href="dashboard-1.html">the dashboard</a>, focusing on 2023-2050 projections and attempting to estimate the scale of corrections required to achieve net-zero targets, as well as their consequences. For example, crude oil total production decreases by about -40% in a global net-zero scenario.</p>
+<p><strong>Note:</strong> Unless specified otherwise, values listed in pairs refer to Canada Net-zero and Global Net-zero scenarios (respectively).</p>
+<section id="production" class="level2">
+<h2 class="anchored" data-anchor-id="production">Production</h2>
+<ul>
+<li><p><strong>Alberta</strong> the top contributor across the board.</p></li>
+<li><p><strong>Crude Oil down</strong> (-15 to -40%), with AB producing 82% on average.</p></li>
+<li><p><strong>Hydrogen on the rise</strong> (+225 to +219%), with AB producing 40% on average.</p></li>
+<li><p><strong>Natural Gas down</strong> (-18 to -39%), with AB producing 58% on average.</p></li>
+</ul>
+<hr>
+</section>
+<section id="financials" class="level2">
+<h2 class="anchored" data-anchor-id="financials">Financials</h2>
+<ul>
+<li><p><strong>Crude Oil prices favor Canadian selling</strong> (The WTI-WCS differential<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is reduced by 0 to -10% on average).</p></li>
+<li><p><strong>Natural Gas prices favor Canadian selling significantly</strong> (The Henry Hub-NIT differential is reduced by -20 to -44% on average).</p></li>
+<li><p><strong>End-Use Prices</strong> ….</p></li>
+<li><p><strong>Macro Indicators</strong> ….</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="dashboard-hierarchy" class="level1">
+<h1>Dashboard hierarchy</h1>
+<pre><code>Dashboard Page
+  ├ Overview
+  ├ Production
   │ ├ Crude Oil
   │ │ ├ Total
   │ │ ├ (Upgraded Bitumen)
@@ -176,34 +220,53 @@ ul.task-list li input[type="checkbox"] {
   │   ├ Non Associated
   │   ├ Tight
   │   ├ Shale
-  │   ├ Coalbed Methane
+  │   └ Coalbed Methane
+  ├ Financials
+  │ ├ Benchmark Prices
+  │ │ ├ Crude Oil
+  │ │ └ Natural Gas
+  │ ├ End Use Prices
+  │ │ ├ ...
+  │ │ ├ ...
+  │ │ ├ ...
+  │ │ └ ...
+  │ └ Macro Indicators
   │   └ ...
-  └ Prices
-    ├ Benchmark Prices
-    └ ... End-use Prices
-...</code></pre>
-<p><strong>Project timeline:</strong></p>
-<ul>
-<li><p>2026-02-26: Project started</p></li>
-<li><p>2026-02-26: First tab (Production &gt; Oil &gt; Total) created</p></li>
-<li><p>2026-02-27: Tab layout established</p></li>
-<li><p>2026-02-28: Oil tab completed</p></li>
-<li><p>2026-02-28: Production tab completed</p></li>
-<li><p>2026-02-28: Added Financials section</p></li>
-<li><p>2026-03-01: Financials &gt; Benchmarks built</p></li>
-<li><p>2026-03-01: Production &gt; Crude Oil: Standardized CSS (incl.&nbsp;narrow screens)</p></li>
-<li><p>2026-03-01: Standardized nomenclature. Added trend indicators for scenario cards</p></li>
-<li><p>2026-03-02: All &gt; graphs: Highlighted key years</p></li>
-</ul>
-<p>…</p>
-<section id="contact" class="level1">
-<h1>Contact</h1>
-<p>At any time, requests for data projects can be sent through <span style="color: red;">the form below</span>.</p>
+  └ ...</code></pre>
+<hr>
+</section>
+<section id="notes" class="level1">
+<h1>Notes</h1>
+<p><strong>Note on tabs:</strong> Tabs are sorted by decreasing total quantity (as per value cards). This means the top category is listed second, following Total.</p>
+<p><strong>Note on years:</strong> Years 2022 (latest current data), 2030 (interim near-net-zero target), 2035 (<em>negotiated</em> interim near-net-zero target as per the <a href="https://www.pm.gc.ca/en/news/backgrounders/2025/11/27/canada-alberta-memorandum-understanding">Canada-Alberta MOU</a>), and 2050 (target year as per EF2023/the <a href="https://www.canada.ca/en/services/environment/weather/climatechange/climate-plan/net-zero-emissions-2050/canadian-net-zero-emissions-accountability-act.html">Canadian Net-Zero Emissions Accountability Act</a>) are highlighted.</p>
+<p><strong>Navigation hint:</strong> Single- or double-click legend items.</p>
+<!-- **Project timeline:** -->
+<!-- -   2026-02-26: Project started -->
+<!-- -   2026-02-26: First tab (Production \> Oil \> Total) created -->
+<!-- -   2026-02-27: Tab layout established -->
+<!-- -   2026-02-28: Oil tab completed -->
+<!-- -   2026-02-28: Production tab completed -->
+<!-- -   2026-02-28: Added Financials section -->
+<!-- -   2026-03-01: Financials \> Benchmarks built -->
+<!-- -   2026-03-01: Production \> Crude Oil: Standardized CSS (incl. narrow screens) -->
+<!-- -   2026-03-01: Standardized nomenclature. Added trend indicators for scenario cards -->
+<!-- -   2026-03-02: All \> graphs: Highlighted key years -->
+<!-- ... -->
+<hr>
+<p><strong>Contact:</strong></p>
+<p>At any time, requests for data projects are welcome.</p>
+<p>These pages were built in R using Quarto.</p>
 
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>A common measure of heavy crude oil market viability. The gap between Canadian heavy and U.S. light. A narrow spread indicates high demand for heavy oil, offsetting refinery costs. See also “basis spread” or “basis”.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

@@ -3,14 +3,68 @@ title: "About"
 format: html
 ---
 
-**Note on years:** Years 2022 (latest current data), 2030 (interim near-net-zero target), 2035 (*negotiated* interim near-net-zero target as per the [Canada-Alberta MOU](https://www.pm.gc.ca/en/news/backgrounders/2025/11/27/canada-alberta-memorandum-understanding)), and 2050 (target year as per EF2023/the [Canadian Net-Zero Emissions Accountability Act](https://www.canada.ca/en/services/environment/weather/climatechange/climate-plan/net-zero-emissions-2050/canadian-net-zero-emissions-accountability-act.html)) are highlighted.
+Data source details are provided below.
 
-**Note on tabs:** Tabs are sorted by decreasing total quantity (as per value cards). This means the top category is listed second, following Total.
+# Dataset information
 
-**Hierarchy:**
+> **Full dataset name:** "Canada’s Energy Future 2023: Energy Supply and Demand Projections to 2050"
+>
+> **Dataset page:** <https://open.canada.ca/data/en/dataset/7643c948-d661-4d90-ab91-e9ac732fc737>
+>
+> **Data source:** Open Government (<https://open.canada.ca/en>)
+>
+> **Record ID:** 7643c948-d661-4d90-ab91-e9ac732fc737
+>
+> **Digital Object Identifier (DOI):** <https://doi.org/10.35002/zppg-yr91>
+>
+> **Organization Name:** Canada Energy Regulator (CER) / Régie de l'énergie du Canada (REC)
+
+------------------------------------------------------------------------
+
+# Likely future scenarios
+
+Below is a digest of data trends seen in [the dashboard](dashboard-1.html), focusing on 2023-2050
+projections and attempting to estimate the scale of corrections required to achieve net-zero targets,
+as well as their consequences. For example, crude oil total production decreases by about -40% in a
+global net-zero scenario.
+
+**Note:** Unless specified otherwise, values listed in pairs refer to Canada Net-zero and
+Global Net-zero scenarios (respectively).
+
+## Production
+
+- **Alberta** the top contributor across the board.
+
+- **Crude Oil down** (-15 to -40%), with AB producing 82% on average.
+
+- **Hydrogen on the rise** (+225 to +219%), with AB producing 40% on average.
+
+- **Natural Gas down** (-18 to -39%), with AB producing 58% on average.
+
+------------------------------------------------------------------------
+
+## Financials
+
+- **Crude Oil prices favor Canadian selling** (The WTI-WCS differential^[A common measure of heavy
+crude oil market viability. The gap between Canadian heavy and U.S. light. A narrow spread indicates
+high demand for heavy oil, offsetting refinery costs. See also "basis spread" or "basis".] is
+reduced by 0 to -10% on average).
+
+- **Natural Gas prices favor Canadian selling significantly** (The Henry Hub-NIT differential is
+reduced by -20 to -44% on average).
+
+- **End-Use Prices** ....
+
+- **Macro Indicators** ....
+
+------------------------------------------------------------------------
+
+# Dashboard hierarchy
 
 ```         
- ─┬ Production
+Dashboard Page
+  ├ Overview
+  ├ Production
   │ ├ Crude Oil
   │ │ ├ Total
   │ │ ├ (Upgraded Bitumen)
@@ -31,38 +85,59 @@ format: html
   │   ├ Non Associated
   │   ├ Tight
   │   ├ Shale
-  │   ├ Coalbed Methane
+  │   └ Coalbed Methane
+  ├ Financials
+  │ ├ Benchmark Prices
+  │ │ ├ Crude Oil
+  │ │ └ Natural Gas
+  │ ├ End Use Prices
+  │ │ ├ ...
+  │ │ ├ ...
+  │ │ ├ ...
+  │ │ └ ...
+  │ └ Macro Indicators
   │   └ ...
-  └ Prices
-    ├ Benchmark Prices
-    └ ... End-use Prices
-...
+  └ ...
 ```
 
-**Project timeline:**
+------------------------------------------------------------------------
 
--   2026-02-26: Project started
+# Notes
 
--   2026-02-26: First tab (Production \> Oil \> Total) created
+**Note on tabs:** Tabs are sorted by decreasing total quantity (as per value cards). This means the top category is listed second, following Total.
 
--   2026-02-27: Tab layout established
+**Note on years:** Years 2022 (latest current data), 2030 (interim near-net-zero target), 2035 (*negotiated* interim near-net-zero target as per the [Canada-Alberta MOU](https://www.pm.gc.ca/en/news/backgrounders/2025/11/27/canada-alberta-memorandum-understanding)), and 2050 (target year as per EF2023/the [Canadian Net-Zero Emissions Accountability Act](https://www.canada.ca/en/services/environment/weather/climatechange/climate-plan/net-zero-emissions-2050/canadian-net-zero-emissions-accountability-act.html)) are highlighted.
 
--   2026-02-28: Oil tab completed
+**Navigation hint:** Single- or double-click legend items.
 
--   2026-02-28: Production tab completed
+<!-- **Project timeline:** -->
 
--   2026-02-28: Added Financials section
+<!-- -   2026-02-26: Project started -->
 
--   2026-03-01: Financials \> Benchmarks built
+<!-- -   2026-02-26: First tab (Production \> Oil \> Total) created -->
 
--   2026-03-01: Production \> Crude Oil: Standardized CSS (incl. narrow screens)
+<!-- -   2026-02-27: Tab layout established -->
 
--   2026-03-01: Standardized nomenclature. Added trend indicators for scenario cards
+<!-- -   2026-02-28: Oil tab completed -->
 
--   2026-03-02: All \> graphs: Highlighted key years
+<!-- -   2026-02-28: Production tab completed -->
 
-...
+<!-- -   2026-02-28: Added Financials section -->
 
-# Contact
+<!-- -   2026-03-01: Financials \> Benchmarks built -->
 
-At any time, requests for data projects can be sent through [email]{style="color: red;"}.
+<!-- -   2026-03-01: Production \> Crude Oil: Standardized CSS (incl. narrow screens) -->
+
+<!-- -   2026-03-01: Standardized nomenclature. Added trend indicators for scenario cards -->
+
+<!-- -   2026-03-02: All \> graphs: Highlighted key years -->
+
+<!-- ... -->
+
+------------------------------------------------------------------------
+
+**Contact:**
+
+At any time, requests for data projects are welcome.
+
+These pages were built in R using Quarto.
