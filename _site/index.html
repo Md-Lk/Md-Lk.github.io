@@ -119,8 +119,19 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#likely-future-scenarios" id="toc-likely-future-scenarios" class="nav-link active" data-scroll-target="#likely-future-scenarios">Likely future scenarios</a>
+  <ul class="collapse">
+  <li><a href="#production" id="toc-production" class="nav-link" data-scroll-target="#production">Production</a></li>
+  <li><a href="#financials" id="toc-financials" class="nav-link" data-scroll-target="#financials">Financials</a></li>
+  <li><a href="#demand" id="toc-demand" class="nav-link" data-scroll-target="#demand">Demand</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -144,13 +155,68 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This dashboard is a grouping and visual summary of Canada Energy Regulator’s EF2023 raw data.</p>
-<p>The About section contains a plain-text summary of insights as well as information on the dataset source and further project details.</p>
+<p>The <a href="dashboard-1.html">EF2023 Dashboard</a> is a grouping and visual summary of Canada Energy Regulator’s raw data on future outlooks for Canadian energy.</p>
+<hr>
+<blockquote class="blockquote">
+<p>“What does our journey look like over the next 30 years?”.</p>
+<div style="text-align: right;">
+<p>— Canada Energy Regulator</p>
+</div>
+</blockquote>
+<p>The CER published EF2023 data in 2024 as part of the <a href="https://www.cer-rec.gc.ca/en/data-analysis/canada-energy-future/">Canada’s Energy Future series</a> in assessment of alignment with Paris Agreement targets<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>In their own words, the dataset “explores how possible energy futures might unfold for Canadians over the long term”. Data covers fuel pricing, energy trade streams, industrial activity, electrical systems, energy demand, and economic indicators.</p>
+<hr>
+<p>Below is a digest of data trends to expect in the dashboard, focusing on 2023-2050 projections and attempting to estimate the scale of corrections required to achieve net-zero targets, as well as their consequences (for example, crude oil total production decreases by about -40% in a global net-zero scenario).</p>
+<p>The <a href="about.html">About</a> section contains information on the dataset source and further project details.</p>
+<hr>
+<section id="likely-future-scenarios" class="level1">
+<h1>Likely future scenarios</h1>
+<p><strong>Note:</strong> Unless specified otherwise, values listed in pairs below refer to Canada Net-zero and Global Net-zero scenarios (respectively).</p>
+<section id="production" class="level2">
+<h2 class="anchored" data-anchor-id="production">Production</h2>
+<ul>
+<li><p><strong>Alberta</strong> the top contributor across the board.</p></li>
+<li><p><strong>Crude Oil down</strong> (-15 to -40%), with AB producing 82% on average.</p></li>
+<li><p><strong>Hydrogen on the rise</strong> (+225 to +219%), with AB producing 40% on average.</p></li>
+<li><p><strong>Natural Gas down</strong> (-18 to -39%), with AB producing 58% on average.</p></li>
+</ul>
+<hr>
+</section>
+<section id="financials" class="level2">
+<h2 class="anchored" data-anchor-id="financials">Financials</h2>
+<ul>
+<li><p><strong>Crude Oil prices favorable</strong> (WTI-WCS differential<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> down 0 to -10% on average).</p></li>
+<li><p><strong>Natural Gas prices favorable</strong> (Henry Hub-NIT differential down -20 to -44% on average).</p></li>
+<li><p><strong>End-Use Prices</strong> ….</p></li>
+<li><p><strong>Macro Indicators</strong> ….</p></li>
+</ul>
+<hr>
+</section>
+<section id="demand" class="level2">
+<h2 class="anchored" data-anchor-id="demand">Demand</h2>
+<p>…</p>
+<!-- Primary: Overall decrease (%).
+Hydro the same.
+NG and RPP down (%) in favor of Nuclear (%), esp in C.N-Z..
+Other renewables and Landfill Gas up (~50%), with ON and AB taking the lead over QC and BC (and SK over NS).
+-->
+<!-- End-Use: Stronger overall decrease (%).
+The same distribution across sectors except Transportation, where
+Electricity and Hydrogen (%) phase out Diesel and Motor Gasoline (%). -->
 <hr>
 
 
+</section>
+</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>As per the following <a href="https://www.cer-rec.gc.ca/en/about/news-room/whats-new/2021/canadas-energy-future-report-minister-letter-to-cer-16-december-2021.pdf">letter</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>A common measure of heavy crude oil market viability. The gap between Canadian heavy and U.S. light. A narrower spread indicates higher demand for heavy oil, offsetting refinery costs. Also referred to as “basis spread” or “basis”.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

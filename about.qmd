@@ -3,7 +3,8 @@ title: "About"
 format: html
 ---
 
-Data source details are provided below.
+The dashboard and accompanying pages were built in R using Quarto and an R package developed for this purpose.
+Data source details, a digest of data trends, and the dashboard hierarchy are each provided below.
 
 # Dataset information
 
@@ -18,44 +19,6 @@ Data source details are provided below.
 > **Digital Object Identifier (DOI):** <https://doi.org/10.35002/zppg-yr91>
 >
 > **Organization Name:** Canada Energy Regulator (CER) / Régie de l'énergie du Canada (REC)
-
-------------------------------------------------------------------------
-
-# Likely future scenarios
-
-Below is a digest of data trends seen in [the dashboard](dashboard-1.html), focusing on 2023-2050
-projections and attempting to estimate the scale of corrections required to achieve net-zero targets,
-as well as their consequences. For example, crude oil total production decreases by about -40% in a
-global net-zero scenario.
-
-**Note:** Unless specified otherwise, values listed in pairs refer to Canada Net-zero and
-Global Net-zero scenarios (respectively).
-
-## Production
-
-- **Alberta** the top contributor across the board.
-
-- **Crude Oil down** (-15 to -40%), with AB producing 82% on average.
-
-- **Hydrogen on the rise** (+225 to +219%), with AB producing 40% on average.
-
-- **Natural Gas down** (-18 to -39%), with AB producing 58% on average.
-
-------------------------------------------------------------------------
-
-## Financials
-
-- **Crude Oil prices favor Canadian selling** (The WTI-WCS differential^[A common measure of heavy
-crude oil market viability. The gap between Canadian heavy and U.S. light. A narrow spread indicates
-high demand for heavy oil, offsetting refinery costs. See also "basis spread" or "basis".] is
-reduced by 0 to -10% on average).
-
-- **Natural Gas prices favor Canadian selling significantly** (The Henry Hub-NIT differential is
-reduced by -20 to -44% on average).
-
-- **End-Use Prices** ....
-
-- **Macro Indicators** ....
 
 ------------------------------------------------------------------------
 
@@ -108,7 +71,7 @@ Dashboard Page
 
 **Note on years:** Years 2022 (latest current data), 2030 (interim near-net-zero target), 2035 (*negotiated* interim near-net-zero target as per the [Canada-Alberta MOU](https://www.pm.gc.ca/en/news/backgrounders/2025/11/27/canada-alberta-memorandum-understanding)), and 2050 (target year as per EF2023/the [Canadian Net-Zero Emissions Accountability Act](https://www.canada.ca/en/services/environment/weather/climatechange/climate-plan/net-zero-emissions-2050/canadian-net-zero-emissions-accountability-act.html)) are highlighted.
 
-**Navigation hint:** Single- or double-click legend items.
+**Navigation hints:** Single- or double-click legend items. Categories in hierarchical ("icicle") charts are clickable.
 
 <!-- **Project timeline:** -->
 
@@ -138,6 +101,4 @@ Dashboard Page
 
 **Contact:**
 
-At any time, requests for data projects are welcome.
-
-These pages were built in R using Quarto.
+At any time, requests for data projects or information on project development are welcome.

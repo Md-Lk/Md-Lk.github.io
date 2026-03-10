@@ -10,6 +10,8 @@ format:
 #| warning: false
 #| include: false
 
+# detach(package:package20260206, unload = T)
+
 # install.packages("D:/MDi/Documents/R/package20260206", repos = NULL, type = "source")
 # install.packages("tidyverse")
 # install.packages("forcats")
@@ -27,7 +29,7 @@ library(htmltools)
 
 # Overview
 
-```         
+```
 (See next tabs)
 
 Dashboard Page
@@ -3469,6 +3471,28 @@ value_box(theme = value_box_theme(bg = "#eee", fg = "#aaa"),
 
 ### End Use Prices {.tabset}
 
+#### Overview {.tabset-leaf}
+
+```{r}
+#| include: false
+Financials$End_Use_Prices$All_Sectors <- EF2023$end_use_prices %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+```{r}
+Financials$End_Use_Prices$All_Sectors %>%
+  filter(Year > 2022) %>%
+  summarise(Value = mean(Value), .by = c(Scenario, Region, Variable, Sector)) %>%
+  {}
+```
+
 #### Commercial {.tabset-leaf}
 
 ```{r}
@@ -3486,155 +3510,12 @@ Financials$End_Use_Prices$Commercial <- EF2023$end_use_prices %>%
 ```
 
 ```{r}
-local({
-    
-    library(tidyverse)
-    library(plotly)
-    library(package20260206)
-    library(scales)
-    
-    # Function to prepare a df (with factors and a value) for an icicle/sunburst chart
-    as_sunburst_icicle_df <- function(df, factor_cols, value_col, frame_col,
-                                      # hcl_palette = "Light Grays",
-                                      color_root = "#157", color_leaf = "white",
-                                      alpha_min = 0, alpha_max = 1) {
-      
-        # FRAMES
-        RESULT <- data.frame()
-        # FRAMES
-        frames <- unique(df[[frame_col]])
-        # FRAMES
-        daf <- df
-        # FRAMES
-        for (frame in frames) {
-          # FRAMES
-          # print(frame)
-          # FRAMES
-          df <- daf %>% filter(!!sym(frame_col) == frame)
-          # FRAMES
-          # print(df %>% tibble)
-          
-
-        result <- data.frame()
-        
-        # 1. Initialize nodes for the plot and record their depth (i)
-        for (i in seq_along(factor_cols)) {
-            group_cols <- factor_cols[1:i]
-            agg <- df %>%
-                group_by(across(all_of(group_cols))) %>%
-                summarise(total = sum(!!sym(value_col)),
-                          average = mean(!!sym(value_col)),
-                          .groups = "drop") %>%
-                mutate(id = apply(.[, group_cols, drop=FALSE], 1, paste, collapse = "-"),
-                       label = as.character(.[[tail(group_cols, 1)]]),
-                       parent = if(i == 1) "Total" else apply(.[, factor_cols[1:(i-1)], drop=FALSE], 1, paste, collapse = "-"),
-                       depth = i)
-            result <- bind_rows(result, agg[, c("id", "label", "parent", "total", "depth", "average")])
-        }
-        
-        # 2. Add the root (total) node (depth = 0)
-        result <- bind_rows(result, data.frame(id = "Total", label = "", parent = "",
-                                               total = sum(df[[value_col]]), average = mean(df[[value_col]]),
-                                               depth = 0))
-        
-        # 3. Map color by depth and alpha by siblings
-        # pal <- hcl.color(max(result$depth) + 1, hcl_palette)
-        # rgb_mat <- col2rgb(pal[result$depth + 1])
-        depth_colors <- colorRampPalette(c(color_root, color_leaf))(max(result$depth) + 1)
-        rgb_mat <- col2rgb(depth_colors[result$depth + 1])
-        result <- result %>%
-            group_by(parent) %>%
-            # Category-wise alphas
-            # mutate(alpha = rescale(total, from = c(0, max(total)), to = c(alpha_min, alpha_max)) ) %>%
-            # Global alphas
-            mutate(alpha = rescale(total, from = c(0, max(result$total)), to = c(alpha_min, alpha_max)) ) %>%
-            ungroup() %>%
-            mutate(color = sprintf("rgba(%d,%d,%d,%f)", rgb_mat[1,], rgb_mat[2,], rgb_mat[3,], alpha))
-        
-        # !FRAMES
-        # return(result)
-        # FRAMES
-        print(RESULT %>% tibble)
-        # FRAMES
-        RESULT <- RESULT %>% rbind(result %>% cbind(frame = frame))
-        
-        #FRAMES
-        }
-        #FRAMES
-        return(RESULT)
-    }
-    
-    
-    # Data
-    df <- EF2023$end_use_prices %>%
-        mutate(Region = Region %>% factor %>% fct_recode(
-            "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
-            "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
-            "NS" = "Nova Scotia", "NT" = "Northwest Territories",
-            "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
-            "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
-            "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
-            Scenario = Scenario %>% fct_relevel("Current Measures", after = 0)) %>%
-        filter(Scenario == "Current Measures",
-               Year > 2022) %>%
-        summarize(Value = mean(Value), .by = c(Scenario, Region, Variable, Sector))
-    
-    # print(df %>% tibble)
-    
-    # Function call
-    # df_plot <- as_sunburst_icicle_df(df, c("Scenario", "Region", "Variable", "Sector"), "Value")
-    df_plot <- as_sunburst_icicle_df(df,
-                                     # c("Scenario", "Region", "Variable", "Sector"), "Value",
-                                     # c("Scenario", "Sector", "Variable", "Region"), "Value",
-                                     # c("Scenario", "Variable", "Sector"), "Value",
-                                     # c("Variable", "Sector", "Region"), "Value",
-                                     # c("Sector", "Variable", "Region"), "Value",
-                                     # c("Variable", "Sector"), "Value",
-                                     # c("Sector", "Variable", "Region"), "Value", "Scenario",
-                                     c("Sector", "Variable"), "Value", "Region",
-                                     # color_root = "#EAA", color_leaf = "#511",
-                                     # color_root = "#9EA", color_leaf = "#151",
-                                     color_root = "#7CE", color_leaf = "#115",
-                                     alpha_min = 0.1, alpha_max = 1)
-    
-    # print(df_plot %>% tibble)
-    
-    
-    # Sunburst/icicle chart
-    fig <- plot_ly(data = df_plot,
-                   type = 'icicle',
-                   ids = ~id,
-                   labels = ~label,
-                   parents = ~parent,
-                   values = ~total,
-                   frame = ~frame,
-                   text = ~rp_format_proper(average),
-                   marker = ~list(colors = color,
-                                  line = list(width = 0)),
-                   tiling = list(orientation = "v", pad = 17),
-                   textposition = "middle center",
-                   # textinfo = "label+text+percent parent",
-                   textinfo = "label+text",
-                   hoverinfo = "none",
-                   # hoverlabel = list(font = list(size = 17, color = "black"), bordercolor = "#FFFFFF00"),
-                   pathbar = list(side = "bottom"),
-                   
-                   # Ensures parent size = sum of children
-                   branchvalues = 'total') %>%
-        layout(title = "Current Measures",
-               font = list(size = 21, family = "Onest Medium"),
-               margin = list(l = 0, r = 0, t = 31, b = 31)) %>%
-      animation_opts(frame = 5000, transition = 700, easing = "cubic-out", redraw = F) %>% 
-      animation_button(visible = F) %>% 
-      animation_slider(bordercolor = "#FFFFFF00", tickcolor = "#FFFFFF00", currentvalue = list(visible = F))
-
-    fig
-    
-    # Source: Initial tier logic via Claude Haiku 4.5 (via Duck.ai), edited for color via Gemini, then hand-refined (refactored, frame-by-frame code added, style).
-})
+Financials$End_Use_Prices$Commercial %>%
+  filter(Year > 2022) %>%
+  summarise(Value = mean(Value), .by = c(Scenario, Region, Variable, Sector)) %>% 
+  {}
 
 ```
-
 
 #### Industrial {.tabset-leaf}
 
@@ -3650,6 +3531,14 @@ Financials$End_Use_Prices$Industrial <- EF2023$end_use_prices %>%
     "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
     Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+```{r}
+Financials$End_Use_Prices$Industrial %>%
+  filter(Year > 2022) %>%
+  summarise(Value = mean(Value), .by = c(Scenario, Region, Variable, Sector)) %>% 
+  {}
+
 ```
 
 #### Residential {.tabset-leaf}
@@ -3668,6 +3557,13 @@ Financials$End_Use_Prices$Residential <- EF2023$end_use_prices %>%
     Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
 ```
 
+```{r}
+Financials$End_Use_Prices$Residential %>%
+  filter(Year > 2022) %>%
+  summarise(Value = mean(Value), .by = c(Scenario, Region, Variable, Sector)) %>% 
+  {}
+```
+
 #### Transportation {.tabset-leaf}
 
 ```{r}
@@ -3682,6 +3578,14 @@ Financials$End_Use_Prices$Transportation <- EF2023$end_use_prices %>%
     "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
     "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
     Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+```{r}
+Financials$End_Use_Prices$Transportation %>%
+  filter(Year > 2022) %>%
+  summarise(Value = mean(Value), .by = c(Scenario, Region, Variable, Sector)) %>% 
+  {}
+
 ```
 
 ### Macro Indicators {.tabset-leaf}
@@ -3699,9 +3603,74 @@ Financials$Macro_Indicators <- EF2023$macro_indicators
 
 ```
 
+```{r}
+Financials$Macro_Indicators
+```
 
+# Demand
 
+```{r}
+#| include: false
+Demand <- list()
+#example: Demand$...$...
+```
 
+## _ {.tabset}
+
+### Primary Demand {.tabset-leaf}
+
+```{r}
+#| include: false
+Demand$Primary_Demand <- EF2023$primary_demand %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+```{r}
+Demand$Primary_Demand %>%
+  filter(Year > 2022) %>%
+  # Omitting totals to avoid double-counting
+  filter(Variable != "Total",
+         Region != "Canada") %>%
+  to_hierarchical_plot(orientation = "v",
+                       factor_cols = c("Variable", "Region"),
+                       value_col = "Value",
+                       frame_col = "Scenario")
+```
+
+### End-Use Demand {.tabset-leaf}
+
+```{r}
+#| include: false
+Demand$End_Use_Demand <- EF2023$end_use_demand %>%
+  mutate(Region = Region %>% factor %>% fct_recode(
+    "AB" = "Alberta", "BC" = "British Columbia", "MB" = "Manitoba",
+    "NB" = "New Brunswick", "NL" = "Newfoundland and Labrador",
+    "NS" = "Nova Scotia", "NT" = "Northwest Territories",
+    "NU" = "Nunavut", "ON" = "Ontario", "PE" = "Prince Edward Island",
+    "QC" = "Quebec", "SK" = "Saskatchewan", "YT" = "Yukon",
+    "Canada" = "Canada") %>% fct_relevel("Canada", after = 0),
+    Scenario = Scenario %>% fct_relevel("Current Measures", after = 0))
+```
+
+```{r}
+Demand$End_Use_Demand %>%
+  filter(Year > 2022) %>%
+  # Omitting totals to avoid double-counting
+  filter(Sector != "Total End-Use",
+         Variable != "Total End-Use",
+         Region != "Canada") %>%
+  to_hierarchical_plot(orientation = "v",
+                       factor_cols = c("Sector", "Variable", "Region"),
+                       value_col = "Value",
+                       frame_col = "Scenario")
+```
 
 <!--
 # Development notes:
@@ -3717,11 +3686,13 @@ Production %>% lapply(\(x) {
     x$To %>% tibble %>%
         select(-X)
 })
+- Financials > End Use Prices: Consider using nested box plots for nested averages (prices in 2023-2050) (see https://plotly.com/python/categorical-axes/)
 - Financials: Narrow viewport CSS should be improved
 - Production > Crude Oil: Units bbl would match Financials > Benchmark Prices better
+- Financials > Crude Oil: A div saying "2023-2050" would alleviate KPI card text (e.g., "WTI-WCS (avg.)")
 
 ## Open (has low/no impact):
-- CSS: Screen width range 600px-576px places the scrollbar in the dashboard area (expected: the page).
+- CSS: Screen width range 600px-576px places the scrollbar in the dashboard area (expected: the page)
 - CSS: The total height could be capped (try zooming in/out in-browser)
 
 -->

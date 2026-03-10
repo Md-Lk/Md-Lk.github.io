@@ -3,9 +3,81 @@ title: "Home"
 format: html
 ---
 
-This dashboard is a grouping and visual summary of Canada Energy Regulator's EF2023 raw data.
+The [EF2023 Dashboard](dashboard-1.html) is a grouping and visual summary of Canada Energy Regulator's
+raw data on future outlooks for Canadian energy.
 
-The About section contains a plain-text summary of insights as well as information on the
-dataset source and further project details.
+------------------------------------------------------------------------
+
+> "What does our journey look like over the next 30 years?".
+>
+> ::: {style = "text-align: right;"}
+> --- Canada Energy Regulator
+> :::
+
+The CER published EF2023 data in 2024 as part of the [Canada’s Energy Future series](https://www.cer-rec.gc.ca/en/data-analysis/canada-energy-future/)
+in assessment of alignment with Paris Agreement targets^[As per the following [letter](https://www.cer-rec.gc.ca/en/about/news-room/whats-new/2021/canadas-energy-future-report-minister-letter-to-cer-16-december-2021.pdf).].
+
+In their own words, the dataset “explores how possible energy futures might unfold for Canadians over
+the long term”. Data covers fuel pricing, energy trade streams, industrial activity, electrical systems,
+energy demand, and economic indicators.
+
+------------------------------------------------------------------------
+
+Below is a digest of data trends to expect in the dashboard, focusing on 2023-2050 projections and
+attempting to estimate the scale of corrections required to achieve net-zero targets, as well as
+their consequences (for example, crude oil total production decreases by about -40% in a global
+net-zero scenario).
+
+The [About](about.html) section contains information on the dataset source and further project details.
+
+------------------------------------------------------------------------
+
+# Likely future scenarios
+
+**Note:** Unless specified otherwise, values listed in pairs below refer to Canada Net-zero and
+Global Net-zero scenarios (respectively).
+
+## Production
+
+- **Alberta** the top contributor across the board.
+
+- **Crude Oil down** (-15 to -40%), with AB producing 82% on average.
+
+- **Hydrogen on the rise** (+225 to +219%), with AB producing 40% on average.
+
+- **Natural Gas down** (-18 to -39%), with AB producing 58% on average.
+
+------------------------------------------------------------------------
+
+## Financials
+
+- **Crude Oil prices favorable** (WTI-WCS differential^[A common measure of heavy
+crude oil market viability. The gap between Canadian heavy and U.S. light. A narrower spread indicates
+higher demand for heavy oil, offsetting refinery costs. Also referred to as "basis spread" or "basis".]
+down 0 to -10% on average).
+
+- **Natural Gas prices favorable** (Henry Hub-NIT differential down -20 to -44% on average).
+
+- **End-Use Prices** ....
+
+- **Macro Indicators** ....
+
+------------------------------------------------------------------------
+
+## Demand
+
+- **Primary Demand** ....
+
+- **End-Use Demand** ....
+
+<!-- Primary: Overall decrease (%).
+Hydro the same.
+NG and RPP down (%) in favor of Nuclear (%), esp in C.N-Z..
+Other renewables and Landfill Gas up (~50%), with ON and AB taking the lead over QC and BC (and SK over NS).
+-->
+
+<!-- End-Use: Stronger overall decrease (%).
+The same distribution across sectors except Transportation, where
+Electricity and Hydrogen (%) phase out Diesel and Motor Gasoline (%). -->
 
 ------------------------------------------------------------------------
