@@ -1,0 +1,291 @@
+/* css styles (dashboards) */
+
+/*
+.nav-tabs {
+  background-color: #eeeeee00;
+  padding: 0px;
+  margin-left: 0px;
+  gap: 0px;
+}
+
+.tab-pane {
+  background-color: green;
+  padding: 0px;
+  margin-left: 0px;
+  gap: 0px;
+}
+
+.tabset {
+  background-color: red;
+  padding: 0px;
+  margin-left: 0px;
+  gap: 0px;
+}
+*/
+
+/* Tab headers */
+/** Tab header backgrounds **/
+.dashboard-card-no-title {
+  background-color: #ddd;
+}
+.card-header-tabs {
+  background-color: #ddd;
+  border: none;
+}
+/** Tab header contents **/
+.card-header-tabs .nav-link.active {
+  background-color: #157;
+  color: white;
+  font-family: Onest, Source Sans Pro, BC Sans, Noto Sans, Verdana, Arial, sans-serif;
+  font-weight: 500;
+}
+.card-header-tabs .nav-link {
+  background-color: #eee;
+  font-family: Onest, Source Sans Pro, BC Sans, Noto Sans, Verdana, Arial, sans-serif;
+  color: #777;
+}
+.card-header-tabs {
+  zoom: 85%;
+}
+
+
+/* Nested tab windows */
+.tabset-leaf {
+  /*
+  padding-top: 1rem;
+  */
+}
+.bslib-grid {
+  padding: 0rem !important;
+}
+.bslib-page-fill {
+  padding: 0rem !important;
+}
+.card-body {
+  padding: 0rem;
+}
+.card {
+  border: none;
+}
+
+
+/* Dashboard grid layout */
+.bslib-grid > .html-fill-container:has(.tabset-leaf) {
+  min-height: 700px;
+}
+.production-tab-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 1rem;
+}
+.card-row-grid {
+  display: grid;
+  /*
+  grid-template-rows: 1fr 1fr 1fr 1.5fr;
+  */
+  grid-auto-rows: 1fr 1fr 1fr 1.5fr;
+  gap: 1rem;
+}
+.financials-tab-column-grid {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0rem;
+}
+.financials-tab-column-2 {
+  display:grid;
+  grid-template-rows: 1fr minmax(300px, 430px);
+  gap: 0rem;
+}
+.financials-tab-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0rem;
+}
+
+
+/* Icicle charts */
+.icicle-depth-3-div {
+  max-height: 400px;
+}
+.icicle-depth-4-div {
+  max-height: 500px;
+}
+
+
+/* KPI cards */
+.card-row-grid {
+  padding: 1rem;
+}
+.card-row-grid > .html-fill-container {
+  /*
+  margin-right: 0.5rem;
+  box-shadow: 0.5rem 0rem #aaa;
+  */
+  border-radius: 13px;
+  box-shadow: 0rem 0rem 1rem 0rem #aaa;
+}
+.value-box-area {
+  font-family: Onest, Source Sans Pro, BC Sans, Noto Sans, Verdana, Arial, sans-serif;
+  zoom: 79%;
+}
+.value-box-area .value-box-value {
+  font-weight: 500;
+}
+.bslib-value-box .plotly {
+  margin-right: 1rem;
+}
+
+
+/* Main plots */
+.plotly-grid {
+  display: grid;
+  padding-top: 1rem;
+}
+
+
+/* Definitions */
+.definition-area {
+  display: grid;
+  border-radius: 13px;
+  background-color: #eee;
+  grid-template-rows: auto 1fr;
+  font-family: Onest, Source Sans Pro, BC Sans, Noto Sans, Verdana, Arial, sans-serif;
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: 0rem 0rem 1rem 0rem #aaa;
+  gap: none;
+  zoom: 79%;
+}
+.definition-area .definition-area-title {
+  margin: none;
+  padding: none;
+  padding-bottom: 0.5rem;
+  text-align: center;
+  font-size: 31px;
+}
+.definition-area .definition-area-text {
+  background-color: #fff;
+  margin: none;
+  margin-top: 0.5rem;
+  box-shadow: 0rem -0.5rem #aaa;
+  padding: 1rem;
+  overflow: auto;
+}
+
+
+
+
+
+/* Narrow viewport adjustments */
+@media (max-width: 600px){
+  .production-tab-column-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  .production-tab-column-grid .card-row-grid {
+    grid-template-rows: minmax(100px, 150px) minmax(100px, 150px) minmax(100px, 150px) minmax(200px, 300px);
+    min-height: 750px;
+  }
+  .production-tab-column-grid .plotly-grid {
+    grid-template-rows: minmax(700px, 1fr);
+  }
+
+  .financials-tab-column-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+
+  /*Experimental*/
+  /*
+  .financials-tab-column-grid {
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  }
+  .financials-tab-column-grid .financials-tab-column-2 {
+    grid-template-rows: minmax(100px, 150px) minmax(100px, 150px);
+    min-height: 750px;
+
+    background-color: green;
+  }
+  .financials-tab-column-grid > .plotly-grid {
+    grid-template-rows: minmax(100px, 1fr);
+
+    background-color: blue;
+  }
+  .financials-tab-column-grid .financials-tab-column-2 .plotly-grid {
+    grid-template-rows: minmax(150px, 1fr);
+
+    background-color: red;
+  }
+  */
+
+}
+
+
+
+
+
+
+
+/* Experimental */
+
+/*
+*/
+
+
+/*
+.bslib-value-box .cursor-crosshair {
+  display: none;
+  width: 50px;
+  padding: 0px;
+  margin: 0px;
+}
+*/
+
+/*
+.bslib-value-box {
+  border-radius: 25px;
+}
+*/
+
+/*
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+grid-template-columns: minmax(250px, 500px) minmax(750px, 1500px);
+*/
+
+/*
+word-break: keep-all;
+word-wrap: keep-all;
+overflow: auto;
+text-overflow: ellipsis;
+*/
+
+
+/* box-shadow: -25px -25px 15px 10px #eee inset; */
+
+
+/*
+.card-body .card-body {
+.card-body:has(.value-box-area) {
+.card-body .value-box-area {
+.card:not(:has(.bslib-value-box) {
+
+.bslib-card:has(.bslib-value-box) {
+.bslib-card:not(:has(.bslib-card)) {
+.card-body:not(:has(.card)) {
+  background-color: white;
+  border: none;
+  padding: 20px;
+}
+*/
+
+/*
+html {
+  zoom: 70%;
+}
+*/
+
+/*
+.plot-container {
+  zoom: 100%;
+}
+*/

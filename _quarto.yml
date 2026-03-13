@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: "docs"
 
 website:
   title: "EF2023 Dashboard Website"
@@ -18,7 +19,7 @@ website:
         text: "About"
     tools:
       - icon: "github"
-        href: ""
+        href: "https://github.com/Md-Lk"
 
 format:
   html:
