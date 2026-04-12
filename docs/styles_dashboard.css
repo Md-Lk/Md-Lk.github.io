@@ -202,12 +202,21 @@ html {
   /* Default state: Collapsed sidebar (4rem) and Main Content (1fr) */
   grid-template-columns: 4rem minmax(0, 1fr);
   width: 1fr !important;
-  min-height: 400px !important; /* Adjust based on your dashboard height needs */
-  background-color: #ffffff;
+  min-height: 500px !important; /* Adjust based on your dashboard height needs */
+  background-color: white;
 
   /* Smoothly animate the column widths when state changes */
   transition: grid-template-columns 0.3s ease;
   box-sizing: border-box !important;
+}
+
+.quarto-css-grid-no-sidebar {
+  display: grid;
+  /* Main Content only (1fr) */
+  grid-template-columns: minmax(0, 1fr);
+  width: 1fr !important;
+  min-height: 500px !important; /* Adjust based on your dashboard height needs */
+  background-color: white;
 }
 
 /* ------------------------------------------------------------------------
@@ -311,6 +320,7 @@ html {
 ------------------------------------------------------------------------ */
 @media (max-width: 992px) {
   .quarto-css-grid,
+  .quarto-css-grid-no-sidebar,
   .quarto-css-grid:has(.quarto-css-sidebar:hover),
   .quarto-css-grid:has(.quarto-css-sidebar:focus-within) {
     /* Stack as single column */
@@ -336,8 +346,6 @@ html {
   /* Show all main content natively on mobile */
   .quarto-css-content {
     min-width: 19rem !important;
-    min-height: 31rem !important;
-    max-height: 100rem !important;
   }
   .quarto-css-content > * {
     min-width: 19rem !important;
@@ -351,3 +359,30 @@ html {
     font-size: 31px;
   }
 }
+
+/*
+@media (max-width: 575.98px) {
+  .bslib-grid,
+  .bslib-grid * {
+    max-height: 1000px !important;
+    height: 100% !important;
+  }
+}
+
+
+
+
+
+  .bslib-card .card-body
+  .html-fill-container>.html-fill-item
+  scrollbar-width: none !important;
+
+
+  .quarto-css-content.html-fill-item.html-fill-container
+  .html-fill-container > .html-fill-item {
+  max-height
+
+
+max-content
+*/
+
