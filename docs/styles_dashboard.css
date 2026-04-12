@@ -71,33 +71,6 @@
 
 
 
-/* KPI cards */
-.quarto-css-sidebar {
-  padding: 1rem;
-}
-.quarto-css-sidebar > .html-fill-container {
-  /*
-  margin-right: 0.5rem;
-  box-shadow: 0.5rem 0rem #aaa;
-  */
-  min-width: 19rem;
-  border-radius: 13px;
-  box-shadow: 0rem 0rem 1rem 0rem #aaa;
-}
-.value-box-area {
-  font-family: Onest Light, BC Sans, Noto Sans, Source Sans Pro, Verdana, Arial, sans-serif;
-  zoom: 79%;
-}
-.value-box-area .value-box-value {
-  font-weight: 500;
-}
-.bslib-value-box .plotly {
-  margin-right: 1rem;
-}
-
-
-
-
 /* Definitions */
 .definition-area {
   display: grid;
@@ -259,6 +232,27 @@ html {
   gap: 1rem;
 }
 
+/* KPI card styling */
+.quarto-css-sidebar > .html-fill-container {
+  /*
+  margin-right: 0.5rem;
+  box-shadow: 0.5rem 0rem #aaa;
+  */
+  min-width: 19rem;
+  border-radius: 13px;
+  box-shadow: 0rem 0rem 1rem 0rem #aaa;
+}
+.value-box-area {
+  font-family: Onest Light, BC Sans, Noto Sans, Source Sans Pro, Verdana, Arial, sans-serif;
+  zoom: 79%;
+}
+.value-box-area .value-box-value {
+  font-weight: 500;
+}
+.bslib-value-box .plotly {
+  margin-right: 1rem;
+}
+
 /* Fades out sidebar content when collapsed, fades in when expanded */
 .quarto-css-sidebar > * {
   opacity: 0;
@@ -340,6 +334,11 @@ html {
   }
 
   /* Show all main content natively on mobile */
+  .quarto-css-content {
+    min-width: 19rem !important;
+    min-height: 31rem !important;
+    max-height: 100rem !important;
+  }
   .quarto-css-content > * {
     min-width: 19rem !important;
   }
