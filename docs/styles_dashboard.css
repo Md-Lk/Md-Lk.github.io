@@ -210,6 +210,7 @@ html {
   box-sizing: border-box !important;
 }
 
+.quarto-css-grid:not(:has(.quarto-css-sidebar)),
 .quarto-css-grid-no-sidebar {
   display: grid;
   /* Main Content only (1fr) */
@@ -328,6 +329,12 @@ html {
     grid-template-columns: 100%;
   }
 
+  #quarto-appendix,
+  #footnotes {
+    display: none !important;
+    height: 0px !important;
+  }
+
   .quarto-css-sidebar {
     padding: 1rem 3rem 3rem 3rem;
     gap: 1rem;
@@ -346,6 +353,7 @@ html {
   /* Show all main content natively on mobile */
   .quarto-css-content {
     min-width: 19rem !important;
+    min-height: 100% !important;
   }
   .quarto-css-content > * {
     min-width: 19rem !important;
