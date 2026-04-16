@@ -105,6 +105,317 @@
 }
 
 
+/* AI-based section (~10% edited) */
+/*
+ ==========================================================================
+ PURE CSS GRID SIDEBAR FOR QUARTO
+ ==========================================================================
+
+ HOW TO USE IN YOUR QUARTO (.qmd) FILE:
+
+ ::: {.quarto-css-grid}
+
+ ::: {.quarto-css-sidebar}
+ Your filters, links, and sidebar content...
+ :::
+
+ ::: {.quarto-css-content}
+ Your plots, text, and main content...
+ :::
+
+ :::
+ ==========================================================================
+*/
+
+/* ------------------------------------------------------------------------
+   1. MAIN GRID CONTAINER
+   Defines the two-column layout.
+------------------------------------------------------------------------ */
+.quarto-css-grid {
+  display: grid;
+  /* Default state: Collapsed sidebar (4rem) and Main Content (1fr) */
+  grid-template-columns: 4rem minmax(0, 1fr);
+  width: 1fr !important;
+  min-height: 31px !important; /* Adjust based on your dashboard height needs */
+  background-color: white;
+
+  /* Smoothly animate the column widths when state changes */
+  transition: grid-template-columns 0.3s ease;
+  box-sizing: border-box !important;
+  overflow-y: hidden;
+}
+
+.quarto-css-grid:not(:has(.quarto-css-sidebar)),
+.quarto-css-grid-no-sidebar {
+  display: grid;
+  /* Main Content only (1fr) */
+  grid-template-columns: minmax(0, 1fr);
+  width: 1fr !important;
+  min-height: 13px !important; /* Adjust based on your dashboard height needs */
+  background-color: white;
+}
+
+/* ------------------------------------------------------------------------
+   2. PURE CSS COLLAPSE / EXPAND LOGIC
+   Expands the first column to 21rem (~300px) when the sidebar is hovered over,
+   or when a user focuses/clicks an input inside the sidebar.
+------------------------------------------------------------------------ */
+.quarto-css-grid:has(.quarto-css-sidebar:hover),
+.quarto-css-grid:has(.quarto-css-sidebar:focus-within) {
+  grid-template-columns: 21rem minmax(0, 1fr);
+}
+
+/* ------------------------------------------------------------------------
+   3. SIDEBAR COLUMN STYLING
+------------------------------------------------------------------------ */
+.quarto-css-sidebar {
+  background-color: #efefef;
+  border-right: 1px solid #eee;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+/* KPI card styling */
+.quarto-css-sidebar > .html-fill-container {
+  /*
+  margin-right: 0.5rem;
+  box-shadow: 0.5rem 0rem #aaa;
+  */
+  min-width: 19rem;
+  border-radius: 13px;
+  box-shadow: 0rem 0rem 1rem 0rem #aaa;
+}
+.value-box-area {
+  font-family: Onest Light, BC Sans, Noto Sans, Source Sans Pro, Verdana, Arial, sans-serif;
+  zoom: 79%;
+}
+.value-box-area .value-box-value {
+  font-weight: 500;
+}
+.bslib-value-box .plotly {
+  /*
+  margin-right: 1rem;
+  */
+  margin-right: 0rem;
+}
+
+/* Fades out sidebar content when collapsed, fades in when expanded */
+.quarto-css-sidebar > * {
+  opacity: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-width: 14rem;
+  transition: opacity 0.3s ease;
+}
+
+.quarto-css-grid:has(.quarto-css-sidebar:hover) .quarto-css-sidebar,
+.quarto-css-grid:has(.quarto-css-sidebar:focus-within) .quarto-css-sidebar {
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.quarto-css-grid:has(.quarto-css-sidebar:hover) .quarto-css-sidebar > *,
+.quarto-css-grid:has(.quarto-css-sidebar:focus-within) .quarto-css-sidebar > * {
+  opacity: 1;
+  transition-delay: 0.3s; /* Wait slightly for grid to expand before showing text */
+}
+
+/* Optional: Keep a visual indicator (like an icon or text) visible when collapsed */
+.quarto-css-sidebar::before {
+  content: "☰";
+  display: block;
+  font-size: 25px;
+  color: #777;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* ------------------------------------------------------------------------
+   4. MAIN CONTENT COLUMN STYLING
+------------------------------------------------------------------------ */
+.quarto-css-content {
+  padding: 1rem !important;
+  /*
+  overflow-y: hidden;
+  */
+  /* min-width: 0 prevents flex/grid blowouts from large tables/plots */
+  min-width: 0px !important;
+  min-height: 31rem !important;
+  background-color: white;
+  /*
+  scrollbar-gutter: none !important;
+  scrollbar-width: none !important;
+  */
+  overflow-y: scroll;
+}
+
+.quarto-css-content > * {
+  min-height: 15rem !important;
+}
+
+
+/* Customize Minimum Height by Plot*/
+/* MECHANISM: Add these classes to specific Quarto code chunks.
+  Example in Quarto:
+
+  ```{r}
+  #| classes: plot-fixed-wide
+  plot(cars)
+  ```
+*/
+.plot-fixed-tall {
+    min-height: 25rem !important;
+}
+
+/* Target the actual output images, svgs, or htmlwidgets inside the chunk */
+.plot-fixed-tall img,
+.plot-fixed-tall main-svg,
+.plot-fixed-tall .htmlwidget {
+    min-height: 25rem !important;
+    height: auto !important; /* Allow it to grow if original aspect ratio demands */
+    object-fit: contain;     /* Prevents stretching distortion */
+}
+
+
+/* The little corner zoom handlebars are too little by default on mobile,
+and they overlap with corner ones on desktop, so this scales/positions then */
+.js-plotly-plot .plotly .ndrag.drag.cursor-n-resize {
+  cursor: n-resize;
+  /*
+  height: 7vh;
+  transform: translateY(0vh);
+  */
+  height: calc(8% + 17px);
+}
+
+.js-plotly-plot .plotly .sdrag.drag.cursor-s-resize {
+  cursor: s-resize;
+  height: calc(8% + 17px);
+  transform: translateY(-8%);
+}
+/* ... and this removes corner ones, plus axis >vertical<
+aligned pan ones (keeping >vertical< axis-aligned zoom ones only) */
+.js-plotly-plot .plotly .nedrag.drag.cursor-n-resize,
+.js-plotly-plot .plotly .nwdrag.drag.cursor-n-resize,
+.js-plotly-plot .plotly .sedrag.drag.cursor-s-resize,
+.js-plotly-plot .plotly .swdrag.drag.cursor-s-resize,
+.js-plotly-plot .plotly .nsdrag.drag.cursor-ns-resize {
+  display: none;
+}
+
+/* ------------------------------------------------------------------------
+   5. RESPONSIVE BEHAVIOR (Mobile friendly)
+   Stops behaving like a sidebar on small screens and stacks vertically.
+------------------------------------------------------------------------ */
+/*
+@media (max-width: 992px) {
+*/
+@media (max-width: 700px) {
+  .quarto-css-grid,
+  .quarto-css-grid-no-sidebar,
+  .quarto-css-grid:has(.quarto-css-sidebar:hover),
+  .quarto-css-grid:has(.quarto-css-sidebar:focus-within) {
+    /* Stack as single column */
+    display: block;
+    grid-template-columns: 100%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+  }
+
+  #quarto-appendix,
+  #footnotes {
+    display: none !important;
+    height: 0px !important;
+  }
+
+  .quarto-css-sidebar {
+    padding: 1rem 3rem 3rem 3rem;
+    gap: 1rem;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+    height: auto;
+    white-space: normal; /* Allow text wrapping on mobile */
+  }
+
+  /* Customize Minimum Height by Plot*/
+  /* MECHANISM: Add these classes to specific Quarto code chunks.
+    Example in Quarto:
+
+    ```{r}
+    #| classes: plot-fixed-wide
+    plot(cars)
+    ```
+  */
+  .plot-fixed-tall {
+      min-height: 43rem !important;
+  }
+
+  /* Target the actual output images, svgs, or htmlwidgets inside the chunk */
+  .plot-fixed-tall img,
+  .plot-fixed-tall main-svg,
+  .plot-fixed-tall .htmlwidget {
+      min-height: 43rem !important;
+      height: auto !important; /* Allow it to grow if original aspect ratio demands */
+      object-fit: contain;     /* Prevents stretching distortion */
+      /*
+      zoom: 70%
+      */
+  }
+
+  /* Show all sidebar content natively on mobile */
+  .quarto-css-sidebar > * {
+    opacity: 1;
+    min-width: 19rem !important;
+  }
+
+  /* Show all main content natively on mobile */
+  .quarto-css-content {
+    min-width: 19rem !important;
+    height: minmax(85rem, 140rem);
+    /*
+    min-height: 70rem;
+    min-height: 100% !important;
+    */
+    padding: 0rem !important;
+    overflow-y: hidden;
+  }
+  .quarto-css-content > * {
+    min-width: 15rem !important;
+  }
+
+  /* Hide the hamburger icon on mobile */
+  .quarto-css-sidebar::before {
+    content: "Summary";
+    display: block;
+    min-width: 19rem;
+    font-size: 31px;
+  }
+
+  /* Plotly zooms are restricted to corner handles and buttons (otherwise, they intercept scrolls on mobile) */
+  .cursor-ns-resize {
+    cursor: default;
+    pointer-events: none !important;
+  }
+  /*
+  .nsewdrag.drag.cursor-ns-resize {
+    pointer-events: all !important;
+  }
+  */
+
+
+
+
+/*
+@media (max-width: 576px) {}
+*/
+
+/*
+@media (max-width: 575.98px) {}
+
+
+
 
 
 
@@ -173,293 +484,7 @@ html {
 */
 
 
-/* Experimental: AI-based */
 /*
- ==========================================================================
- PURE CSS GRID SIDEBAR FOR QUARTO
- ==========================================================================
-
- HOW TO USE IN YOUR QUARTO (.qmd) FILE:
-
- ::: {.quarto-css-grid}
-
- ::: {.quarto-css-sidebar}
- Your filters, links, and sidebar content...
- :::
-
- ::: {.quarto-css-content}
- Your plots, text, and main content...
- :::
-
- :::
- ==========================================================================
-*/
-
-/* ------------------------------------------------------------------------
-   1. MAIN GRID CONTAINER
-   Defines the two-column layout.
------------------------------------------------------------------------- */
-.quarto-css-grid {
-  display: grid;
-  /* Default state: Collapsed sidebar (4rem) and Main Content (1fr) */
-  grid-template-columns: 4rem minmax(0, 1fr);
-  width: 1fr !important;
-  min-height: 31px !important; /* Adjust based on your dashboard height needs */
-  background-color: white;
-
-  /* Smoothly animate the column widths when state changes */
-  transition: grid-template-columns 0.3s ease;
-  box-sizing: border-box !important;
-}
-
-.quarto-css-grid:not(:has(.quarto-css-sidebar)),
-.quarto-css-grid-no-sidebar {
-  display: grid;
-  /* Main Content only (1fr) */
-  grid-template-columns: minmax(0, 1fr);
-  width: 1fr !important;
-  min-height: 13px !important; /* Adjust based on your dashboard height needs */
-  background-color: white;
-}
-
-/* ------------------------------------------------------------------------
-   2. PURE CSS COLLAPSE / EXPAND LOGIC
-   Expands the first column to 21rem (~300px) when the sidebar is hovered over,
-   or when a user focuses/clicks an input inside the sidebar.
------------------------------------------------------------------------- */
-.quarto-css-grid:has(.quarto-css-sidebar:hover),
-.quarto-css-grid:has(.quarto-css-sidebar:focus-within) {
-  grid-template-columns: 21rem minmax(0, 1fr);
-}
-
-/* ------------------------------------------------------------------------
-   3. SIDEBAR COLUMN STYLING
------------------------------------------------------------------------- */
-.quarto-css-sidebar {
-  background-color: #efefef;
-  border-right: 1px solid #eee;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  padding: 1rem;
-  gap: 1rem;
-}
-
-/* KPI card styling */
-.quarto-css-sidebar > .html-fill-container {
-  /*
-  margin-right: 0.5rem;
-  box-shadow: 0.5rem 0rem #aaa;
-  */
-  min-width: 19rem;
-  border-radius: 13px;
-  box-shadow: 0rem 0rem 1rem 0rem #aaa;
-}
-.value-box-area {
-  font-family: Onest Light, BC Sans, Noto Sans, Source Sans Pro, Verdana, Arial, sans-serif;
-  zoom: 79%;
-}
-.value-box-area .value-box-value {
-  font-weight: 500;
-}
-.bslib-value-box .plotly {
-  margin-right: 1rem;
-}
-
-/* Fades out sidebar content when collapsed, fades in when expanded */
-.quarto-css-sidebar > * {
-  opacity: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  min-width: 14rem;
-  transition: opacity 0.3s ease;
-}
-
-.quarto-css-grid:has(.quarto-css-sidebar:hover) .quarto-css-sidebar,
-.quarto-css-grid:has(.quarto-css-sidebar:focus-within) .quarto-css-sidebar {
-  overflow-y: auto;
-  scrollbar-width: none;
-}
-
-.quarto-css-grid:has(.quarto-css-sidebar:hover) .quarto-css-sidebar > *,
-.quarto-css-grid:has(.quarto-css-sidebar:focus-within) .quarto-css-sidebar > * {
-  opacity: 1;
-  transition-delay: 0.3s; /* Wait slightly for grid to expand before showing text */
-}
-
-/* Optional: Keep a visual indicator (like an icon or text) visible when collapsed */
-.quarto-css-sidebar::before {
-  content: "☰";
-  display: block;
-  font-size: 25px;
-  color: #777;
-  text-align: center;
-  cursor: pointer;
-}
-
-/* ------------------------------------------------------------------------
-   4. MAIN CONTENT COLUMN STYLING
------------------------------------------------------------------------- */
-.quarto-css-content {
-  padding: 1rem !important;
-  overflow-y: hidden;
-  /* min-width: 0 prevents flex/grid blowouts from large tables/plots */
-  min-width: 0px !important;
-  min-height: 31rem !important;
-  background-color: white;
-
-  /*
-  scrollbar-gutter: none !important;
-  scrollbar-width: none !important;
-  */
-}
-
-.quarto-css-content > * {
-  min-height: 15rem !important;
-}
-
-
-
-
-
-
-/* Customize Minimum Height by Plot*/
-/* MECHANISM: Add these classes to specific Quarto code chunks.
-  Example in Quarto:
-
-  ```{r}
-  #| classes: plot-fixed-wide
-  plot(cars)
-  ```
-*/
-.plot-fixed-tall {
-    min-height: 25rem !important;
-}
-
-/* Target the actual output images, svgs, or htmlwidgets inside the chunk */
-.plot-fixed-tall img,
-.plot-fixed-tall main-svg,
-.plot-fixed-tall .htmlwidget {
-    min-height: 25rem !important;
-    height: auto !important; /* Allow it to grow if original aspect ratio demands */
-    object-fit: contain;     /* Prevents stretching distortion */
-}
-
-
-
-
-
-
-
-
-
-/* ------------------------------------------------------------------------
-   5. RESPONSIVE BEHAVIOR (Mobile friendly)
-   Stops behaving like a sidebar on small screens and stacks vertically.
------------------------------------------------------------------------- */
-@media (max-width: 992px) {
-  .quarto-css-grid,
-  .quarto-css-grid-no-sidebar,
-  .quarto-css-grid:has(.quarto-css-sidebar:hover),
-  .quarto-css-grid:has(.quarto-css-sidebar:focus-within) {
-    /* Stack as single column */
-    display: block;
-    grid-template-columns: 100%;
-  }
-
-  #quarto-appendix,
-  #footnotes {
-    display: none !important;
-    height: 0px !important;
-  }
-
-  .quarto-css-sidebar {
-    padding: 1rem 3rem 3rem 3rem;
-    gap: 1rem;
-    border-right: none;
-    border-bottom: 1px solid #eee;
-    height: auto;
-    white-space: normal; /* Allow text wrapping on mobile */
-  }
-
-
-
-
-
-
-  /* Customize Minimum Height by Plot*/
-  /* MECHANISM: Add these classes to specific Quarto code chunks.
-    Example in Quarto:
-
-    ```{r}
-    #| classes: plot-fixed-wide
-    plot(cars)
-    ```
-  */
-  .plot-fixed-tall {
-      min-height: 43rem !important;
-  }
-
-  /* Target the actual output images, svgs, or htmlwidgets inside the chunk */
-  .plot-fixed-tall img,
-  .plot-fixed-tall main-svg,
-  .plot-fixed-tall .htmlwidget {
-      min-height: 43rem !important;
-      height: auto !important; /* Allow it to grow if original aspect ratio demands */
-      object-fit: contain;     /* Prevents stretching distortion */
-  }
-
-
-
-
-
-
-
-
-  /* Show all sidebar content natively on mobile */
-  .quarto-css-sidebar > * {
-    opacity: 1;
-    min-width: 19rem !important;
-  }
-
-  /* Show all main content natively on mobile */
-  .quarto-css-content {
-    min-width: 19rem !important;
-    height: minmax(85rem, 140rem);
-    /*
-    min-height: 70rem;
-    min-height: 100% !important;
-    */
-  }
-  .quarto-css-content > * {
-    min-width: 15rem !important;
-  }
-
-  /* Hide the hamburger icon on mobile */
-  .quarto-css-sidebar::before {
-    content: "Summary";
-    display: block;
-    min-width: 19rem;
-    font-size: 31px;
-  }
-}
-
-/*
-@media (max-width: 576px) {}
-*/
-
-/*
-@media (max-width: 575.98px) {
-  .bslib-grid,
-  .bslib-grid * {
-    max-height: 1000px !important;
-    height: 100% !important;
-  }
-}
-
-
-
-
-
   .bslib-card .card-body
   .html-fill-container>.html-fill-item
   scrollbar-width: none !important;
