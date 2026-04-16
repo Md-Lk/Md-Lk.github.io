@@ -144,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
         
       </div>
     </div>
-<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-likely-future-scenarios" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#likely-future-scenarios" data-scrolling="false" href="#likely-future-scenarios" aria-controls="likely-future-scenarios" aria-selected="true"><span class="nav-link-text">Likely future scenarios</span></a></li></ul></div></div>
+<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-context" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#context" data-scrolling="false" href="#context" aria-controls="context" aria-selected="true"><span class="nav-link-text">Context</span></a></li><li class="nav-item" role="presentation"><a id="tab-likely-future-scenarios" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#likely-future-scenarios" data-scrolling="false" href="#likely-future-scenarios" aria-controls="likely-future-scenarios" aria-selected="false"><span class="nav-link-text">Likely future scenarios</span></a></li><li class="nav-item" role="presentation"><a id="tab-contact" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#contact" data-scrolling="false" href="#contact" aria-controls="contact" aria-selected="false"><span class="nav-link-text">Contact</span></a></li></ul></div></div>
 </nav>
 </header></header>
 <!-- content -->
@@ -153,62 +153,31 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
 <!-- main -->
 
-<p>The <a href="dashboard-1.html">EF2023 Dashboard</a> is a grouping and visual summary of Canada Energy Regulator’s raw data on future outlooks for Canadian energy. Its purpose is to identify the main shifts in Canada’s energy landscape resulting from its adherence to net-zero targets (up to 2050) <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
-<hr class="bslib-grid-item html-fill-item">
-<blockquote class="blockquote bslib-grid-item html-fill-item">
-<p>“What does our journey look like over the next 30 years?”.</p>
-<div style="text-align: right;">
-<p>— Canada Energy Regulator</p>
-</div>
-</blockquote>
-<p>The CER published EF2023 data in 2024 as part of the <a href="https://www.cer-rec.gc.ca/en/data-analysis/canada-energy-future/">Canada’s Energy Future series</a> in assessment of alignment with Paris Agreement targets<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
-<p>In their own words, the dataset “explores how possible energy futures might unfold for Canadians over the long term”. Data covers fuel pricing, energy trade streams, industrial activity, electrical systems, energy demand, and economic indicators.</p>
-<p>Below is a digest of data trends to expect in the dashboard, focusing on 2023-2050 projections and attempting to estimate the scale of corrections required to achieve net-zero targets, as well as their consequences.</p>
-<p>The <a href="about.html">About</a> section contains information on the dataset source and further project details.</p>
+<p>This <a href="dashboard-1.html">EF2023 Dashboard</a> is a grouping and visual summary of Canada Energy Regulator’s raw data on future outlooks for Canadian energy. Its purpose is to highlight <strong>the projected importance of energy sources</strong> across Canada as it adheres to net-zero targets up to 2050.</p>
+<p>To focus on energy sources, this rendition tabulates drivers affecting projected importance under demand, availability, trade and emissions<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<ul class="bslib-grid-item html-fill-item">
+<li><p><strong>Demand</strong> identifies rising/descending sources, and provides a consumption-side sector view.</p></li>
+<li><p><strong>Availability</strong> ranks production by fuel type.</p></li>
+<li><p><strong>Trade</strong> lists projected fuel/electricity interchange volumes and pricing dynamics.</p></li>
+<li><p><strong>Emissions</strong> overviews sectors’ projected contribution to greenhouse gas emissions (in megatonnes of equivalent CO2).</p></li>
+</ul>
+<p>Takeaway examples, summary statistics, and data dictionaries are provided with every main tab within sidebars<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> or definition areas.</p>
 <hr class="bslib-grid-item html-fill-item">
 <div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
-<div id="likely-future-scenarios" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-likely-future-scenarios">
-<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content) minmax(3em, max-content) minmax(3em, max-content) minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div id="context" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-context">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
 <div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
 <div class="card-body html-fill-item html-fill-container">
-<p><strong>Note:</strong> Unless specified otherwise, values listed in pairs below refer to Canada Net-zero and Global Net-zero scenarios (respectively).</p>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
-grid-auto-rows: minmax(0, 1fr);">
-<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
-<ul>
-<li><p><strong>Alberta</strong> the top contributor across the board.</p></li>
-<li><p><strong>Crude Oil down</strong> (-15 to -40%), with AB producing 82% on average.</p></li>
-<li><p><strong>Hydrogen on the rise</strong> (+225 to +219%), with AB producing 40% on average.</p></li>
-<li><p><strong>Natural Gas down</strong> (-18 to -39%), with AB producing 58% on average.</p></li>
-</ul>
+<p>The CER published EF2023 data in 2024 as part of the <a href="https://www.cer-rec.gc.ca/en/data-analysis/canada-energy-future/">Canada’s Energy Future series</a> in assessment of alignment with Paris Agreement targets<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<p>In their own words, the dataset “explores how possible energy futures might unfold for Canadians over the long term”. Data covers fuel pricing, energy trade streams, industrial activity, electrical systems, energy demand, and economic indicators.</p>
+<p>Below is a digest of data trends to expect in the dashboard, focusing on 2023-2050 projections and attempting to estimate the scale of corrections required to achieve net-zero targets, as well as their consequences.</p>
 <hr>
 </div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<div class="card-footer">
+<p>“What does our journey look like over the next 30 years?”.</p>
+<div style="text-align: right;" class="html-fill-item html-fill-container">
+<p>— Canada Energy Regulator</p>
 </div>
-<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
-grid-auto-rows: minmax(0, 1fr);">
-<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
-<ul>
-<li><p><strong>Crude Oil prices favorable</strong> (WTI-WCS differential<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> down 0 to -10% on average).</p></li>
-<li><p><strong>Natural Gas prices favorable</strong> (Henry Hub-NIT differential down -20 to -44% on average).</p></li>
-<li><p><strong>End-Use Prices</strong> ….</p></li>
-<li><p><strong>Macro Indicators</strong> ….</p></li>
-</ul>
-<hr>
 </div>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
     <template>Expand</template>
@@ -217,32 +186,101 @@ grid-auto-rows: minmax(0, 1fr);">
     </span>
 </bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
 </div>
+</div>
+<div id="likely-future-scenarios" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-likely-future-scenarios">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content) minmax(3em, max-content) minmax(3em, max-content) minmax(3em, max-content) minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p><strong>Note:</strong> Unless specified otherwise, values listed in pairs below refer to Canada Net-zero and Global Net-zero scenarios (respectively). Likewise, sets of 4 refer to present values from 2022 and incremental changes projected for 2050 values under Current Measures, Canada Net-zero and Global Net-zero scenarios.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
 <div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
 grid-auto-rows: minmax(0, 1fr);">
 <div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
 <div class="card-body html-fill-item html-fill-container">
 <ul>
-<li><p><strong>Primary (generation-side) demand down</strong> overall (… to …%).</p>
+<li><p><strong>Generation-Side demand down</strong> (13.5k PJ/yr, +1.04k, +0.13k or -0.94k).</p>
 <ul>
-<li><p>NG<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> and RPP<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> down (… to …%).</p></li>
-<li><p>Other renewables and Landfill Gas up (~…50%).</p></li>
-<li><p>Hydro steady.</p></li>
+<li><p>Demand driven down mainly by <strong>NG</strong> and <strong>RPP</strong>.</p></li>
+<li><p>Demand driven up mainly by misc. renewables, <strong>LFG</strong> and <strong>nuclear energy</strong>.</p></li>
 </ul></li>
-<li><p><strong>End-Use (consumption-side) demand down</strong> significantly overall (… to …%).</p>
+<li><p><strong>Consumption-Side demand down</strong> (11.8k PJ/yr, +0.8k, -1.8k or -2.9k).</p>
 <ul>
-<li><p>Industrial NG down, BEE<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> and Hydrogen up (- or + … to …%).</p></li>
-<li><p>Transportation Diesel and Motor Gasoline down, Electricity and Hydrogen up (- or + … to …%).</p></li>
-<li><p>Commercial and Residential NG down, Electricity up (- or + … to …%).</p></li>
+<li><p>Demand driven down mainly by <strong>NG</strong>.</p></li>
+<li><p>Demand driven up mainly by <strong>Electricity</strong> and <strong>Hydrogen</strong>.</p></li>
 </ul></li>
 </ul>
-<!-- Primary: Overall decrease (%).
-Hydro the same.
-NG and RPP down (%) in favor of Nuclear (%), esp in C.N-Z..
-Other renewables and Landfill Gas up (~50%), with ON and AB taking the lead over QC and BC (and SK over NS).
--->
-<!-- End-Use: Stronger overall decrease (%).
-The same distribution across sectors except Transportation, where
-Electricity and Hydrogen (%) phase out Diesel and Motor Gasoline (%). -->
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<ul>
+<li><p><strong>NG and crude oil down</strong> (…).</p>
+<ul>
+<li>Production projected to peak in 2030 or 2026 before decreasing.</li>
+</ul></li>
+<li><p><strong>Electricity and hydrogen up</strong> (…).</p>
+<ul>
+<li>High hydrogen production growth (…).</li>
+</ul></li>
+</ul>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<ul>
+<li><p><strong>Supply and demand in equilibrium</strong>, apart from Ethane.</p></li>
+<li><p><strong>Supply and demand down</strong> in Net-zero.</p></li>
+<li><p><strong>Ethane demand projected constant</strong> in all scenarios.</p>
+<ul>
+<li>Production projected down, <strong>requiring imports</strong> in Net-zero (…).</li>
+</ul></li>
+<li><p><strong>Pentanes+ a potential new future exports</strong> in Global Net-zero (2040s).</p></li>
+</ul>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<ul>
+<li><p>~75% cuts from 2022 to 2050 enable Net-zero.</p>
+<ul>
+<li><p>Simultaneous reduction and absorption needed (target at ~165 to 155 MtCO2eq/yr).</p></li>
+<li><p>Top 3 carbon-intensive sectors are Oil and Gas, Transportation, and Buildings.</p></li>
+<li><p>Top 3 carbon removal pathways involve LULUCF, DAC, and Electricity.</p></li>
+<li><p>Electricity can be decarbonized by 2035.</p></li>
+</ul></li>
+</ul>
+<hr>
+<p>The <a href="about.html">About</a> section contains information on the dataset source and further project details.</p>
 <hr>
 </div>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
@@ -250,9 +288,26 @@ Electricity and Hydrogen (%) phase out Diesel and Motor Gasoline (%). -->
     <span class="bslib-full-screen-enter badge rounded-pill">
         <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
     </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+<div id="contact" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-contact">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p>At any time, requests for data projects or information on project development are welcome.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
 
-</div>
+
+<div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
+
 </div>
 </div>
 </div>
@@ -663,12 +718,9 @@ Electricity and Hydrogen (%) phase out Diesel and Motor Gasoline (%). -->
 <div id="quarto-appendix" class="default bslib-grid-item html-fill-item"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>For example, crude oil total production decreases by about -40% in a global net-zero scenario.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>As per the following <a href="https://www.cer-rec.gc.ca/en/about/news-room/whats-new/2021/canadas-energy-future-report-minister-letter-to-cer-16-december-2021.pdf">letter</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>A common measure of heavy crude oil market viability. The gap between Canadian heavy and U.S. light. A narrower spread indicates higher demand for heavy oil, offsetting refinery costs. Also referred to as “basis spread” or “basis”.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>Natural Gas<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>Refined Petroleum Products<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>Biofuels and Emerging Energy<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>The raw data also lists emerging technology affecting electricity dynamics, as well as societal indicators.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>These are hoverable and scrollable on desktop, and are shown as a top “Summary” section on mobile devices.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>As per the following <a href="https://www.cer-rec.gc.ca/en/about/news-room/whats-new/2021/canadas-energy-future-report-minister-letter-to-cer-16-december-2021.pdf">letter</a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></div> <!-- /content -->
 

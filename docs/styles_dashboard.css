@@ -82,8 +82,10 @@
   margin: 1rem;
   box-shadow: 0rem 0rem 1rem 0rem #aaa;
   gap: none;
+  /*
+  */
   zoom: 79%;
-  min-height: 17rem !important;
+  min-height: 13rem !important;
   max-height: 31rem !important;
 }
 .definition-area .definition-area-title {
@@ -202,7 +204,7 @@ html {
   /* Default state: Collapsed sidebar (4rem) and Main Content (1fr) */
   grid-template-columns: 4rem minmax(0, 1fr);
   width: 1fr !important;
-  min-height: 500px !important; /* Adjust based on your dashboard height needs */
+  min-height: 31px !important; /* Adjust based on your dashboard height needs */
   background-color: white;
 
   /* Smoothly animate the column widths when state changes */
@@ -216,7 +218,7 @@ html {
   /* Main Content only (1fr) */
   grid-template-columns: minmax(0, 1fr);
   width: 1fr !important;
-  min-height: 500px !important; /* Adjust based on your dashboard height needs */
+  min-height: 13px !important; /* Adjust based on your dashboard height needs */
   background-color: white;
 }
 
@@ -268,7 +270,7 @@ html {
   opacity: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  min-width: 19rem;
+  min-width: 14rem;
   transition: opacity 0.3s ease;
 }
 
@@ -312,8 +314,43 @@ html {
 }
 
 .quarto-css-content > * {
-  min-height: 19rem !important;
+  min-height: 15rem !important;
 }
+
+
+
+
+
+
+/* Customize Minimum Height by Plot*/
+/* MECHANISM: Add these classes to specific Quarto code chunks.
+  Example in Quarto:
+
+  ```{r}
+  #| classes: plot-fixed-wide
+  plot(cars)
+  ```
+*/
+.plot-fixed-tall {
+    min-height: 25rem !important;
+}
+
+/* Target the actual output images, svgs, or htmlwidgets inside the chunk */
+.plot-fixed-tall img,
+.plot-fixed-tall main-svg,
+.plot-fixed-tall .htmlwidget {
+    min-height: 25rem !important;
+    height: auto !important; /* Allow it to grow if original aspect ratio demands */
+    object-fit: contain;     /* Prevents stretching distortion */
+}
+
+
+
+
+
+
+
+
 
 /* ------------------------------------------------------------------------
    5. RESPONSIVE BEHAVIOR (Mobile friendly)
@@ -344,6 +381,40 @@ html {
     white-space: normal; /* Allow text wrapping on mobile */
   }
 
+
+
+
+
+
+  /* Customize Minimum Height by Plot*/
+  /* MECHANISM: Add these classes to specific Quarto code chunks.
+    Example in Quarto:
+
+    ```{r}
+    #| classes: plot-fixed-wide
+    plot(cars)
+    ```
+  */
+  .plot-fixed-tall {
+      min-height: 43rem !important;
+  }
+
+  /* Target the actual output images, svgs, or htmlwidgets inside the chunk */
+  .plot-fixed-tall img,
+  .plot-fixed-tall main-svg,
+  .plot-fixed-tall .htmlwidget {
+      min-height: 43rem !important;
+      height: auto !important; /* Allow it to grow if original aspect ratio demands */
+      object-fit: contain;     /* Prevents stretching distortion */
+  }
+
+
+
+
+
+
+
+
   /* Show all sidebar content natively on mobile */
   .quarto-css-sidebar > * {
     opacity: 1;
@@ -353,10 +424,14 @@ html {
   /* Show all main content natively on mobile */
   .quarto-css-content {
     min-width: 19rem !important;
+    height: minmax(85rem, 140rem);
+    /*
+    min-height: 70rem;
     min-height: 100% !important;
+    */
   }
   .quarto-css-content > * {
-    min-width: 19rem !important;
+    min-width: 15rem !important;
   }
 
   /* Hide the hamburger icon on mobile */
@@ -367,6 +442,10 @@ html {
     font-size: 31px;
   }
 }
+
+/*
+@media (max-width: 576px) {}
+*/
 
 /*
 @media (max-width: 575.98px) {
