@@ -11,7 +11,7 @@
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "This EF2023 Dashboard is a grouping and visual summary of Canada Energy Regulator’s raw data on future outlooks for Canadian energy.Its purpose is to highlight the projected importance of energy sources across Canada as it adheres to net-zero targets up to 2050.\nDrivers affecting energy source importance are tabulated under demand, availability, trade and emissions.\nTakeaway examples, summary statistics, and data dictionaries are provided with every main tab within sidebars1 or definition areas."
+    "text": "This EF2023 Dashboard is a grouping and visual summary of Canada Energy Regulator’s raw data on future outlooks for Canadian energy. Its purpose is to highlight the projected importance of energy sources across Canada as it adheres to net-zero targets up to 2050.\nTo focus on energy sources, this rendition tabulates drivers affecting projected importance under demand, availability, trade and emissions1.\nTakeaway examples, summary statistics, and data dictionaries are provided with every main tab within sidebars2 or definition areas."
   },
   {
     "objectID": "index.html#production",
@@ -74,35 +74,35 @@
     "href": "dashboard-1.html#footnotes",
     "title": "EF2023 Dashboard Website",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\n[Source](https://www.alberta.ca/alberta-solution-gas-flaring↩︎\n[Source](https://www.cer-rec.gc.ca/en/data-analysis/glossary/↩︎\n[Source](https://www.cer-rec.gc.ca/en/data-analysis/glossary/↩︎\nSource↩︎\nSource↩︎\nSource. See also: Trade &gt; Benchmark Prices &gt; Crude Oil (WTI and Brent)↩︎\nSource↩︎\nSource↩︎\nSource↩︎\nSource↩︎\nSource↩︎\nCategory: Ethane Not Recovered, i.e., kept in circulation in gas distribution pipes.↩︎\nLow-sulfur, easier to refine↩︎\nAPI gravity for the Brent benchmark is cited to be just above 38 degrees.↩︎\nA density equivalent of around 824 kg/m³ (at 15°C)↩︎\nHigh-sulfur, harder to refine↩︎\nFor more definitions, refer to CER’s Energy Information Program - Glossary↩︎\ne.g., Around 2 US$/m³↩︎\nThe reference point shifts to follow the current year. The metric is also averaged across new scenarios. Example: If one scenario halves the baseline and another keeps it unchanged, the metric is 0.25. This is because half of the baseline was subtracted from one of the two scenarios, adding 0.25 to the pooled metric.↩︎\n1 bbl is ~6.2898 m³↩︎\nFor more definitions, refer to CER’s Energy Information Program - Glossary↩︎\ne.g., Below ~0.38 US$/GJ↩︎\nThe reference point shifts to follow the current year. The metric is also averaged across new scenarios. Example: If one scenario halves the baseline and another keeps it unchanged, the metric is 0.25. This is because half of the baseline was subtracted from one of the two scenarios, adding 0.25 to the pooled metric.↩︎\n1 GJ is ~0.948 MMBtu↩︎\nThis is a tentative suggestion.↩︎"
+    "text": "Footnotes\n\n\nSource: Alberta.ca - Alberta solution gas flaring↩︎\nSource: CER - Glossary↩︎\nSource: CER - Glossary↩︎\nSource: AER - In Situ Recovery↩︎\nSource: CER - Market Snapshot↩︎\nSource: Wikipedia - Light crude oil. See also: Trade &gt; Benchmark Prices &gt; Crude Oil (WTI and Brent)↩︎\nSource; CER - Glossary↩︎\nSource: CER - Glossary↩︎\nSource: EPA - Definition↩︎\nSource: CER - Glossary↩︎\nSource: CER - Glossary↩︎\nCategory: Ethane Not Recovered, i.e., kept in circulation in gas distribution pipes.↩︎\nLow-sulfur, easier to refine↩︎\nAPI gravity for the Brent benchmark is cited to be just above 38 degrees.↩︎\nA density equivalent of around 824 kg/m³ (at 15°C)↩︎\nHigh-sulfur, harder to refine↩︎\nFor more definitions, refer to CER’s Energy Information Program - Glossary↩︎\ne.g., Around 2 US$/m³↩︎\nThe reference point shifts to follow the current year. The metric is also averaged across new scenarios. Example: If one scenario halves the baseline and another keeps it unchanged, the metric is 0.25. This is because half of the baseline was subtracted from one of the two scenarios, adding 0.25 to the pooled metric.↩︎\n1 bbl is ~6.2898 m³↩︎\nFor more definitions, refer to CER’s Energy Information Program - Glossary↩︎\ne.g., Below ~0.38 US$/GJ↩︎\nThe reference point shifts to follow the current year. The metric is also averaged across new scenarios. Example: If one scenario halves the baseline and another keeps it unchanged, the metric is 0.25. This is because half of the baseline was subtracted from one of the two scenarios, adding 0.25 to the pooled metric.↩︎\n1 GJ is ~0.948 MMBtu↩︎\nThis is a tentative suggestion.↩︎\nSee also NRC - The Hydrogen Strategy↩︎\nSource: TC - Transportation in Canada 2022↩︎\nSource: NAC - Building Energy Efficiency↩︎"
   },
   {
     "objectID": "about.html#footnotes",
     "href": "about.html#footnotes",
     "title": "About",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nComplementary (dictionary information not specified).↩︎\nComplementary (dictionary information not specified).↩︎\nBar stacking currently relies on Plotly’s default JS y axis rescaling behavior. This fallback is used because a single custom function is used to generate all views (adding traces by graphing mode). This implies that y limits adjust more reliably from frame to frame (i.e., scenarios) on redrawing (e.g., when views are reset or a legend item is (de)selected).↩︎\nThis is true for most data; some start in 2010, and projections-only trends start in 2023).↩︎\nExceptions are made for Scenarios (always listed as: Current Measures, Canada Net-zero, Global Net-zero), … (sorted by …) and prices (sorted by …).↩︎\nSegments sliding along y axes on plots with line-type traces.↩︎\nThis is the dashboard’s theme.↩︎\nWithin the R ecosystem, Plotly was selected for its high customizablility, even through e.g., R’s highcharter wrapper functions handle narrow viewport visuals and swipe gestures better (based on visual similarity alone, highchart is likely the graph framework used by CER).↩︎\nAvailable by request.↩︎"
+    "text": "Footnotes\n\n\nComplementary (dictionary information not specified).↩︎\nComplementary (dictionary information not specified).↩︎\nBar stacking currently relies on Plotly’s default JS y axis rescaling behavior. This fallback is used because a single custom function is used to generate all views (adding traces by graphing mode). This implies that y limits adjust more reliably from frame to frame (i.e., scenarios) on redrawing events (e.g., when views are reset or a legend item is (de)selected).↩︎\nExceptionally, some (like Hydrogen production) start in 2010, and projections-only trends start in 2023).↩︎\nExceptions are made for Scenarios (always listed as: Current Measures, Canada Net-zero, Global Net-zero) and plots with multiple nested levels (sorted alphabetially as a fallback).↩︎\nSegments sliding along y axes on plots with line-type traces.↩︎\nThis reflects the following logical progression by design: The relevance of future energy sources (i.e., the dashboard’s main theme) starts with Demand. It must therefore be covered by Supply, which motivates Trade streams as per pricing dynamics. This results in Emissions, which is monitored across sectors. This exact progression is reflected across tabs to make this layout easier to digest.↩︎\nWithin the R ecosystem, Plotly was selected for its high customizablility, even through e.g., R’s highcharter wrapper functions handle narrow viewport visuals and swipe gestures better (based on visual similarity alone, highchart is likely the graph framework used by CER).↩︎\nTwo plotly buttons cannot share the \"animate\" method at the same time. Therefore, slicers use \"update\" instead.↩︎\nR package shareable by request.↩︎"
   },
   {
     "objectID": "index.html#availability",
     "href": "index.html#availability",
     "title": "Home",
     "section": "Availability",
-    "text": "Availability"
+    "text": "Availability\n\n\nNG and crude oil down (…).\n\nProduction projected to peak in 2030 or 2026 before decreasing.\n\n\n\n\nElectricity and hydrogen up (…).\n\n\n\nHigh hydrogen production growth (…)."
   },
   {
     "objectID": "index.html#trade",
     "href": "index.html#trade",
     "title": "Home",
     "section": "Trade",
-    "text": "Trade"
+    "text": "Trade\n\nSupply and demand in equilibrium, apart from Ethane.\nSupply and demand down in Net-zero.\nEthane demand projected constant in all scenarios.\n\n\n\nProduction projected down, requiring imports in Net-zero (…).\nPentanes+ a potential new future exports in Global Net-zero (2040s)."
   },
   {
     "objectID": "index.html#emissions",
     "href": "index.html#emissions",
     "title": "Home",
     "section": "Emissions",
-    "text": "Emissions"
+    "text": "Emissions\n\n~75% cuts from 2022 to 2050 enable Net-zero.\n\nSimultaneous reduction and absorption needed (target at ~165 to 155 MtCO2eq/yr).\nTop 3 carbon-intensive sectors are Oil and Gas, Transportation, and Buildings.\nTop 3 carbon removal pathways involve LULUCF, DAC, and Electricity.\nElectricity may be decarbonized by 2035.\n\n\n\nThe About section contains information on the dataset source and further project details."
   },
   {
     "objectID": "index.html#demand-1",

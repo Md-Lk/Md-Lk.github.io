@@ -3,3 +3,10 @@
 ul ul li {
   list-style-type: '\2013        ';
 }
+
+
+#quarto-appendix,
+#footnotes {
+  display: none !important;
+  height: 0px !important;
+}
