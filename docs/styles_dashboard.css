@@ -256,6 +256,22 @@
 }
 
 
+
+
+
+
+
+.quarto-css-content.html-fill-item.html-fill-container .card.cell.html-fill-item.html-fill-container.bslib-card {
+    min-height: 21rem !important;
+}
+
+
+
+
+
+
+
+
 /* Customize Minimum Height by Plot*/
 /* MECHANISM: Add these classes to specific Quarto code chunks.
   Example in Quarto:
@@ -265,6 +281,7 @@
   plot(cars)
   ```
 */
+
 .plot-fixed-tall {
     min-height: 25rem !important;
 }
@@ -312,7 +329,7 @@ aligned pan ones (keeping >vertical< axis-aligned zoom ones only) */
 /*
 @media (max-width: 992px) {
 */
-@media (max-width: 700px) {
+@media (max-width: 750px) {
   .quarto-css-grid,
   .quarto-css-grid-no-sidebar,
   .quarto-css-grid:has(.quarto-css-sidebar:hover),
